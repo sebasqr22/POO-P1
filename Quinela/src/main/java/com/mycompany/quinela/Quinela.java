@@ -42,6 +42,7 @@ public class Quinela extends javax.swing.JFrame {
         registrarse_button_login = new javax.swing.JButton();
         password_field_login = new javax.swing.JPasswordField();
         mostrar_button_login = new javax.swing.JRadioButton();
+        administrativo_button_login = new javax.swing.JToggleButton();
         registrar = new javax.swing.JPanel();
         registrarse_label_registrarse = new javax.swing.JLabel();
         username_field_registrarse = new javax.swing.JTextField();
@@ -50,9 +51,21 @@ public class Quinela extends javax.swing.JFrame {
         password_label_registrarse = new javax.swing.JLabel();
         registrar_button_registrarse = new javax.swing.JButton();
         login_button_registrarse = new javax.swing.JButton();
-        quinela_label_quinela1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        quinela = new javax.swing.JPanel();
+        quinela_label_quinela1 = new javax.swing.JLabel();
         logout_button_quinela1 = new javax.swing.JButton();
+        administrativo = new javax.swing.JPanel();
+        administrativo_label_administrativo = new javax.swing.JLabel();
+        username_field_administrativo = new javax.swing.JTextField();
+        username_label_administrativo = new javax.swing.JLabel();
+        acceder_button_administrativo = new javax.swing.JButton();
+        mostrar_button_administrativo = new javax.swing.JRadioButton();
+        password_label_administrativo = new javax.swing.JLabel();
+        password_field_administrativo = new javax.swing.JPasswordField();
+        administrativo_button_administrativo = new javax.swing.JToggleButton();
+        pantalla_administrativa = new javax.swing.JPanel();
+        administrativo_label_padministrativa = new javax.swing.JLabel();
+        logout_button_padministrativa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,6 +103,13 @@ public class Quinela extends javax.swing.JFrame {
             }
         });
 
+        administrativo_button_login.setText("Admistrativo");
+        administrativo_button_login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                administrativo_button_loginActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout loginLayout = new javax.swing.GroupLayout(login);
         login.setLayout(loginLayout);
         loginLayout.setHorizontalGroup(
@@ -116,12 +136,15 @@ public class Quinela extends javax.swing.JFrame {
                 .addComponent(password_label_login)
                 .addGap(316, 316, 316))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginLayout.createSequentialGroup()
+                        .addComponent(administrativo_button_login)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(registrarse_button_login)
                         .addGap(15, 15, 15))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(mostrar_button_login)
                         .addGap(278, 278, 278))))
         );
@@ -142,8 +165,10 @@ public class Quinela extends javax.swing.JFrame {
                 .addComponent(mostrar_button_login)
                 .addGap(74, 74, 74)
                 .addComponent(acceder_button_login, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 314, Short.MAX_VALUE)
-                .addComponent(registrarse_button_login)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 320, Short.MAX_VALUE)
+                .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(registrarse_button_login)
+                    .addComponent(administrativo_button_login))
                 .addGap(15, 15, 15))
         );
 
@@ -215,15 +240,15 @@ public class Quinela extends javax.swing.JFrame {
                     .addComponent(password_label_registrarse))
                 .addGap(90, 90, 90)
                 .addComponent(registrar_button_registrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 318, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 324, Short.MAX_VALUE)
                 .addComponent(login_button_registrarse)
                 .addContainerGap())
         );
 
         pantallas.addTab("tab2", registrar);
 
-        jLabel1.setFont(new java.awt.Font("Avenir", 1, 24)); // NOI18N
-        jLabel1.setText("Quinela");
+        quinela_label_quinela1.setFont(new java.awt.Font("Avenir", 1, 24)); // NOI18N
+        quinela_label_quinela1.setText("Quinela");
 
         logout_button_quinela1.setText("Logout");
         logout_button_quinela1.setActionCommand("");
@@ -233,30 +258,155 @@ public class Quinela extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout quinela_label_quinela1Layout = new javax.swing.GroupLayout(quinela_label_quinela1);
-        quinela_label_quinela1.setLayout(quinela_label_quinela1Layout);
-        quinela_label_quinela1Layout.setHorizontalGroup(
-            quinela_label_quinela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(quinela_label_quinela1Layout.createSequentialGroup()
+        javax.swing.GroupLayout quinelaLayout = new javax.swing.GroupLayout(quinela);
+        quinela.setLayout(quinelaLayout);
+        quinelaLayout.setHorizontalGroup(
+            quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(quinelaLayout.createSequentialGroup()
                 .addGap(539, 539, 539)
-                .addComponent(jLabel1)
+                .addComponent(quinela_label_quinela1)
                 .addContainerGap(573, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, quinela_label_quinela1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, quinelaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(logout_button_quinela1)
                 .addGap(24, 24, 24))
         );
-        quinela_label_quinela1Layout.setVerticalGroup(
-            quinela_label_quinela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(quinela_label_quinela1Layout.createSequentialGroup()
+        quinelaLayout.setVerticalGroup(
+            quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(quinelaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 644, Short.MAX_VALUE)
+                .addComponent(quinela_label_quinela1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 650, Short.MAX_VALUE)
                 .addComponent(logout_button_quinela1)
                 .addContainerGap())
         );
 
-        pantallas.addTab("tab3", quinela_label_quinela1);
+        pantallas.addTab("tab3", quinela);
+
+        administrativo_label_administrativo.setFont(new java.awt.Font("Avenir", 1, 24)); // NOI18N
+        administrativo_label_administrativo.setText("Acceso Administrativo");
+
+        username_field_administrativo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                username_field_administrativoActionPerformed(evt);
+            }
+        });
+
+        username_label_administrativo.setText("Username");
+
+        acceder_button_administrativo.setText("Acceder");
+        acceder_button_administrativo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acceder_button_administrativoActionPerformed(evt);
+            }
+        });
+
+        mostrar_button_administrativo.setText("Mostrar Contraseña");
+        mostrar_button_administrativo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mostrar_button_administrativoActionPerformed(evt);
+            }
+        });
+
+        password_label_administrativo.setText("Password");
+
+        administrativo_button_administrativo.setText("Login Común");
+        administrativo_button_administrativo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                administrativo_button_administrativoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout administrativoLayout = new javax.swing.GroupLayout(administrativo);
+        administrativo.setLayout(administrativoLayout);
+        administrativoLayout.setHorizontalGroup(
+            administrativoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, administrativoLayout.createSequentialGroup()
+                .addGap(167, 167, 167)
+                .addComponent(username_field_administrativo, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 327, Short.MAX_VALUE)
+                .addComponent(password_field_administrativo, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(221, 221, 221))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, administrativoLayout.createSequentialGroup()
+                .addGap(263, 263, 263)
+                .addComponent(username_label_administrativo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(password_label_administrativo)
+                .addGap(317, 317, 317))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, administrativoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(mostrar_button_administrativo)
+                .addGap(282, 282, 282))
+            .addGroup(administrativoLayout.createSequentialGroup()
+                .addGroup(administrativoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(administrativoLayout.createSequentialGroup()
+                        .addGap(425, 425, 425)
+                        .addComponent(administrativo_label_administrativo))
+                    .addGroup(administrativoLayout.createSequentialGroup()
+                        .addGap(457, 457, 457)
+                        .addComponent(acceder_button_administrativo, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(administrativo_button_administrativo))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        administrativoLayout.setVerticalGroup(
+            administrativoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(administrativoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(administrativo_label_administrativo)
+                .addGap(135, 135, 135)
+                .addGroup(administrativoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(username_field_administrativo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(password_field_administrativo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(administrativoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(username_label_administrativo)
+                    .addComponent(password_label_administrativo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mostrar_button_administrativo)
+                .addGap(54, 54, 54)
+                .addComponent(acceder_button_administrativo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 329, Short.MAX_VALUE)
+                .addComponent(administrativo_button_administrativo)
+                .addGap(17, 17, 17))
+        );
+
+        pantallas.addTab("tab4", administrativo);
+
+        administrativo_label_padministrativa.setFont(new java.awt.Font("Avenir", 1, 24)); // NOI18N
+        administrativo_label_padministrativa.setText("Pantalla Administrativa");
+
+        logout_button_padministrativa.setText("Logout");
+        logout_button_padministrativa.setActionCommand("");
+        logout_button_padministrativa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logout_button_padministrativaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pantalla_administrativaLayout = new javax.swing.GroupLayout(pantalla_administrativa);
+        pantalla_administrativa.setLayout(pantalla_administrativaLayout);
+        pantalla_administrativaLayout.setHorizontalGroup(
+            pantalla_administrativaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pantalla_administrativaLayout.createSequentialGroup()
+                .addGap(428, 428, 428)
+                .addComponent(administrativo_label_padministrativa)
+                .addContainerGap(525, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pantalla_administrativaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logout_button_padministrativa)
+                .addContainerGap())
+        );
+        pantalla_administrativaLayout.setVerticalGroup(
+            pantalla_administrativaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pantalla_administrativaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(administrativo_label_padministrativa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 639, Short.MAX_VALUE)
+                .addComponent(logout_button_padministrativa)
+                .addGap(17, 17, 17))
+        );
+
+        pantallas.addTab("tab5", pantalla_administrativa);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -269,9 +419,7 @@ public class Quinela extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pantallas))
+            .addComponent(pantallas)
         );
 
         pack();
@@ -294,8 +442,14 @@ public class Quinela extends javax.swing.JFrame {
         }
     }
 
-    private Boolean encontrar_usuario(String username, String password){
-        String todos = manejadorArchivos.leer("archivos/usuarios.txt");
+    private Boolean encontrar_usuario(String username, String password, Boolean admin){
+        String todos;
+        if(!admin){
+            todos = manejadorArchivos.leer("archivos/usuarios.txt");
+        }
+        else{
+            todos = manejadorArchivos.leer("archivos/admins.txt");
+        }
         String[] usuarios = todos.split("#");
         String[] datos;
 
@@ -354,7 +508,7 @@ public class Quinela extends javax.swing.JFrame {
         String password = String.valueOf(password_field_login.getPassword());
 
         if(!username.equals("") && !password.equals("")){
-            if(encontrar_usuario(username, password)){
+            if(encontrar_usuario(username, password, false)){
                 usuario_global = username;
                 System.out.println("Se encuentra el usuario");
                 pantallas.setSelectedIndex(2);
@@ -441,6 +595,56 @@ public class Quinela extends javax.swing.JFrame {
         cerrar_sesion();
     }//GEN-LAST:event_logout_button_quinela1ActionPerformed
 
+    private void administrativo_button_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_administrativo_button_loginActionPerformed
+        // TODO add your handling code here:
+        pantallas.setSelectedIndex(3);
+    }//GEN-LAST:event_administrativo_button_loginActionPerformed
+
+    private void username_field_administrativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username_field_administrativoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_username_field_administrativoActionPerformed
+
+    private void acceder_button_administrativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceder_button_administrativoActionPerformed
+        // TODO add your handling code here:
+        String username = username_field_administrativo.getText();
+        String password = password_field_administrativo.getText();
+        if(!username.equals("") && !password.equals("")){
+            if(encontrar_usuario(username, password, true)){
+                usuario_global = username;
+                pantallas.setSelectedIndex(4);
+                username_field_administrativo.setText("");
+                password_field_administrativo.setText("");
+            }
+            else{
+                JOptionPane.showMessageDialog(pantallas, "Este Administrador no Existe!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(pantallas, "Debe escribir un Usuario y una Constraseña!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_acceder_button_administrativoActionPerformed
+
+    private void mostrar_button_administrativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar_button_administrativoActionPerformed
+        // TODO add your handling code here:
+        if(estado_password == 0){
+            password_field_administrativo.setEchoChar((char)0);
+            estado_password = 1;
+        }else{
+            password_field_administrativo.setEchoChar('*');
+            estado_password = 0;
+        }
+    }//GEN-LAST:event_mostrar_button_administrativoActionPerformed
+
+    private void administrativo_button_administrativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_administrativo_button_administrativoActionPerformed
+        // TODO add your handling code here:
+        pantallas.setSelectedIndex(0);
+    }//GEN-LAST:event_administrativo_button_administrativoActionPerformed
+
+    private void logout_button_padministrativaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_button_padministrativaActionPerformed
+        // TODO add your handling code here:
+        cerrar_sesion();
+    }//GEN-LAST:event_logout_button_padministrativaActionPerformed
+
     private void Font(javax.swing.JLabel label){
         label.setFont(new java.awt.Font("Avenir", 1, 24));
     }
@@ -480,25 +684,38 @@ public class Quinela extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton acceder_button_administrativo;
     public javax.swing.JButton acceder_button_login;
+    private javax.swing.JPanel administrativo;
+    private javax.swing.JToggleButton administrativo_button_administrativo;
+    private javax.swing.JToggleButton administrativo_button_login;
+    private javax.swing.JLabel administrativo_label_administrativo;
+    private javax.swing.JLabel administrativo_label_padministrativa;
     private javax.swing.JLabel iniciar_label;
-    private javax.swing.JLabel jLabel1;
     public javax.swing.JPanel login;
     public javax.swing.JButton login_button_registrarse;
+    public javax.swing.JButton logout_button_padministrativa;
     public javax.swing.JButton logout_button_quinela1;
+    public javax.swing.JRadioButton mostrar_button_administrativo;
     public javax.swing.JRadioButton mostrar_button_login;
+    private javax.swing.JPanel pantalla_administrativa;
     public javax.swing.JTabbedPane pantallas;
+    public javax.swing.JPasswordField password_field_administrativo;
     public javax.swing.JPasswordField password_field_login;
     public javax.swing.JTextField password_field_registrarse;
+    public javax.swing.JLabel password_label_administrativo;
     public javax.swing.JLabel password_label_login;
     public javax.swing.JLabel password_label_registrarse;
-    public javax.swing.JPanel quinela_label_quinela1;
+    public javax.swing.JPanel quinela;
+    public javax.swing.JLabel quinela_label_quinela1;
     private javax.swing.JPanel registrar;
     public javax.swing.JButton registrar_button_registrarse;
     public javax.swing.JButton registrarse_button_login;
     public javax.swing.JLabel registrarse_label_registrarse;
+    public javax.swing.JTextField username_field_administrativo;
     public javax.swing.JTextField username_field_login;
     public javax.swing.JTextField username_field_registrarse;
+    public javax.swing.JLabel username_label_administrativo;
     public javax.swing.JLabel username_label_login;
     public javax.swing.JLabel username_label_registrarse;
     // End of variables declaration//GEN-END:variables
