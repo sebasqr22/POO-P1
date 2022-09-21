@@ -43,4 +43,14 @@ public class ManejadorArchivos {
         }
     }
 
+
+    public int crear_archivo(String ruta){
+        File archivo = new File(ruta);
+        if(archivo.mkdir()){
+            return 0;
+        }
+        else{
+            return 1;
+        }
+    }
 }

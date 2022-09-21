@@ -50,6 +50,9 @@ public class Quinela extends javax.swing.JFrame {
         password_label_registrarse = new javax.swing.JLabel();
         registrar_button_registrarse = new javax.swing.JButton();
         login_button_registrarse = new javax.swing.JButton();
+        quinela_label_quinela1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        logout_button_quinela1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -219,6 +222,42 @@ public class Quinela extends javax.swing.JFrame {
 
         pantallas.addTab("tab2", registrar);
 
+        jLabel1.setFont(new java.awt.Font("Avenir", 1, 24)); // NOI18N
+        jLabel1.setText("Quinela");
+
+        logout_button_quinela1.setText("Logout");
+        logout_button_quinela1.setActionCommand("");
+        logout_button_quinela1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logout_button_quinela1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout quinela_label_quinela1Layout = new javax.swing.GroupLayout(quinela_label_quinela1);
+        quinela_label_quinela1.setLayout(quinela_label_quinela1Layout);
+        quinela_label_quinela1Layout.setHorizontalGroup(
+            quinela_label_quinela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(quinela_label_quinela1Layout.createSequentialGroup()
+                .addGap(539, 539, 539)
+                .addComponent(jLabel1)
+                .addContainerGap(573, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, quinela_label_quinela1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logout_button_quinela1)
+                .addGap(24, 24, 24))
+        );
+        quinela_label_quinela1Layout.setVerticalGroup(
+            quinela_label_quinela1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(quinela_label_quinela1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 644, Short.MAX_VALUE)
+                .addComponent(logout_button_quinela1)
+                .addContainerGap())
+        );
+
+        pantallas.addTab("tab3", quinela_label_quinela1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -286,7 +325,17 @@ public class Quinela extends javax.swing.JFrame {
         }
         return false;
     }
+    private void cerrar_sesion(){
+        int opcion = JOptionPane.showConfirmDialog(pantallas, "Desea cerrar la sesión activa?");
+        switch (opcion){
+            case JOptionPane.YES_OPTION:
+                usuario_global = null;
+                pantallas.setSelectedIndex(0);
 
+            case JOptionPane.NO_OPTION:
+                break;
+        }
+    }
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -308,7 +357,7 @@ public class Quinela extends javax.swing.JFrame {
             if(encontrar_usuario(username, password)){
                 usuario_global = username;
                 System.out.println("Se encuentra el usuario");
-                //cambio de pantalla
+                pantallas.setSelectedIndex(2);
                 username_field_login.setText("");
                 password_field_login.setText("");
             }
@@ -331,19 +380,34 @@ public class Quinela extends javax.swing.JFrame {
         String password = password_field_registrarse.getText();
         if(!username.equals("") && !password.equals("")){
             if(!revisa_usuario(username)){
-                int opcion = JOptionPane.showConfirmDialog(pantallas, "Desea agregar al usuario -" + username + "- al sistema?");
-                switch (opcion){
-                    case JOptionPane.YES_OPTION:
-                        escribir("archivos/usuarios.txt", "#" + username + "-" + password);
-                        JOptionPane.showMessageDialog(pantallas,"Se agregó a -" + username + "- al sistema!");
-                        username_field_login.setText(username);
-                        password_field_login.setText(password);
-                        pantallas.setSelectedIndex(0);
-                        username_field_registrarse.setText("");
-                        password_field_registrarse.setText("");
-
-                    case JOptionPane.NO_OPTION:
-                        break;
+                if(!username.contains(" ") && !username.contains("#") && !username.contains("-")){
+                    if(!password.contains(" ")){
+                        int opcion = JOptionPane.showConfirmDialog(pantallas, "Desea agregar al usuario -" + username + "- al sistema?");
+                        switch (opcion){
+                            case JOptionPane.YES_OPTION:
+                                if(manejadorArchivos.crear_archivo("archivos/" + username) == 0){
+                                    escribir("archivos/usuarios.txt", "#" + username + "-" + password);
+                                    JOptionPane.showMessageDialog(pantallas,"Se agregó a -" + username + "- al sistema!");
+                                    username_field_login.setText(username);
+                                    password_field_login.setText(password);
+                                    pantallas.setSelectedIndex(0);
+                                    username_field_registrarse.setText("");
+                                    password_field_registrarse.setText("");
+                                }
+                                else{
+                                    JOptionPane.showMessageDialog(pantallas, "Ocurrio un Error!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
+                                    break;
+                                }
+                            case JOptionPane.NO_OPTION:
+                                break;
+                        }
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(pantallas, "Esta Contraseña contiene Caractéres Inválidos (ESPACIO)!!!","ERROR!", JOptionPane.WARNING_MESSAGE);
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(pantallas, "Este Usuario contiene Caractéres Inválidos (# o - o ESPACIO)!!!","ERROR!", JOptionPane.WARNING_MESSAGE);
                 }
             }
             else {
@@ -371,6 +435,11 @@ public class Quinela extends javax.swing.JFrame {
             estado_password = 0;
         }
     }//GEN-LAST:event_mostrar_button_loginActionPerformed
+
+    private void logout_button_quinela1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_button_quinela1ActionPerformed
+        // TODO add your handling code here:
+        cerrar_sesion();
+    }//GEN-LAST:event_logout_button_quinela1ActionPerformed
 
     private void Font(javax.swing.JLabel label){
         label.setFont(new java.awt.Font("Avenir", 1, 24));
@@ -413,14 +482,17 @@ public class Quinela extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton acceder_button_login;
     private javax.swing.JLabel iniciar_label;
+    private javax.swing.JLabel jLabel1;
     public javax.swing.JPanel login;
     public javax.swing.JButton login_button_registrarse;
+    public javax.swing.JButton logout_button_quinela1;
     public javax.swing.JRadioButton mostrar_button_login;
     public javax.swing.JTabbedPane pantallas;
     public javax.swing.JPasswordField password_field_login;
     public javax.swing.JTextField password_field_registrarse;
     public javax.swing.JLabel password_label_login;
     public javax.swing.JLabel password_label_registrarse;
+    public javax.swing.JPanel quinela_label_quinela1;
     private javax.swing.JPanel registrar;
     public javax.swing.JButton registrar_button_registrarse;
     public javax.swing.JButton registrarse_button_login;
