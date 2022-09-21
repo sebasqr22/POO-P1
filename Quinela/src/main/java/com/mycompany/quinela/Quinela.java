@@ -4,12 +4,17 @@
  */
 package com.mycompany.quinela;
 
+import javax.swing.JOptionPane;
+import java.util.Arrays;
+
 /**
  *
  * @author sebastianqr.2208
  */
 public class Quinela extends javax.swing.JFrame {
     int estado_password = 0;
+    private String usuario_global;
+    ManejadorArchivos manejadorArchivos = new ManejadorArchivos();
     /**
      * Creates new form Quinela
      */
@@ -233,12 +238,68 @@ public class Quinela extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    private void escribir(String ruta, String data){
+        String info = manejadorArchivos.leer(ruta);
+        int escribir = manejadorArchivos.escribir(ruta, info + data);
+
+        if(escribir == 1){
+            JOptionPane.showMessageDialog(pantallas, "Ocurrio un error, intente de nuevo!!!!");
+        }
+    }
+
+    private Boolean encontrar_usuario(String username, String password){
+        String todos = manejadorArchivos.leer("archivos/usuarios.txt");
+        String[] usuarios = todos.split("#");
+        String[] datos;
+
+        for(String usuario : usuarios){
+            if(!usuario.equals("")){
+                datos = usuario.split("-");
+                if(datos[0].equals(username) && datos[1].equals(password)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
     private void registrarse_button_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarse_button_loginActionPerformed
         pantallas.setSelectedIndex(1);
     }//GEN-LAST:event_registrarse_button_loginActionPerformed
 
     private void acceder_button_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceder_button_loginActionPerformed
         // TODO add your handling code here:
+        String username = username_field_login.getText();
+        String password = String.valueOf(password_field_login.getPassword());
+
+        if(!username.equals("") && !password.equals("")){
+            if(encontrar_usuario(username, password)){
+                usuario_global = username;
+                System.out.println("Se encuentra el usuario");
+            }
+            else{
+                JOptionPane.showMessageDialog(pantallas, "No se encontro a este usuario!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(pantallas, "Debe escribir un Usuario y una Constraseña!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_acceder_button_loginActionPerformed
 
     private void username_field_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username_field_loginActionPerformed
@@ -247,6 +308,27 @@ public class Quinela extends javax.swing.JFrame {
 
     private void registrar_button_registrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrar_button_registrarseActionPerformed
         // TODO add your handling code here:
+        String username = username_field_registrarse.getText();
+        String password = password_field_registrarse.getText();
+        if(!username.equals("") && !password.equals("")){
+            int opcion = JOptionPane.showConfirmDialog(pantallas, "Desea agregar al usuario -" + username + "- al sistema?");
+            switch (opcion){
+                case JOptionPane.YES_OPTION:
+                    escribir("archivos/usuarios.txt", "#" + username + "-" + password);
+                    JOptionPane.showMessageDialog(pantallas,"Se agregó a -" + username + "- al sistema!");
+                    username_field_login.setText(username);
+                    password_field_login.setText(password);
+                    pantallas.setSelectedIndex(0);
+                    username_field_registrarse.setText("");
+                    password_field_registrarse.setText("");
+
+                case JOptionPane.NO_OPTION:
+                    break;
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(pantallas, "Debe escribir un Usuario y una Constraseña!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_registrar_button_registrarseActionPerformed
 
     private void login_button_registrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_button_registrarseActionPerformed
