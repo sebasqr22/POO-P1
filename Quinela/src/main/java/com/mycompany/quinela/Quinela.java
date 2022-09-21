@@ -271,6 +271,22 @@ public class Quinela extends javax.swing.JFrame {
         return false;
     }
 
+    private Boolean revisa_usuario(String username){
+        String todos = manejadorArchivos.leer("archivos/usuarios.txt");
+        String[] usuarios = todos.split("#");
+        String[] datos;
+
+        for(String usuario : usuarios){
+            if(!usuario.equals("")){
+                datos = usuario.split("-");
+                if(datos[0].equals(username)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -292,6 +308,9 @@ public class Quinela extends javax.swing.JFrame {
             if(encontrar_usuario(username, password)){
                 usuario_global = username;
                 System.out.println("Se encuentra el usuario");
+                //cambio de pantalla
+                username_field_login.setText("");
+                password_field_login.setText("");
             }
             else{
                 JOptionPane.showMessageDialog(pantallas, "No se encontro a este usuario!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
@@ -311,20 +330,26 @@ public class Quinela extends javax.swing.JFrame {
         String username = username_field_registrarse.getText();
         String password = password_field_registrarse.getText();
         if(!username.equals("") && !password.equals("")){
-            int opcion = JOptionPane.showConfirmDialog(pantallas, "Desea agregar al usuario -" + username + "- al sistema?");
-            switch (opcion){
-                case JOptionPane.YES_OPTION:
-                    escribir("archivos/usuarios.txt", "#" + username + "-" + password);
-                    JOptionPane.showMessageDialog(pantallas,"Se agregó a -" + username + "- al sistema!");
-                    username_field_login.setText(username);
-                    password_field_login.setText(password);
-                    pantallas.setSelectedIndex(0);
-                    username_field_registrarse.setText("");
-                    password_field_registrarse.setText("");
+            if(!revisa_usuario(username)){
+                int opcion = JOptionPane.showConfirmDialog(pantallas, "Desea agregar al usuario -" + username + "- al sistema?");
+                switch (opcion){
+                    case JOptionPane.YES_OPTION:
+                        escribir("archivos/usuarios.txt", "#" + username + "-" + password);
+                        JOptionPane.showMessageDialog(pantallas,"Se agregó a -" + username + "- al sistema!");
+                        username_field_login.setText(username);
+                        password_field_login.setText(password);
+                        pantallas.setSelectedIndex(0);
+                        username_field_registrarse.setText("");
+                        password_field_registrarse.setText("");
 
-                case JOptionPane.NO_OPTION:
-                    break;
+                    case JOptionPane.NO_OPTION:
+                        break;
+                }
             }
+            else {
+                JOptionPane.showMessageDialog(pantallas, "Este Nombre de Usuario ya existe, prueba con otro!!!","ERROR!", JOptionPane.WARNING_MESSAGE);
+            }
+
         }
         else{
             JOptionPane.showMessageDialog(pantallas, "Debe escribir un Usuario y una Constraseña!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
