@@ -385,7 +385,7 @@ public class Quinela extends javax.swing.JFrame {
                         int opcion = JOptionPane.showConfirmDialog(pantallas, "Desea agregar al usuario -" + username + "- al sistema?");
                         switch (opcion){
                             case JOptionPane.YES_OPTION:
-                                if(manejadorArchivos.crear_archivo("archivos/" + username) == 0){
+                                if(manejadorArchivos.crear_carpeta("archivos/" + username) == 0){
                                     escribir("archivos/usuarios.txt", "#" + username + "-" + password);
                                     JOptionPane.showMessageDialog(pantallas,"Se agregó a -" + username + "- al sistema!");
                                     username_field_login.setText(username);
