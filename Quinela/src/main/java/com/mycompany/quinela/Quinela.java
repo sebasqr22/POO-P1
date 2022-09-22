@@ -68,7 +68,6 @@ public class Quinela extends javax.swing.JFrame {
         ImageIcon image2 = new ImageIcon("imagenes/escudos/" + e2 + ".png");
         escudo1.setIcon(image1);
         escudo2.setIcon(image2);
-        set_partidos_grupos("A");
     }
 
     private void seleccionar_escudos(String partido){
@@ -87,6 +86,9 @@ public class Quinela extends javax.swing.JFrame {
     public Quinela() {
         mundial.primeraFase();
         initComponents();
+        grupo_combo_quinela.setEditable(false);
+        fase_combo_quinela.setEditable(false);
+        partido_combo_quinela.setEditable(false);
         cambiar_escudos("senegal", "paises_bajos");
         ImageIcon logo = new ImageIcon("imagenes/logos/logo_peque.png");
         logo_mundial.setIcon(logo);
@@ -136,7 +138,7 @@ public class Quinela extends javax.swing.JFrame {
         fase_label_quinela = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         grupo_combo_quinela = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
+        grupo_label_quinela = new javax.swing.JLabel();
         partido_combo_quinela = new javax.swing.JComboBox<>();
         administrativo = new javax.swing.JPanel();
         administrativo_label_administrativo = new javax.swing.JLabel();
@@ -362,6 +364,11 @@ public class Quinela extends javax.swing.JFrame {
         guardar_button_quinela.setText("Guardar");
 
         fase_combo_quinela.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        fase_combo_quinela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fase_combo_quinelaActionPerformed(evt);
+            }
+        });
 
         fase_label_quinela.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         fase_label_quinela.setForeground(new java.awt.Color(255, 255, 255));
@@ -383,9 +390,9 @@ public class Quinela extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Grupo");
+        grupo_label_quinela.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        grupo_label_quinela.setForeground(new java.awt.Color(255, 255, 255));
+        grupo_label_quinela.setText("Grupo");
 
         partido_combo_quinela.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         partido_combo_quinela.addActionListener(new java.awt.event.ActionListener() {
@@ -438,13 +445,13 @@ public class Quinela extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(fase_label_quinela))
                     .addGroup(quinelaLayout.createSequentialGroup()
-                        .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(grupo_combo_quinela, 0, 235, Short.MAX_VALUE)
-                            .addComponent(partido_combo_quinela, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(grupo_combo_quinela, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))))
+                        .addComponent(grupo_label_quinela))
+                    .addGroup(quinelaLayout.createSequentialGroup()
+                        .addComponent(partido_combo_quinela, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)))
                 .addGap(16, 16, 16))
         );
         quinelaLayout.setVerticalGroup(
@@ -457,26 +464,23 @@ public class Quinela extends javax.swing.JFrame {
                         .addGap(178, 178, 178))
                     .addGroup(quinelaLayout.createSequentialGroup()
                         .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(logo_mundial, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(quinelaLayout.createSequentialGroup()
-                                .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(logo_mundial, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(quinelaLayout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(quinela_label_quinela1)))
-                                .addGap(13, 13, Short.MAX_VALUE))
+                                .addContainerGap()
+                                .addComponent(quinela_label_quinela1))
                             .addGroup(quinelaLayout.createSequentialGroup()
                                 .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(fase_combo_quinela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(fase_label_quinela))
-                                .addGap(29, 29, 29)
+                                .addGap(18, 18, 18)
+                                .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(grupo_label_quinela)
+                                    .addComponent(grupo_combo_quinela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(16, 16, 16)
                                 .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(grupo_combo_quinela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(partido_combo_quinela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(partido_combo_quinela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                         .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(escudo2, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(escudo1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -873,6 +877,22 @@ public class Quinela extends javax.swing.JFrame {
         seleccionar_escudos((String) partido_combo_quinela.getSelectedItem());
     }//GEN-LAST:event_partido_combo_quinelaActionPerformed
 
+    private void fase_combo_quinelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fase_combo_quinelaActionPerformed
+        // TODO add your handling code here:
+        int indice = fase_combo_quinela.getSelectedIndex();
+        System.out.println(indice);
+
+        if(indice == 0 || indice == -1){
+            grupo_combo_quinela.setVisible(true);
+            grupo_label_quinela.setVisible(true);
+        }
+        else{
+            grupo_combo_quinela.setSelectedIndex(0);
+            grupo_combo_quinela.setVisible(false);
+            grupo_label_quinela.setVisible(false);
+        }
+    }//GEN-LAST:event_fase_combo_quinelaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -921,10 +941,10 @@ public class Quinela extends javax.swing.JFrame {
     public javax.swing.JComboBox<String> fase_combo_quinela;
     public javax.swing.JLabel fase_label_quinela;
     public javax.swing.JComboBox<String> grupo_combo_quinela;
+    public javax.swing.JLabel grupo_label_quinela;
     public javax.swing.JButton guardar_button_quinela;
     private javax.swing.JLabel iniciar_label;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     public javax.swing.JPanel login;
     public javax.swing.JButton login_button_registrarse;
     public javax.swing.JLabel logo_mundial;
