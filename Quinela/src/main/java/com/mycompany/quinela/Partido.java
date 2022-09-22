@@ -12,13 +12,7 @@ import java.util.Random;
  * @author sergio
  */
 public class Partido {
-    public Equipo getLocal() {
-        return local;
-    }
-
-    public Equipo getVisita() {
-        return visita;
-    }
+    
 
     public Equipo local;
     public Equipo visita;
@@ -33,8 +27,25 @@ public class Partido {
         this.grupo = grupo;
         golLocal=-1;
         golVisita=-1;
+        this.local.getPartidos().add(this);
+        this.visita.getPartidos().add(this);
+    }
+    public Partido(Equipo local, Equipo visita) {
+        this.local = local;
+        this.visita = visita;
+        golLocal=-1;
+        golVisita=-1;
+       // this.local.getPartidos().add(this);
+        //this.visita.getPartidos().add(this);
     }
 
+    public Equipo getLocal() {
+        return local;
+    }
+
+    public Equipo getVisita() {
+        return visita;
+    }
     public int getGolLocal() {
         return golLocal;
     }

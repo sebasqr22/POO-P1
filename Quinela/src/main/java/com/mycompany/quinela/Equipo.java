@@ -15,10 +15,14 @@ public class Equipo {
     private char grupo;
     private double ranking;
     private ArrayList<Partido> partidos;
+    private int puntos;
+    private int golAFavor;
+    private int golEnContra;
 
     public Equipo(String pais, double ranking) {
         this.pais = pais;
         this.ranking = ranking;
+        this.partidos=new ArrayList<Partido>();
     }
 
     public String getPais() {
@@ -39,5 +43,10 @@ public class Equipo {
 
     public double getRanking() {
         return ranking;
-    }   
+    } 
+
+    public ArrayList<Partido> getPartidos() {
+        return partidos;
+    }
+    
 }

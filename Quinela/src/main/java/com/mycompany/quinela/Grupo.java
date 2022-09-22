@@ -14,14 +14,25 @@ import java.util.ArrayList;
 public class Grupo {
     private char grupo;
     private ArrayList<Equipo> equipos;
-    private ArrayList<Equipo> clasificados;
+    private Equipo[] clasificados=new Equipo[2];
 
     public Grupo(char grupo, ArrayList<Equipo> equipos) {
         this.grupo = grupo;
         this.equipos=equipos;
-        System.out.println("GRUPO CREADO: "+grupo);
-        for (Equipo equipo : equipos) {
-            System.out.println(equipo.getPais()+" RANKING: "+equipo.getRanking());
-        }
+        this.clasificados[0]=this.equipos.get(0);
+        this.clasificados[1]=this.equipos.get(1);
     }
+
+    public char getGrupo() {
+        return grupo;
+    }
+
+    public ArrayList<Equipo> getEquipos() {
+        return equipos;
+    }
+
+    public Equipo[] getClasificados() {
+        return clasificados;
+    }
+    
 }

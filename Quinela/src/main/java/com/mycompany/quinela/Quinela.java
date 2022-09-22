@@ -21,6 +21,7 @@ public class Quinela extends javax.swing.JFrame {
     String[] fases = {"Fase de Grupos", "8vos de Final", "4tos de Final", "Semifinal", "Final"};
     String[] grupos = {"A", "B", "C", "D", "E", "F", "G", "H"};
     Mundial mundial = new Mundial();
+    
     String ultimo_partido_consultado = "";
     /**
      * Creates new form Quinela
@@ -50,7 +51,7 @@ public class Quinela extends javax.swing.JFrame {
 
     private void set_partidos_grupos(String grupo){
         partido_combo_quinela.removeAllItems();
-        for(Partido partido : mundial.primeraFase){
+        for(Partido partido : mundial.partidosPrimeraFase){
             try{
                 String group = String.valueOf(partido.grupo);
                 if(group.equals(grupo)){
@@ -84,7 +85,12 @@ public class Quinela extends javax.swing.JFrame {
 
 
     public Quinela() {
+        mundial.init();
         mundial.primeraFase();
+        mundial.octavosDeFinal();
+        mundial.cuartosDeFinal();
+        mundial.semifinales();
+        mundial.finalMundial();
         initComponents();
         grupo_combo_quinela.setEditable(false);
         fase_combo_quinela.setEditable(false);
