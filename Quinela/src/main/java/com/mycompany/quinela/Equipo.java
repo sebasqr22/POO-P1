@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author sergio
  */
 public class Equipo {
-    private String pais;
+    public String pais;
     private char grupo;
     private double ranking;
     private ArrayList<Partido> partidos;

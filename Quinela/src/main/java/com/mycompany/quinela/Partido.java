@@ -12,9 +12,17 @@ import java.util.Random;
  * @author sergio
  */
 public class Partido {
-    private Equipo local;
-    private Equipo visita;
-    private char grupo;
+    public Equipo getLocal() {
+        return local;
+    }
+
+    public Equipo getVisita() {
+        return visita;
+    }
+
+    public Equipo local;
+    public Equipo visita;
+    public char grupo;
     private int golLocal;
     private int golVisita;
     private boolean penales;
