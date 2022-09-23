@@ -215,7 +215,6 @@ public class Mundial {
     public void finalMundial() {
         finalPartido=new Partido(ganadoresSemis[0] ,ganadoresSemis[1]);
         
-
     }
     
     public Partido buscarPartido(String local, String visita, String fase){

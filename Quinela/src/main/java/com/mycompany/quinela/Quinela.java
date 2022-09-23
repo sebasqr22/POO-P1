@@ -348,7 +348,7 @@ public class Quinela extends javax.swing.JFrame {
 
         quinela_label_quinela1.setFont(new java.awt.Font("Noto Serif Myanmar", 1, 48)); // NOI18N
         quinela_label_quinela1.setForeground(new java.awt.Color(255, 255, 255));
-        quinela_label_quinela1.setText("Quinela");
+        quinela_label_quinela1.setText("Quiniela");
 
         logout_button_quinela1.setText("Logout");
         logout_button_quinela1.setActionCommand("");
