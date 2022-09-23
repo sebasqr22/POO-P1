@@ -13,6 +13,7 @@ import java.util.Arrays;
  * @author sergio
  */
 public class Mundial {
+    private ArrayList<Equipo> equipos=new ArrayList<Equipo>();
     private Grupo[] gruposPrimeraFase=new Grupo[8];
     public Partido[] partidosPrimeraFase = new Partido[48];
     
@@ -22,8 +23,10 @@ public class Mundial {
     private Partido[] partidosCuartos= new Partido[4];
     private Equipo[] ganadoresCuartos=new Equipo[4];
     
-    private Partido[] partidoSemis=new Partido[2];
+    private Partido[] partidosSemis=new Partido[2];
     private Equipo[] ganadoresSemis=new Equipo[2];
+    
+    private Partido finalPartido;
     
     private Equipo qatar;
     private Equipo ecuador;
@@ -113,6 +116,13 @@ public class Mundial {
         uruguay = new Equipo("Uruguay", 1640.95);
         corea = new Equipo("Corea del Sur", 1526.02);
         gruposPrimeraFase[7]= new Grupo('H', new ArrayList<Equipo>(Arrays.asList(portugal, ghana, uruguay, corea)));
+        
+        for (Grupo grupo : gruposPrimeraFase) {
+            for (Equipo equipo : grupo.getEquipos()) {
+                equipos.add(equipo);
+            }
+        }
+        
     }
 
     public void primeraFase() {
@@ -197,14 +207,81 @@ public class Mundial {
     }
 
     public void semifinales() {
-        partidoSemis[0]=new Partido(ganadoresCuartos[0], ganadoresCuartos[2]);
+        partidosSemis[0]=new Partido(ganadoresCuartos[0], ganadoresCuartos[2]);
         
-        partidoSemis[1]=new Partido(ganadoresCuartos[1], ganadoresCuartos[3]);
+        partidosSemis[1]=new Partido(ganadoresCuartos[1], ganadoresCuartos[3]);
     }
 
     public void finalMundial() {
-        Partido finalPartido=new Partido(ganadoresSemis[0] ,ganadoresSemis[1]);
+        finalPartido=new Partido(ganadoresSemis[0] ,ganadoresSemis[1]);
         
 
     }
+    
+    public Partido buscarPartido(String local, String visita, String fase){
+        
+        switch(fase){
+            case "Fase de Grupos":
+                for (Partido partido : partidosPrimeraFase) {
+                    if(partido.local.pais.equals(local) && partido.visita.pais.equals(visita)){
+                        return partido;
+                    }
+                }
+                break;
+            case "8vos de Final":
+                for (Partido partido : partidosOctavos) {
+                    if(partido.local.pais.equals(local) && partido.visita.pais.equals(visita)){
+                        return partido;
+                    }
+                }
+                break;
+            case "4tos de Final":
+                for (Partido partido : partidosCuartos) {
+                    if(partido.local.pais.equals(local) && partido.visita.pais.equals(visita)){
+                        return partido;
+                    }
+                }
+                break;
+            case "Semifinal":
+                for (Partido partido : partidosSemis) {
+                    if(partido.local.pais.equals(local) && partido.visita.pais.equals(visita)){
+                        return partido;
+                    }
+                }
+                break;
+            case "Final":
+                if(finalPartido.local.pais.equals(local) && finalPartido.visita.pais.equals(visita)){
+                        return finalPartido;
+                    }
+                break;
+        }
+        return null;
+    }
+
+    public Partido[] getPartidosPrimeraFase() {
+        return partidosPrimeraFase;
+    }
+
+    public Partido[] getPartidosOctavos() {
+        return partidosOctavos;
+    }
+
+    public Partido[] getPartidosCuartos() {
+        return partidosCuartos;
+    }
+
+    public Partido[] getPartidosSemis() {
+        return partidosSemis;
+    }
+
+    public Partido getFinalPartido() {
+        return finalPartido;
+    }
+
+    public ArrayList<Equipo> getEquipos() {
+        return equipos;
+    }
+    
+    
+    
 }

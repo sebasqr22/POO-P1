@@ -362,46 +362,6 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-                              <Component id="escudo1" min="-2" pref="256" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
-                              <Component id="resultado1_combo_quinela" min="-2" pref="98" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace pref="194" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="589" max="-2" attributes="0"/>
-                              <Component id="logout_button_quinela1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="vs_label" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="186" max="-2" attributes="0"/>
-                                      <Component id="escudo2" min="-2" pref="256" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="resultado2_combo_quinela" min="-2" pref="98" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="200" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="471" max="-2" attributes="0"/>
-                      <Component id="guardar_button_quinela" min="-2" pref="212" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="logo_mundial" min="-2" pref="150" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="344" max="-2" attributes="0"/>
@@ -426,58 +386,106 @@
                       </Group>
                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                              <Component id="escudo1" min="-2" pref="256" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
+                              <Component id="resultado1_combo_quinela" min="-2" pref="98" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jButton1" max="32767" attributes="0"/>
+                                  <Component id="generarResultado_button_quinela" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="216" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="589" max="-2" attributes="0"/>
+                                  <Component id="logout_button_quinela1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="vs_label" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="183" max="-2" attributes="0"/>
+                                          <Component id="escudo2" min="-2" pref="256" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="resultado2_combo_quinela" min="-2" pref="98" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="200" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="guardar_button_quinela" min="-2" pref="212" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="vs_label" min="-2" pref="145" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="178" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="logo_mundial" min="-2" pref="141" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="quinela_label_quinela1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="fase_combo_quinela" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="fase_label_quinela" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="grupo_label_quinela" min="-2" max="-2" attributes="0"/>
-                                          <Component id="grupo_combo_quinela" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="partido_combo_quinela" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                              <EmptySpace pref="13" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="escudo2" min="-2" pref="256" max="-2" attributes="0"/>
-                                  <Component id="escudo1" min="-2" pref="256" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="resultado2_combo_quinela" alignment="3" min="-2" pref="106" max="-2" attributes="0"/>
-                                  <Component id="resultado1_combo_quinela" alignment="3" min="-2" pref="106" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace pref="87" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="vs_label" min="-2" pref="145" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="178" max="-2" attributes="0"/>
                       <Component id="guardar_button_quinela" min="-2" pref="35" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="logout_button_quinela1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="logo_mundial" min="-2" pref="141" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="quinela_label_quinela1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="fase_combo_quinela" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fase_label_quinela" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="grupo_label_quinela" min="-2" max="-2" attributes="0"/>
+                                  <Component id="grupo_combo_quinela" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="partido_combo_quinela" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="13" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="escudo2" min="-2" pref="256" max="-2" attributes="0"/>
+                          <Component id="escudo1" min="-2" pref="256" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="resultado2_combo_quinela" alignment="3" min="-2" pref="106" max="-2" attributes="0"/>
+                          <Component id="resultado1_combo_quinela" alignment="3" min="-2" pref="106" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                      <Component id="generarResultado_button_quinela" min="-2" pref="35" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace pref="17" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -578,6 +586,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resultado1_combo_quinelaActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -687,6 +698,22 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
+            </Component>
+            <Component class="javax.swing.JButton" name="generarResultado_button_quinela">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Generar Resultado"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generarResultado_button_quinelaActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Simular Heur&#xed;stica"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
