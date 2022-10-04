@@ -126,94 +126,96 @@ public class Mundial {
     }
 
     public void primeraFase() {
-        partidosPrimeraFase[0] = new Partido(senegal, paises_bajos, 'A');
-        partidosPrimeraFase[1] = new Partido(qatar, ecuador, 'A');
-        partidosPrimeraFase[2] = new Partido(qatar, senegal, 'A');
-        partidosPrimeraFase[3] = new Partido(ecuador, paises_bajos, 'A');
-        partidosPrimeraFase[4] = new Partido(qatar, paises_bajos, 'A');
-        partidosPrimeraFase[5] = new Partido(ecuador, senegal, 'A');
+        partidosPrimeraFase[0] = new Partido(senegal, paises_bajos, 'A', "21-11-2022");
+        partidosPrimeraFase[1] = new Partido(qatar, ecuador, 'A', "20-11-2022");
+        partidosPrimeraFase[2] = new Partido(qatar, senegal, 'A', "25-11-2022");
+        partidosPrimeraFase[3] = new Partido(ecuador, paises_bajos, 'A', "25-11-2022");
+        partidosPrimeraFase[4] = new Partido(qatar, paises_bajos, 'A', "29-11-2022");
+        partidosPrimeraFase[5] = new Partido(ecuador, senegal, 'A', "29-11-2022");
 
-        partidosPrimeraFase[6] = new Partido(inglaterra, iran, 'B');
-        partidosPrimeraFase[7] = new Partido(usa, gales, 'B');
-        partidosPrimeraFase[8] = new Partido(iran, gales, 'B');
-        partidosPrimeraFase[9] = new Partido(inglaterra, usa, 'B');
-        partidosPrimeraFase[10] = new Partido(inglaterra, gales, 'B');
-        partidosPrimeraFase[11] = new Partido(iran, usa, 'B');
+        partidosPrimeraFase[6] = new Partido(inglaterra, iran, 'B', "21-11-2022");
+        partidosPrimeraFase[7] = new Partido(usa, gales, 'B', "21-11-2022");
+        partidosPrimeraFase[8] = new Partido(iran, gales, 'B', "25-11-2022");
+        partidosPrimeraFase[9] = new Partido(inglaterra, usa, 'B', "25-11-2022");
+        partidosPrimeraFase[10] = new Partido(inglaterra, gales, 'B', "29-11-2022");
+        partidosPrimeraFase[11] = new Partido(iran, usa, 'B', "29-11-2022");
 
-        partidosPrimeraFase[12] = new Partido(arabia, arabia, 'C');
-        partidosPrimeraFase[13] = new Partido(mexico, polonia, 'C');
-        partidosPrimeraFase[14] = new Partido(arabia, polonia, 'C');
-        partidosPrimeraFase[15] = new Partido(argentina, mexico, 'C');
-        partidosPrimeraFase[16] = new Partido(argentina, polonia, 'C');
-        partidosPrimeraFase[17] = new Partido(arabia, mexico, 'C');
+        partidosPrimeraFase[12] = new Partido(argentina, arabia, 'C', "22-11-2022");
+        partidosPrimeraFase[13] = new Partido(mexico, polonia, 'C', "22-11-2022");
+        partidosPrimeraFase[14] = new Partido(arabia, polonia, 'C', "26-11-2022");
+        partidosPrimeraFase[15] = new Partido(argentina, mexico, 'C', "26-11-2022");
+        partidosPrimeraFase[16] = new Partido(argentina, polonia, 'C', "30-11-2022");
+        partidosPrimeraFase[17] = new Partido(arabia, mexico, 'C', "30-11-2022");
 
-        partidosPrimeraFase[18] = new Partido(dinamarca, tunez, 'D');
-        partidosPrimeraFase[19] = new Partido(francia, australia, 'D');
-        partidosPrimeraFase[20] = new Partido(australia, tunez, 'D');
-        partidosPrimeraFase[21] = new Partido(francia, dinamarca, 'D');
-        partidosPrimeraFase[22] = new Partido(australia, tunez, 'D');
-        partidosPrimeraFase[23] = new Partido(francia, dinamarca, 'D');
+        partidosPrimeraFase[18] = new Partido(dinamarca, tunez, 'D', "22-11-2022");
+        partidosPrimeraFase[19] = new Partido(francia, australia, 'D', "22-11-2022");
+        partidosPrimeraFase[20] = new Partido(tunez, australia, 'D', "26-11-2022");
+        partidosPrimeraFase[21] = new Partido(francia, dinamarca, 'D', "26-11-2022");
+        partidosPrimeraFase[22] = new Partido(tunez, francia, 'D', "30-11-2022");
+        partidosPrimeraFase[23] = new Partido(australia, dinamarca, 'D', "30-11-2022");
 
-        partidosPrimeraFase[24] = new Partido(alemania, japon, 'E');
-        partidosPrimeraFase[25] = new Partido(españa, costa_rica, 'E');
-        partidosPrimeraFase[26] = new Partido(costa_rica, japon, 'E');
-        partidosPrimeraFase[27] = new Partido(españa, alemania, 'E');
-        partidosPrimeraFase[28] = new Partido(españa, japon, 'E');
-        partidosPrimeraFase[29] = new Partido(costa_rica, alemania, 'E');
+        partidosPrimeraFase[24] = new Partido(alemania, japon, 'E', "23-11-2022");
+        partidosPrimeraFase[25] = new Partido(españa, costa_rica, 'E', "23-11-2022");
+        partidosPrimeraFase[26] = new Partido(costa_rica, japon, 'E', "27-11-2022");
+        partidosPrimeraFase[27] = new Partido(españa, alemania, 'E', "27-11-2022");
+        partidosPrimeraFase[28] = new Partido(españa, japon, 'E', "01-12-2022");
+        partidosPrimeraFase[29] = new Partido(costa_rica, alemania, 'E', "01-12-2022");
 
-        partidosPrimeraFase[30] = new Partido(marruecos, croacia, 'F');
-        partidosPrimeraFase[31] = new Partido(belgica, canada, 'F');
-        partidosPrimeraFase[32] = new Partido(belgica, marruecos, 'F');
-        partidosPrimeraFase[33] = new Partido(canada, croacia, 'F');
-        partidosPrimeraFase[34] = new Partido(belgica, croacia, 'F');
-        partidosPrimeraFase[35] = new Partido(canada, marruecos, 'F');
+        partidosPrimeraFase[30] = new Partido(marruecos, croacia, 'F', "23-11-2022");
+        partidosPrimeraFase[31] = new Partido(belgica, canada, 'F', "23-11-2022");
+        partidosPrimeraFase[32] = new Partido(belgica, marruecos, 'F', "27-11-2022");
+        partidosPrimeraFase[33] = new Partido(canada, croacia, 'F', "27-11-2022");
+        partidosPrimeraFase[34] = new Partido(belgica, croacia, 'F', "01-12-2022");
+        partidosPrimeraFase[35] = new Partido(canada, marruecos, 'F', "01-12-2022");
 
-        partidosPrimeraFase[36] = new Partido(suiza, camerun, 'G');
-        partidosPrimeraFase[37] = new Partido(brasil, serbia, 'G');
-        partidosPrimeraFase[38] = new Partido(serbia, camerun, 'G');
-        partidosPrimeraFase[39] = new Partido(brasil, suiza, 'G');
-        partidosPrimeraFase[40] = new Partido(brasil, camerun, 'G');
-        partidosPrimeraFase[41] = new Partido(serbia, suiza, 'G');
+        partidosPrimeraFase[36] = new Partido(suiza, camerun, 'G', "24-11-2022");
+        partidosPrimeraFase[37] = new Partido(brasil, serbia, 'G', "24-11-2022");
+        partidosPrimeraFase[38] = new Partido(serbia, camerun, 'G', "28-11-2022");
+        partidosPrimeraFase[39] = new Partido(brasil, suiza, 'G', "28-11-2022");
+        partidosPrimeraFase[40] = new Partido(brasil, camerun, 'G', "02-12-2022");
+        partidosPrimeraFase[41] = new Partido(serbia, suiza, 'G', "02-12-2022");
 
-        partidosPrimeraFase[42] = new Partido(uruguay, corea, 'H');
-        partidosPrimeraFase[43] = new Partido(portugal, ghana, 'H');
-        partidosPrimeraFase[44] = new Partido(ghana, corea, 'H');
-        partidosPrimeraFase[45] = new Partido(portugal, uruguay, 'H');
-        partidosPrimeraFase[46] = new Partido(portugal, corea, 'H');
-        partidosPrimeraFase[47] = new Partido(ghana, uruguay, 'H');
+        partidosPrimeraFase[42] = new Partido(uruguay, corea, 'H', "24-11-2022");
+        partidosPrimeraFase[43] = new Partido(portugal, ghana, 'H', "24-11-2022");
+        partidosPrimeraFase[44] = new Partido(ghana, corea, 'H', "28-11-2022");
+        partidosPrimeraFase[45] = new Partido(portugal, uruguay, 'H', "28-11-2022");
+        partidosPrimeraFase[46] = new Partido(portugal, corea, 'H', "02-12-2022");
+        partidosPrimeraFase[47] = new Partido(ghana, uruguay, 'H', "02-12-2022");
 
     }
 
     public void octavosDeFinal() {
-        for (int i = 0; i < gruposPrimeraFase.length-1; i+=2) {
-            Equipo primero=gruposPrimeraFase[i].getClasificados()[0];
-            Equipo segundo=gruposPrimeraFase[i+1].getClasificados()[1];
-            partidosOctavos[i]=new Partido(primero, segundo);
-            
-            Equipo primeroGrupig =gruposPrimeraFase[i+1].getClasificados()[0];
-            Equipo segundoGrupSig=gruposPrimeraFase[i].getClasificados()[1];
-            partidosOctavos[i+1]=new Partido(primeroGrupig, segundoGrupSig);
-        }
+        partidosOctavos[0] = new Partido(gruposPrimeraFase[0].getClasificados()[0], gruposPrimeraFase[1].getClasificados()[1], "03-12-2022");//1A 2B
+        partidosOctavos[1] = new Partido(gruposPrimeraFase[1].getClasificados()[0], gruposPrimeraFase[0].getClasificados()[1], "04-12-2022");//1B 2A
+        
+        partidosOctavos[2] = new Partido(gruposPrimeraFase[2].getClasificados()[0], gruposPrimeraFase[3].getClasificados()[1], "03-12-2022");//1C 2D
+        partidosOctavos[3] = new Partido(gruposPrimeraFase[3].getClasificados()[0], gruposPrimeraFase[2].getClasificados()[1], "04-12-2022");//1D 2C
+        
+        partidosOctavos[4] = new Partido(gruposPrimeraFase[4].getClasificados()[0], gruposPrimeraFase[5].getClasificados()[1], "05-12-2022");//1E 2F
+        partidosOctavos[5] = new Partido(gruposPrimeraFase[5].getClasificados()[0], gruposPrimeraFase[4].getClasificados()[1], "06-12-2022");//1F 2E
+        
+        partidosOctavos[6] = new Partido(gruposPrimeraFase[6].getClasificados()[0], gruposPrimeraFase[7].getClasificados()[1], "05-12-2022");//1G 2H
+        partidosOctavos[7] = new Partido(gruposPrimeraFase[7].getClasificados()[0], gruposPrimeraFase[6].getClasificados()[1], "06-12-2022");//1H 2G
     }
 
     public void cuartosDeFinal() {
-        partidosCuartos[0]=new Partido(ganadoresOctavos[0], ganadoresOctavos[2]);
+        partidosCuartos[0]=new Partido(ganadoresOctavos[0], ganadoresOctavos[2], "09-12-2022");
         
-        partidosCuartos[1]=new Partido(ganadoresOctavos[1], ganadoresOctavos[3]);
+        partidosCuartos[1]=new Partido(ganadoresOctavos[1], ganadoresOctavos[3], "09-12-2022");
         
-        partidosCuartos[2]=new Partido(ganadoresOctavos[4], ganadoresOctavos[6]);
+        partidosCuartos[2]=new Partido(ganadoresOctavos[4], ganadoresOctavos[6], "10-12-2022");
         
-        partidosCuartos[3]=new Partido(ganadoresOctavos[5], ganadoresOctavos[7]);
+        partidosCuartos[3]=new Partido(ganadoresOctavos[5], ganadoresOctavos[7], "10-12-2022");
     }
 
     public void semifinales() {
-        partidosSemis[0]=new Partido(ganadoresCuartos[0], ganadoresCuartos[2]);
+        partidosSemis[0]=new Partido(ganadoresCuartos[0], ganadoresCuartos[2], "13-12-2022");
         
-        partidosSemis[1]=new Partido(ganadoresCuartos[1], ganadoresCuartos[3]);
+        partidosSemis[1]=new Partido(ganadoresCuartos[1], ganadoresCuartos[3], "14-12-2022");
     }
 
     public void finalMundial() {
-        finalPartido=new Partido(ganadoresSemis[0] ,ganadoresSemis[1]);
+        finalPartido=new Partido(ganadoresSemis[0] ,ganadoresSemis[1], "16-12-2022");
         //.
     }
     

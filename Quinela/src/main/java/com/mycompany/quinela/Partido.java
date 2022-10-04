@@ -25,8 +25,9 @@ public class Partido {
     private JButton generarResultado;
     private int golVisita;
     private boolean penales;
+    private String date;
 
-    public Partido(Equipo local, Equipo visita, char grupo) {
+    public Partido(Equipo local, Equipo visita, char grupo, String date) {
         this.local = local;
         this.visita = visita;
         this.grupo = grupo;
@@ -34,8 +35,9 @@ public class Partido {
         golVisita=-1;
         this.local.getPartidos().add(this);
         this.visita.getPartidos().add(this);
+        this.date = date;
     }
-    public Partido(Equipo local, Equipo visita) {
+    public Partido(Equipo local, Equipo visita, String date) {
         this.local = local;
         this.visita = visita;
         golLocal=-1;
