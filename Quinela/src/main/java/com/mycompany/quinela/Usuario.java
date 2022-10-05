@@ -4,27 +4,30 @@
  */
 package com.mycompany.quinela;
 
+import java.io.Serializable;
+
 /**
  *
  * @author sergio
  */
-public class Usuario {
-    private String id;
+public class Usuario implements Serializable{
+    private String username;
     private String nombre;
     private String password;
+    private float ranking=0;
 
-    public Usuario(String id, String nombre, String password) {
-        this.id = id;
+    public Usuario(String username, String nombre, String password) {
+        this.username = username;
         this.nombre = nombre;
         this.password = password;
     }
 
     public String getId() {
-        return id;
+        return username;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.username = id;
     }
 
     public String getNombre() {
@@ -37,6 +40,14 @@ public class Usuario {
 
     public String getPassword() {
         return password;
+    }
+
+    public float getRanking() {
+        return ranking;
+    }
+
+    public void setRanking(float ranking) {
+        this.ranking = ranking;
     }
    
     

@@ -5,13 +5,14 @@
 package com.mycompany.quinela;
 
 import com.mycompany.quinela.Equipo;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author sergi
  */
-public class Grupo {
+public class Grupo implements Serializable{
     private char grupo;
     private ArrayList<Equipo> equipos;
     private Equipo[] clasificados=new Equipo[2];

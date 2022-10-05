@@ -5,6 +5,7 @@
 package com.mycompany.quinela;
 
 import com.mycompany.quinela.Equipo;
+import java.io.Serializable;
 import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -13,7 +14,7 @@ import javax.swing.JComboBox;
  *
  * @author sergio
  */
-public class Partido {
+public class Partido implements Serializable{
     
     public Equipo local;
     public Equipo visita;

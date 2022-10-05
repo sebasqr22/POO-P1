@@ -5,6 +5,7 @@
 package com.mycompany.quinela;
 
 import com.mycompany.quinela.Equipo;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -12,8 +13,9 @@ import java.util.Arrays;
  *
  * @author sergio
  */
-public class Mundial {
+public class Mundial implements Serializable{
     private ArrayList<Equipo> equipos=new ArrayList<Equipo>();
+    private ArrayList<Usuario> usuarios=new ArrayList<Usuario>();
     private Grupo[] gruposPrimeraFase=new Grupo[8];
     public Partido[] partidosPrimeraFase = new Partido[48];
     
@@ -283,6 +285,10 @@ public class Mundial {
         return equipos;
     }
     
-    
+    public void crearUsuario(String username, String nombre, String pass){
+        Usuario nuevoUsuario= new Usuario(username, nombre, pass);
+        usuarios.add(nuevoUsuario);
+        System.out.println("USUARIO: "+usuarios.get(0));
+    }
     
 }

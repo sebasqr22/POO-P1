@@ -4,13 +4,14 @@
  */
 package com.mycompany.quinela;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author sergio
  */
-public class Equipo {
+public class Equipo implements Serializable{
     public String pais;
     private char grupo;
     private double ranking;

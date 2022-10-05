@@ -1,9 +1,13 @@
 package com.mycompany.quinela;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 public class ManejadorArchivos {
@@ -52,5 +56,47 @@ public class ManejadorArchivos {
         else{
             return 1;
         }
+    }
+    
+    public Mundial buscarMundial(String user){
+        Mundial m=null;
+        FileInputStream ficheroEntrada=null;
+        
+        try{
+            ficheroEntrada= new FileInputStream("archivos/" + user + "/quiniela.txt");
+            ObjectInputStream tuberiaEntrada = new ObjectInputStream(ficheroEntrada);
+            m=(Mundial)tuberiaEntrada.readObject();
+        }catch(FileNotFoundException ex){
+            ex.printStackTrace();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }catch(ClassNotFoundException ex){
+            ex.printStackTrace();
+        }
+        
+        System.out.println("MUNDIAL DE FICHERO"+m.getEquipos().get(0).pais);
+        return m;
+    }
+    
+    public void asignarMundial(Mundial mundial, String username, String nombre, String password) {
+        mundial.crearUsuario(username, nombre, password);
+        FileOutputStream fichero = null;
+        try {
+            fichero = new FileOutputStream("archivos/" + username + "/quiniela.txt");
+            ObjectOutputStream tuberia = new ObjectOutputStream(fichero);
+            tuberia.writeObject(mundial);
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                fichero.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+        }
+
     }
 }

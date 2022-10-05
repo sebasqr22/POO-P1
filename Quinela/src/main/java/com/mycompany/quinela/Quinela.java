@@ -4,6 +4,11 @@
  */
 package com.mycompany.quinela;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,7 +26,7 @@ public class Quinela extends javax.swing.JFrame {
     ManejadorArchivos manejadorArchivos = new ManejadorArchivos();
     String[] fases = {"Fase de Grupos", "8vos de Final", "4tos de Final", "Semifinal", "Final"};
     String[] grupos = {"A", "B", "C", "D", "E", "F", "G", "H"};
-    Mundial mundial = new Mundial();
+    Mundial mundial =new Mundial();
     
     String ultimo_partido_consultado = "";
     /**
@@ -759,6 +764,7 @@ public class Quinela extends javax.swing.JFrame {
             if(encontrar_usuario(username, password, false)){
                 usuario_global = username;
                 System.out.println("Se encuentra el usuario");
+                this.mundial=manejadorArchivos.buscarMundial(username);
                 pantallas.setSelectedIndex(2);
                 username_field_login.setText("");
                 password_field_login.setText("");
@@ -788,6 +794,8 @@ public class Quinela extends javax.swing.JFrame {
                         switch (opcion){
                             case JOptionPane.YES_OPTION:
                                 if(manejadorArchivos.crear_carpeta("archivos/" + username) == 0){
+                                    manejadorArchivos.asignarMundial(this.mundial,username,"",password);
+                                   
                                     escribir("archivos/usuarios.txt", "#" + username + "-" + password);
                                     JOptionPane.showMessageDialog(pantallas,"Se agregó a -" + username + "- al sistema!");
                                     username_field_login.setText(username);
