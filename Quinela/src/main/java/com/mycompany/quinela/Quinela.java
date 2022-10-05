@@ -37,7 +37,83 @@ public class Quinela extends javax.swing.JFrame {
     /**
      * Creates new form Quinela
      */
+    
+    private void ocultarPaneles(){
+        panel1.setVisible(false);
+        panel2.setVisible(false);
+        panel3.setVisible(false);
+        panel4.setVisible(false);
+    }
+    private void cambiarQuinela(int contador){
+        if(this.contadorFechas < 0){
+            this.contadorFechas = 21;
         }
+        else if(this.contadorFechas > 21){
+            this.contadorFechas = 0;
+        }
+        ocultarPaneles();
+        
+        String fecha = fechas.get(contadorFechas);
+        Partido[] partidos = new Partido[4];
+        int c_aux = 0;
+        
+        
+        for(Partido i: todosLosPartidos){
+            try{
+                if(i.date.equals(fecha)){
+                partidos[c_aux] = i;
+                c_aux++;
+                }
+            }
+            catch(NullPointerException e){
+                
+            }
+            
+        }
+        
+        c_aux = 0;
+        for(Partido j : partidos){
+            if(j != null){
+               String local = j.local.pais.replace(" ", "_").replace("ñ", "n");
+                String visita = j.visita.pais.replace(" ", "_").replace("ñ", "n");
+                ImageIcon image1 = new ImageIcon("imagenes/escudos/" + local + ".png");
+                ImageIcon image2 = new ImageIcon("imagenes/escudos/" + visita + ".png");
+
+                if(c_aux == 0){
+                    fecha_1.setText(j.date);
+                    panel1.setVisible(true);
+                    logo1_1.setIcon(image1);
+                    logo2_1.setIcon(image2);
+                    c_aux++; 
+                }
+                else if(c_aux == 1){
+                    fecha_2.setText(j.date);
+                    panel2.setVisible(true);
+                    logo1_2.setIcon(image1);
+                    logo2_2.setIcon(image2);
+                    c_aux++; 
+                }
+                else if(c_aux == 2){
+                    fecha_3.setText(j.date);
+                    panel3.setVisible(true);
+                    logo1_3.setIcon(image1);
+                    logo2_3.setIcon(image2);
+                    c_aux++; 
+                }
+                else{
+                    fecha_4.setText(j.date);
+                    panel4.setVisible(true);
+                    logo1_4.setIcon(image1);
+                    logo2_4.setIcon(image2);
+                    c_aux++; 
+                }
+            }
+            
+        }
+        
+        
+    }
+    
     private void crear_lista_goles(int maximo){
         for(int i=0; i<=maximo; i++){
             //resultado1_combo_quinela.addItem(String.valueOf(i));
