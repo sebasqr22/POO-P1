@@ -19,6 +19,8 @@ public class Mundial implements Serializable{
     private Grupo[] gruposPrimeraFase=new Grupo[8];
     public Partido[] partidosPrimeraFase = new Partido[48];
     
+    public Partido[] ordenadosPorFecha = new Partido[48];
+    
     private Partido[] partidosOctavos= new Partido[8];
     private Equipo[] ganadoresOctavos= new Equipo[8];
     
@@ -69,6 +71,8 @@ public class Mundial implements Serializable{
     private Equipo ghana;
     private Equipo uruguay;
     private Equipo corea;
+    
+    ArrayList<String> fechas = new ArrayList<>();
     
     public void init() {
         qatar = new Equipo("Qatar", 1441.97);
@@ -124,6 +128,33 @@ public class Mundial implements Serializable{
                 equipos.add(equipo);
             }
         }
+        
+        fechas.add("20-11-2022");
+        fechas.add("21-11-2022");
+        fechas.add("22-11-2022");
+        fechas.add("23-11-2022");
+        fechas.add("24-11-2022");
+        fechas.add("25-11-2022");
+        fechas.add("26-11-2022");
+        fechas.add("27-11-2022");
+        fechas.add("28-11-2022");
+        fechas.add("29-11-2022");
+        fechas.add("30-11-2022");
+        fechas.add("01-12-2022");
+        fechas.add("02-12-2022");
+        
+        fechas.add("03-12-2022");
+        fechas.add("04-12-2022");
+        fechas.add("05-12-2022");
+        fechas.add("06-12-2022");
+        
+        fechas.add("09-12-2022");
+        fechas.add("10-12-2022");
+        
+        fechas.add("13-12-2022");
+        fechas.add("14-12-2022");
+        
+        fechas.add("18-12-2022");
         
     }
 
