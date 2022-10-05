@@ -26,7 +26,7 @@ public class Partido implements Serializable{
     private JButton generarResultado;
     private int golVisita;
     private boolean penales;
-    private String date;
+    public String date = "";
 
     public Partido(Equipo local, Equipo visita, char grupo, String date) {
         this.local = local;

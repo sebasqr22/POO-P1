@@ -28,12 +28,16 @@ public class Quinela extends javax.swing.JFrame {
     String[] grupos = {"A", "B", "C", "D", "E", "F", "G", "H"};
     Mundial mundial =new Mundial();
     ArrayList<String> fechas = mundial.fechas;
+    ArrayList<java.awt.Panel> paneles= new ArrayList<>();
+    ArrayList<Partido> todosLosPartidos = new ArrayList<>();
+    
     int contadorFechas = 0;
     
     String ultimo_partido_consultado = "";
     /**
      * Creates new form Quinela
      */
+        }
     private void crear_lista_goles(int maximo){
         for(int i=0; i<=maximo; i++){
             //resultado1_combo_quinela.addItem(String.valueOf(i));
@@ -90,7 +94,16 @@ public class Quinela extends javax.swing.JFrame {
     public Quinela() {
         mundial.init();
         mundial.primeraFase();
+        mundial.octavosDeFinal();
+        mundial.cuartosDeFinal();
+        mundial.finalMundial();
         initComponents();
+        paneles.add(panel1);
+        paneles.add(panel2);
+        paneles.add(panel3);
+        paneles.add(panel4);
+        
+        
     
         cambiar_escudos("senegal", "paises_bajos");
         ImageIcon logo = new ImageIcon("imagenes/escudos/costa_rica.png");
@@ -104,6 +117,8 @@ public class Quinela extends javax.swing.JFrame {
         for (Partido partido : mundial.partidosPrimeraFase) {
             partido.setGenerarResultado(generarResultado_button_quinela);
         }
+        todosLosPartidos = mundial.getTodos();
+        cambiarQuinela(this.contadorFechas);
         //mundial.partidosPrimeraFase[0].generarResultado();
     }
     /**
@@ -155,7 +170,7 @@ public class Quinela extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         combo1_3 = new javax.swing.JComboBox<>();
         combo2_3 = new javax.swing.JComboBox<>();
-        panel5 = new java.awt.Panel();
+        panel2 = new java.awt.Panel();
         logo1_2 = new javax.swing.JLabel();
         logo2_2 = new javax.swing.JLabel();
         fecha_2 = new javax.swing.JLabel();
@@ -169,6 +184,8 @@ public class Quinela extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         combo1_4 = new javax.swing.JComboBox<>();
         combo2_4 = new javax.swing.JComboBox<>();
+        siguiente = new javax.swing.JButton();
+        anterior = new javax.swing.JButton();
         administrativo = new javax.swing.JPanel();
         administrativo_label_administrativo = new javax.swing.JLabel();
         username_field_administrativo = new javax.swing.JTextField();
@@ -281,7 +298,7 @@ public class Quinela extends javax.swing.JFrame {
                 .addComponent(mostrar_button_login)
                 .addGap(45, 45, 45)
                 .addComponent(acceder_button_login, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 444, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 455, Short.MAX_VALUE)
                 .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registrarse_button_login)
                     .addComponent(administrativo_button_login))
@@ -356,7 +373,7 @@ public class Quinela extends javax.swing.JFrame {
                     .addComponent(password_label_registrarse))
                 .addGap(90, 90, 90)
                 .addComponent(registrar_button_registrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 436, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 447, Short.MAX_VALUE)
                 .addComponent(login_button_registrarse)
                 .addContainerGap())
         );
@@ -401,7 +418,7 @@ public class Quinela extends javax.swing.JFrame {
 
         fecha_1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         fecha_1.setForeground(new java.awt.Color(255, 255, 255));
-        fecha_1.setText("Fecha");
+        fecha_1.setText("22-11-2022");
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -415,40 +432,38 @@ public class Quinela extends javax.swing.JFrame {
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+            .addGroup(panel1Layout.createSequentialGroup()
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addComponent(logo1_1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59)
-                        .addComponent(jLabel1))
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addGap(176, 176, 176)
-                        .addComponent(fecha_1))
-                    .addGroup(panel1Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
-                        .addComponent(combo1_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(combo1_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addComponent(logo1_1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logo2_1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                         .addComponent(combo2_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34)))
                 .addContainerGap())
+            .addGroup(panel1Layout.createSequentialGroup()
+                .addGap(161, 161, 161)
+                .addComponent(fecha_1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(logo1_1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(logo2_1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(fecha_1)
-                        .addGap(75, 75, 75)
-                        .addComponent(jLabel1)))
+                .addGap(11, 11, 11)
+                .addComponent(fecha_1)
+                .addGap(18, 18, 18)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(logo1_1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logo2_1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(combo1_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -467,7 +482,7 @@ public class Quinela extends javax.swing.JFrame {
 
         fecha_3.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         fecha_3.setForeground(new java.awt.Color(255, 255, 255));
-        fecha_3.setText("Fecha");
+        fecha_3.setText("22-11-2022");
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -484,37 +499,35 @@ public class Quinela extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel3Layout.createSequentialGroup()
                 .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel3Layout.createSequentialGroup()
-                        .addComponent(logo1_3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59)
-                        .addComponent(jLabel4))
-                    .addGroup(panel3Layout.createSequentialGroup()
-                        .addGap(176, 176, 176)
-                        .addComponent(fecha_3))
-                    .addGroup(panel3Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
-                        .addComponent(combo1_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                        .addComponent(combo1_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE))
+                    .addGroup(panel3Layout.createSequentialGroup()
+                        .addComponent(logo1_3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4)
+                        .addGap(64, 64, 64)))
                 .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logo2_3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel3Layout.createSequentialGroup()
                         .addComponent(combo2_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(fecha_3)
+                .addGap(164, 164, 164))
         );
         panel3Layout.setVerticalGroup(
             panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel3Layout.createSequentialGroup()
-                .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel3Layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(logo1_3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(logo2_3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panel3Layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(fecha_3)
-                        .addGap(75, 75, 75)
-                        .addComponent(jLabel4)))
+                .addGap(11, 11, 11)
+                .addComponent(fecha_3)
+                .addGap(18, 18, 18)
+                .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(logo1_3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logo2_3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(combo1_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -522,7 +535,7 @@ public class Quinela extends javax.swing.JFrame {
                 .addGap(14, 14, 14))
         );
 
-        panel5.setBackground(new java.awt.Color(119, 32, 32));
+        panel2.setBackground(new java.awt.Color(119, 32, 32));
 
         logo1_2.setText("Logo 1");
 
@@ -530,7 +543,7 @@ public class Quinela extends javax.swing.JFrame {
 
         fecha_2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         fecha_2.setForeground(new java.awt.Color(255, 255, 255));
-        fecha_2.setText("Fecha");
+        fecha_2.setText("22-11-2022");
 
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -540,46 +553,48 @@ public class Quinela extends javax.swing.JFrame {
 
         combo2_2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
 
-        javax.swing.GroupLayout panel5Layout = new javax.swing.GroupLayout(panel5);
-        panel5.setLayout(panel5Layout);
-        panel5Layout.setHorizontalGroup(
-            panel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel5Layout.createSequentialGroup()
-                .addGroup(panel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel5Layout.createSequentialGroup()
-                        .addComponent(logo1_2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59)
-                        .addComponent(jLabel5))
-                    .addGroup(panel5Layout.createSequentialGroup()
-                        .addGap(176, 176, 176)
-                        .addComponent(fecha_2))
-                    .addGroup(panel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
+        panel2.setLayout(panel2Layout);
+        panel2Layout.setHorizontalGroup(
+            panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
+                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel2Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
-                        .addComponent(combo1_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                .addGroup(panel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(combo1_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE))
+                    .addGroup(panel2Layout.createSequentialGroup()
+                        .addComponent(logo1_2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
+                        .addGap(70, 70, 70)))
+                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logo2_2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel5Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
                         .addComponent(combo2_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34)))
                 .addContainerGap())
+            .addGroup(panel2Layout.createSequentialGroup()
+                .addGap(168, 168, 168)
+                .addComponent(fecha_2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        panel5Layout.setVerticalGroup(
-            panel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel5Layout.createSequentialGroup()
-                .addGroup(panel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel5Layout.createSequentialGroup()
+        panel2Layout.setVerticalGroup(
+            panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel2Layout.createSequentialGroup()
+                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel2Layout.createSequentialGroup()
                         .addGap(52, 52, 52)
-                        .addGroup(panel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(logo1_2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(logo2_2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panel5Layout.createSequentialGroup()
+                    .addGroup(panel2Layout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addComponent(fecha_2)
                         .addGap(75, 75, 75)
                         .addComponent(jLabel5)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addGroup(panel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(combo1_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(combo2_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14))
@@ -593,7 +608,7 @@ public class Quinela extends javax.swing.JFrame {
 
         fecha_4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         fecha_4.setForeground(new java.awt.Color(255, 255, 255));
-        fecha_4.setText("Fecha");
+        fecha_4.setText("22-11-2022");
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -610,16 +625,19 @@ public class Quinela extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel4Layout.createSequentialGroup()
                 .addGroup(panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel4Layout.createSequentialGroup()
-                        .addComponent(logo1_4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59)
-                        .addComponent(jLabel6))
-                    .addGroup(panel4Layout.createSequentialGroup()
-                        .addGap(176, 176, 176)
-                        .addComponent(fecha_4))
-                    .addGroup(panel4Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
-                        .addComponent(combo1_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(combo1_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE))
+                    .addGroup(panel4Layout.createSequentialGroup()
+                        .addComponent(logo1_4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel4Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(64, 64, 64))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel4Layout.createSequentialGroup()
+                                .addComponent(fecha_4)
+                                .addGap(18, 18, 18)))))
                 .addGroup(panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logo2_4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel4Layout.createSequentialGroup()
@@ -637,16 +655,40 @@ public class Quinela extends javax.swing.JFrame {
                             .addComponent(logo1_4, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(logo2_4, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panel4Layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
+                        .addGap(16, 16, 16)
                         .addComponent(fecha_4)
-                        .addGap(75, 75, 75)
+                        .addGap(69, 69, 69)
                         .addComponent(jLabel6)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(combo1_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(combo2_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14))
         );
+
+        siguiente.setText("Siguiente");
+        siguiente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                siguienteMouseReleased(evt);
+            }
+        });
+        siguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                none(evt);
+            }
+        });
+
+        anterior.setText("Anterior");
+        anterior.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                anteriorMouseReleased(evt);
+            }
+        });
+        anterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anteriorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout quinelaLayout = new javax.swing.GroupLayout(quinela);
         quinela.setLayout(quinelaLayout);
@@ -667,7 +709,7 @@ public class Quinela extends javax.swing.JFrame {
             .addGroup(quinelaLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jornada)
@@ -680,13 +722,19 @@ public class Quinela extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(quinela_label_quinela1)
                 .addGap(573, 573, 573))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, quinelaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(anterior, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80)
+                .addComponent(siguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(487, 487, 487))
         );
         quinelaLayout.setVerticalGroup(
             quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(quinelaLayout.createSequentialGroup()
                 .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, quinelaLayout.createSequentialGroup()
-                        .addGap(0, 124, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(panel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(panel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -694,10 +742,14 @@ public class Quinela extends javax.swing.JFrame {
                         .addComponent(quinela_label_quinela1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jornada)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(46, 46, 46)
+                        .addGap(0, 270, Short.MAX_VALUE)))
+                .addGap(1, 1, 1)
+                .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(siguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(anterior, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
                 .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(67, 67, 67)
                 .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -793,7 +845,7 @@ public class Quinela extends javax.swing.JFrame {
                 .addComponent(mostrar_button_administrativo)
                 .addGap(54, 54, 54)
                 .addComponent(acceder_button_administrativo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 441, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 452, Short.MAX_VALUE)
                 .addComponent(administrativo_button_administrativo)
                 .addGap(17, 17, 17))
         );
@@ -829,7 +881,7 @@ public class Quinela extends javax.swing.JFrame {
             .addGroup(pantalla_administrativaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(administrativo_label_padministrativa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 751, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 762, Short.MAX_VALUE)
                 .addComponent(logout_button_padministrativa)
                 .addGap(17, 17, 17))
         );
@@ -1228,6 +1280,29 @@ public class Quinela extends javax.swing.JFrame {
         */
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void anteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anteriorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_anteriorActionPerformed
+
+    private void none(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_none
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_none
+
+    private void anteriorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anteriorMouseReleased
+        // TODO add your handling code here:
+        this.contadorFechas --;
+        cambiarQuinela(this.contadorFechas);
+        System.out.println("CONTADOR----> " + this.contadorFechas);
+    }//GEN-LAST:event_anteriorMouseReleased
+
+    private void siguienteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_siguienteMouseReleased
+        // TODO add your handling code here:
+        this.contadorFechas ++;
+        cambiarQuinela(this.contadorFechas);
+        System.out.println("CONTADOR----> " + this.contadorFechas);
+    }//GEN-LAST:event_siguienteMouseReleased
          
     /**
      * @param args the command line arguments
@@ -1272,6 +1347,7 @@ public class Quinela extends javax.swing.JFrame {
     private javax.swing.JToggleButton administrativo_button_login;
     private javax.swing.JLabel administrativo_label_administrativo;
     private javax.swing.JLabel administrativo_label_padministrativa;
+    public javax.swing.JButton anterior;
     public javax.swing.JComboBox<String> combo1_1;
     public javax.swing.JComboBox<String> combo1_2;
     public javax.swing.JComboBox<String> combo1_3;
@@ -1308,9 +1384,9 @@ public class Quinela extends javax.swing.JFrame {
     public javax.swing.JRadioButton mostrar_button_administrativo;
     public javax.swing.JRadioButton mostrar_button_login;
     public java.awt.Panel panel1;
+    public java.awt.Panel panel2;
     public java.awt.Panel panel3;
     public java.awt.Panel panel4;
-    public java.awt.Panel panel5;
     private javax.swing.JPanel pantalla_administrativa;
     public javax.swing.JTabbedPane pantallas;
     public javax.swing.JPasswordField password_field_administrativo;
@@ -1325,6 +1401,7 @@ public class Quinela extends javax.swing.JFrame {
     public javax.swing.JButton registrar_button_registrarse;
     public javax.swing.JButton registrarse_button_login;
     public javax.swing.JLabel registrarse_label_registrarse;
+    public javax.swing.JButton siguiente;
     public javax.swing.JTextField username_field_administrativo;
     public javax.swing.JTextField username_field_login;
     public javax.swing.JTextField username_field_registrarse;

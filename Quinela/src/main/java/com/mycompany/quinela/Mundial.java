@@ -19,8 +19,6 @@ public class Mundial implements Serializable{
     private Grupo[] gruposPrimeraFase=new Grupo[8];
     public Partido[] partidosPrimeraFase = new Partido[48];
     
-    public Partido[] ordenadosPorFecha = new Partido[48];
-    
     private Partido[] partidosOctavos= new Partido[8];
     private Equipo[] ganadoresOctavos= new Equipo[8];
     
@@ -29,6 +27,7 @@ public class Mundial implements Serializable{
     
     private Partido[] partidosSemis=new Partido[2];
     private Equipo[] ganadoresSemis=new Equipo[2];
+    
     
     private Partido finalPartido;
     
@@ -154,7 +153,7 @@ public class Mundial implements Serializable{
         fechas.add("13-12-2022");
         fechas.add("14-12-2022");
         
-        fechas.add("18-12-2022");
+        fechas.add("18-12-2022"); //22
         
     }
 
@@ -314,6 +313,22 @@ public class Mundial implements Serializable{
 
     public ArrayList<Equipo> getEquipos() {
         return equipos;
+    }
+    
+    public ArrayList<Partido> getTodos(){
+        ArrayList<Partido> todosPartidos = new ArrayList<>();
+        for(Partido i: partidosPrimeraFase){
+            todosPartidos.add(i);
+        }
+        for(Partido j: partidosOctavos){
+            todosPartidos.add(j);
+        }
+        for(Partido z: partidosSemis){
+            todosPartidos.add(z);
+        }
+        todosPartidos.add(finalPartido);
+        
+        return todosPartidos;
     }
     
     public void crearUsuario(String username, String nombre, String pass){
