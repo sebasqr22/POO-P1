@@ -21,8 +21,8 @@ public class Partido implements Serializable{
     private Equipo ganadorPenales;
     public char grupo;
     private int golLocal;
-    private JComboBox golLocalCB;
-    private JComboBox golVisitaCB;
+    private JComboBox<String> golLocalCB;
+    private JComboBox<String> golVisitaCB;
     private JButton generarResultado;
     private int golVisita;
     private boolean penales;
@@ -128,5 +128,32 @@ public class Partido implements Serializable{
         System.out.println("GOL "+local.pais+": "+golLocal+"  GOL "+visita.pais+": "+golVisita);
         golLocalCB.setSelectedIndex(golLocal);
         golVisitaCB.setSelectedIndex(golVisita);
+    }
+    
+    private int aleatorio(int rango){
+        return (new Random().nextInt(0, rango));
+    }
+    public void generarHeuristica(){
+        int rankLocal = aleatorio((int) local.getRanking());
+        int rankVisita = aleatorio((int) visita.getRanking());
+        System.out.println("RANKINGS randoms: " + local.pais + ": " + rankLocal + "  " + visita.pais + ": " + rankVisita);
+        Equipo ganadorRanking = local;
+
+        Equipo ganadorPartido = null;
+        if (rankLocal < rankVisita) {
+            ganadorRanking = visita;
+        }
+        System.out.println("GANADOR RANKING: " + ganadorRanking.pais);
+        while (ganadorRanking != ganadorPartido) {
+            generarResultado();
+            if (golLocal - golVisita== 0) {
+                continue;
+            }
+            if (golLocal >= golVisita) {
+                ganadorPartido = local;
+            } else {
+                ganadorPartido = visita;
+            }
+        }
     }
 }

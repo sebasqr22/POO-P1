@@ -84,6 +84,10 @@ public class Quinela extends javax.swing.JFrame {
                     panel1.setVisible(true);
                     logo1_1.setIcon(image1);
                     logo2_1.setIcon(image2);
+                    j.setResultadoLocal(combo1_1);
+                    combo1_1.setSelectedIndex(j.getGolLocal());
+                    j.setResultadoVisita(combo2_1);
+                    combo2_1.setSelectedIndex(j.getGolVisita());
                     c_aux++; 
                 }
                 else if(c_aux == 1){
@@ -91,6 +95,10 @@ public class Quinela extends javax.swing.JFrame {
                     panel2.setVisible(true);
                     logo1_2.setIcon(image1);
                     logo2_2.setIcon(image2);
+                    j.setResultadoLocal(combo1_2);
+                    combo1_2.setSelectedIndex(j.getGolLocal());
+                    j.setResultadoVisita(combo2_2);
+                    combo2_2.setSelectedIndex(j.getGolVisita());
                     c_aux++; 
                 }
                 else if(c_aux == 2){
@@ -98,6 +106,10 @@ public class Quinela extends javax.swing.JFrame {
                     panel3.setVisible(true);
                     logo1_3.setIcon(image1);
                     logo2_3.setIcon(image2);
+                    j.setResultadoLocal(combo1_3);
+                    combo1_3.setSelectedIndex(j.getGolLocal());
+                    j.setResultadoVisita(combo2_3);
+                    combo2_3.setSelectedIndex(j.getGolVisita());
                     c_aux++; 
                 }
                 else{
@@ -105,6 +117,10 @@ public class Quinela extends javax.swing.JFrame {
                     panel4.setVisible(true);
                     logo1_4.setIcon(image1);
                     logo2_4.setIcon(image2);
+                    j.setResultadoLocal(combo1_4);
+                    combo1_4.setSelectedIndex(j.getGolLocal());
+                    j.setResultadoVisita(combo2_4);
+                    combo2_4.setSelectedIndex(j.getGolVisita());
                     c_aux++; 
                 }
             }
@@ -1206,6 +1222,32 @@ public class Quinela extends javax.swing.JFrame {
     private void generarResultado_button_quinelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarResultado_button_quinelaActionPerformed
         //String fase=(String)fase_combo_quinela.getSelectedItem();
         String fase = "";
+        String fecha = fechas.get(contadorFechas);
+        Partido[] partidos = new Partido[4];
+        int c_aux = 0;
+        
+        for(Partido i: todosLosPartidos){
+            try{
+                if(i.date.equals(fecha)){
+                partidos[c_aux] = i;
+                c_aux++;
+                }
+            }
+            catch(NullPointerException e){
+                
+            }
+            
+        }
+        
+        System.out.println("PARTIDOS: "+partidos[0].getLocal().pais+" VS "+partidos[0].getVisita().pais);
+        
+        for (Partido partido : partidos) {
+            if(partido!=null){
+                partido.generarResultado();
+            }
+            
+        }
+        /*
         switch(fase){
             case "Fase de Grupos":
                 for (Partido partido : mundial.partidosPrimeraFase) {
@@ -1230,7 +1272,7 @@ public class Quinela extends javax.swing.JFrame {
             case "Final":
                 mundial.getFinalPartido().generarResultado();
                 break;
-        }
+        }*/
         /*
         String partido=(String)partido_combo_quinela.getSelectedItem();
         String[] equipos = partido.split("-");
@@ -1243,14 +1285,38 @@ public class Quinela extends javax.swing.JFrame {
             p.generarResultado();
         }*/
     }//GEN-LAST:event_generarResultado_button_quinelaActionPerformed
-    private int aleatorio(int rango){
-        return (new Random().nextInt(0, rango));
-    }
+    
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
         //String fase=(String)fase_combo_quinela.getSelectedItem();
-        String fase = "";
+        
+        String fecha = fechas.get(contadorFechas);
+        Partido[] partidos = new Partido[4];
+        int c_aux = 0;
+        
+        for(Partido i: todosLosPartidos){
+            try{
+                if(i.date.equals(fecha)){
+                partidos[c_aux] = i;
+                c_aux++;
+                }
+            }
+            catch(NullPointerException e){
+                
+            }
+            
+        }
+        
+        System.out.println("PARTIDOS: "+partidos[0].getLocal().pais+" VS "+partidos[0].getVisita().pais);
+        
+        for (Partido partido : partidos) {
+            if(partido!=null){
+                partido.generarHeuristica();
+            }
+            
+        }
+        /*String fase = "";
         switch(fase){
             case "Fase de Grupos":
                 for (Partido partido : mundial.partidosPrimeraFase) {
@@ -1330,7 +1396,7 @@ public class Quinela extends javax.swing.JFrame {
             case "Final":
                 
                 break;
-        }
+        }*/
         /*
         String fase=(String)fase_combo_quinela.getSelectedItem();
         String partido=(String)partido_combo_quinela.getSelectedItem();
