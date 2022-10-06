@@ -55,6 +55,14 @@ public class Partido implements Serializable{
         return visita;
     }
 
+    public JComboBox<String> getGolLocalCB() {
+        return golLocalCB;
+    }
+
+    public JComboBox<String> getGolVisitaCB() {
+        return golVisitaCB;
+    }
+
     public void setLocal(Equipo local) {
         this.local = local;
     }

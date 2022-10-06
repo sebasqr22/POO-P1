@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ManejadorArchivos {
@@ -74,8 +75,34 @@ public class ManejadorArchivos {
             ex.printStackTrace();
         }
         
-        System.out.println("MUNDIAL DE FICHERO"+m.getEquipos().get(0).pais);
+        System.out.println("MUNDIAL DE FICHERO "+m.getPartidosPrimeraFase()[0].getGolLocal());
         return m;
+    }
+    
+    public void guardarMundial(Mundial mundial,ArrayList<Partido> todos,String user){
+        
+        
+        mundial.setTodosPartidos(todos);
+        System.out.println("GUARDANDO...."+mundial.getTodos().get(0).getGolLocal());
+        
+        FileOutputStream fichero = null;
+        try {
+            fichero = new FileOutputStream("archivos/" + user + "/quiniela.txt",false);
+            
+            ObjectOutputStream tuberia = new ObjectOutputStream(fichero);
+            tuberia.writeObject(mundial);
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                fichero.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+        }
     }
     
     public void asignarMundial(Mundial mundial, String username, String nombre, String password) {

@@ -14,6 +14,7 @@ import java.util.Arrays;
  * @author sergio
  */
 public class Mundial implements Serializable{
+    private ArrayList<Partido> todosPartidos = new ArrayList<>();
     private ArrayList<Equipo> equipos=new ArrayList<Equipo>();
     private ArrayList<Usuario> usuarios=new ArrayList<Usuario>();
     private Grupo[] gruposPrimeraFase=new Grupo[8];
@@ -326,6 +327,7 @@ public class Mundial implements Serializable{
         return partidosOctavos;
     }
 
+    
     public Partido[] getPartidosCuartos() {
         return partidosCuartos;
     }
@@ -341,9 +343,13 @@ public class Mundial implements Serializable{
     public ArrayList<Equipo> getEquipos() {
         return equipos;
     }
+
+    public void setTodosPartidos(ArrayList<Partido> todosPartidos) {
+        this.todosPartidos = todosPartidos;
+    }
     
     public ArrayList<Partido> getTodos(){
-        ArrayList<Partido> todosPartidos = new ArrayList<>();
+        
         for(Partido i: partidosPrimeraFase){
             todosPartidos.add(i);
         }

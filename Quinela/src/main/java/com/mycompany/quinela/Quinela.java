@@ -186,9 +186,9 @@ public class Quinela extends javax.swing.JFrame {
     public Quinela() {
         mundial.init();
         mundial.primeraFase();
-        mundial.octavosDeFinal();
-        mundial.cuartosDeFinal();
-        mundial.finalMundial();
+        //mundial.octavosDeFinal();
+        //mundial.cuartosDeFinal();
+        //mundial.finalMundial();
         initComponents();
         paneles.add(panel1);
         paneles.add(panel2);
@@ -487,6 +487,11 @@ public class Quinela extends javax.swing.JFrame {
         });
 
         guardar_button_quinela.setText("Guardar");
+        guardar_button_quinela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardar_button_quinelaActionPerformed(evt);
+            }
+        });
 
         generarResultado_button_quinela.setText("Generar Resultado");
         generarResultado_button_quinela.addActionListener(new java.awt.event.ActionListener() {
@@ -1083,6 +1088,9 @@ public class Quinela extends javax.swing.JFrame {
                 usuario_global = username;
                 System.out.println("Se encuentra el usuario");
                 this.mundial=manejadorArchivos.buscarMundial(username);
+                
+                System.out.println("GUARDADA: "+this.mundial.getPartidosPrimeraFase()[0].getGolLocal());
+                
                 pantallas.setSelectedIndex(2);
                 username_field_login.setText("");
                 password_field_login.setText("");
@@ -1239,7 +1247,7 @@ public class Quinela extends javax.swing.JFrame {
             
         }
         
-        System.out.println("PARTIDOS: "+partidos[0].getLocal().pais+" VS "+partidos[0].getVisita().pais);
+        
         
         for (Partido partido : partidos) {
             if(partido!=null){
@@ -1247,43 +1255,7 @@ public class Quinela extends javax.swing.JFrame {
             }
             
         }
-        /*
-        switch(fase){
-            case "Fase de Grupos":
-                for (Partido partido : mundial.partidosPrimeraFase) {
-                    partido.generarResultado();
-                }
-                break;
-            case "8vos de Final":
-                for (Partido partido : mundial.getPartidosOctavos()) {
-                    partido.generarResultado();
-                }
-                break;
-            case "4tos de Final":
-                for (Partido partido : mundial.getPartidosCuartos()) {
-                    partido.generarResultado();
-                }
-                break;
-            case "Semifinal":
-                for (Partido partido : mundial.getPartidosSemis()) {
-                    partido.generarResultado();
-                }
-                break;
-            case "Final":
-                mundial.getFinalPartido().generarResultado();
-                break;
-        }*/
-        /*
-        String partido=(String)partido_combo_quinela.getSelectedItem();
-        String[] equipos = partido.split("-");
-        String e1 = equipos[0];
-        String e2 = equipos[1];
         
-        Partido p=mundial.buscarPartido(e1, e2, (String)fase_combo_quinela.getSelectedItem());
-        
-        if(p!=null){
-            p.generarResultado();
-        }*/
     }//GEN-LAST:event_generarResultado_button_quinelaActionPerformed
     
     
@@ -1308,7 +1280,7 @@ public class Quinela extends javax.swing.JFrame {
             
         }
         
-        System.out.println("PARTIDOS: "+partidos[0].getLocal().pais+" VS "+partidos[0].getVisita().pais);
+        
         
         for (Partido partido : partidos) {
             if(partido!=null){
@@ -1316,110 +1288,6 @@ public class Quinela extends javax.swing.JFrame {
             }
             
         }
-        /*String fase = "";
-        switch(fase){
-            case "Fase de Grupos":
-                for (Partido partido : mundial.partidosPrimeraFase) {
-                    Equipo local=partido.getLocal();
-                    Equipo visita=partido.getVisita();
-                    int rankLocal=aleatorio((int)local.getRanking());
-                    int rankVisita=aleatorio((int)visita.getRanking());
-                    System.out.println("RANKINGS randoms: "+local.pais+": "+rankLocal+"  "+visita.pais+": "+rankVisita);
-                    Equipo ganadorRanking =local;
-                    
-                    
-                    Equipo ganadorPartido =null;
-                    if(rankLocal<rankVisita){
-                        ganadorRanking=visita;
-                    }
-                    System.out.println("GANADOR RANKING: "+ganadorRanking.pais);
-                    while(ganadorRanking!=ganadorPartido){
-                        partido.generarResultado();
-                        if(partido.getGolLocal()-partido.getGolVisita()==0){
-                            break;
-                        }
-                        if (partido.getGolLocal()>=partido.getGolVisita()){
-                            ganadorPartido=local;
-                        }else{
-                            ganadorPartido=visita;
-                        }
-                    }  
-                    System.out.println("");
-                }
-                break;
-            case "8vos de Final":
-                for (Partido partido : mundial.getPartidosOctavos()) {
-                    Equipo local=partido.getLocal();
-                    Equipo visita=partido.getVisita();
-                    int rankLocal=aleatorio((int)local.getRanking());
-                    int rankVisita=aleatorio((int)visita.getRanking());
-                    System.out.println("RANKINGS randoms: "+local.pais+": "+rankLocal+"  "+visita.pais+": "+rankVisita);
-                    Equipo ganadorRanking =local;
-                    
-                    
-                    Equipo ganadorPartido =null;
-                    if(rankLocal<rankVisita){
-                        ganadorRanking=visita;
-                    }
-                    System.out.println("GANADOR RANKING: "+ganadorRanking.pais);
-                    while(ganadorRanking!=ganadorPartido){
-                        partido.generarResultado();
-                        if (partido.getGolLocal()>=partido.getGolVisita()){
-                            ganadorPartido=local;
-                        }else{
-                            ganadorPartido=visita;
-                        }
-                    }  
-                    if (partido.getGolLocal() == partido.getGolVisita()) {
-                        partido.setPenales(true);
-                        rankLocal = aleatorio((int) local.getRanking());
-                        rankVisita = aleatorio((int) visita.getRanking());
-                        if(rankLocal<rankVisita){
-                            partido.setGanadorPenales(visita);
-                        }else{
-                            partido.setGanadorPenales(local);
-                        }
-                    }
-                    System.out.println("");
-                }
-                break;
-            case "4tos de Final":
-                for (Partido partido : mundial.getPartidosCuartos()) {
-                    
-                }
-                break;
-            case "Semifinal":
-                for (Partido partido : mundial.getPartidosSemis()) {
-                   
-                }
-                break;
-            case "Final":
-                
-                break;
-        }*/
-        /*
-        String fase=(String)fase_combo_quinela.getSelectedItem();
-        String partido=(String)partido_combo_quinela.getSelectedItem();
-        String[] equipos = partido.split("-");
-        String e1 = equipos[0];
-        String e2 = equipos[1];
-        Equipo local = null;
-        Equipo visita = null;
-        
-        for (Equipo equipo : mundial.getEquipos()) {
-            if(equipo.pais.equals(e1)){
-                local=equipo;
-            }
-            else if(equipo.pais.equals(e2)){
-                visita=equipo;
-            }
-        }
-        int rankLocal=(new Random().nextInt(0,(int)local.getRanking()));
-        int rankvisita=(new Random().nextInt(0,(int)visita.getRanking()));
-        
-        if(rankLocal>rankvisita){
-        }
-        */
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -1445,6 +1313,30 @@ public class Quinela extends javax.swing.JFrame {
         cambiarQuinela(this.contadorFechas);
         System.out.println("CONTADOR----> " + this.contadorFechas);
     }//GEN-LAST:event_siguienteMouseReleased
+
+    private void guardar_button_quinelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardar_button_quinelaActionPerformed
+        // TODO add your handling code here:
+        
+        /*for (Partido partido : todosLosPartidos) {
+            if(partido.getGolLocalCB()!=null){
+                
+                partido.setGolLocal(partido.getGolLocalCB().getSelectedIndex());
+                partido.setGolVisita(partido.getGolVisitaCB().getSelectedIndex());
+                System.out.println("PARTIDO: "+partido.getLocal().pais+" VS "+partido.getVisita().pais);
+                System.out.println("RESULTADO: "+partido.getGolLocal()+" VS "+partido.getGolVisita());
+                System.out.println("------------------------------------------------------------");
+            }
+            
+            
+        }*/
+        /*for(int i=0; i<this.mundial.getTodos().size();i++){
+            if(this.mundial.getTodos().get(i).getGolLocalCB()!=null){
+               this.mundial.getTodos().get(i).setGolLocal(this.mundial.getTodos().get(i).getGolLocalCB().getSelectedIndex());
+               this.mundial.getTodos().get(i).setGolVisita(this.mundial.getTodos().get(i).getGolVisitaCB().getSelectedIndex());
+            }
+        }*/
+        //manejadorArchivos.guardarMundial(this.mundial,todosLosPartidos, usuario_global);
+    }//GEN-LAST:event_guardar_button_quinelaActionPerformed
          
     /**
      * @param args the command line arguments
