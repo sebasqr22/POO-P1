@@ -155,6 +155,33 @@ public class Mundial implements Serializable{
         
         fechas.add("18-12-2022"); //22
         
+        Equipo aux = new Equipo("aux",0);
+        partidosOctavos[0] = new Partido(aux,aux, "03-12-2022");//1A 2B
+        partidosOctavos[1] = new Partido(aux,aux, "04-12-2022");//1B 2A
+        
+        partidosOctavos[2] = new Partido(aux,aux, "03-12-2022");//1C 2D
+        partidosOctavos[3] = new Partido(aux,aux, "04-12-2022");//1D 2C
+        
+        partidosOctavos[4] = new Partido(aux,aux, "05-12-2022");//1E 2F
+        partidosOctavos[5] = new Partido(aux,aux, "06-12-2022");//1F 2E
+        
+        partidosOctavos[6] = new Partido(aux,aux, "05-12-2022");//1G 2H
+        partidosOctavos[7] = new Partido(aux,aux, "06-12-2022");//1H 2G
+        
+        
+        partidosCuartos[0]=new Partido(aux,aux, "09-12-2022");
+        
+        partidosCuartos[1]=new Partido(aux,aux, "09-12-2022");
+        
+        partidosCuartos[2]=new Partido(aux,aux, "10-12-2022");
+        
+        partidosCuartos[3]=new Partido(aux,aux, "10-12-2022");
+        
+        partidosSemis[0]=new Partido(aux,aux, "13-12-2022");
+        
+        partidosSemis[1]=new Partido(aux,aux, "14-12-2022");
+        
+        finalPartido=new Partido(aux,aux, "16-12-2022");
     }
 
     public void primeraFase() {
@@ -334,7 +361,6 @@ public class Mundial implements Serializable{
     public void crearUsuario(String username, String nombre, String pass){
         Usuario nuevoUsuario= new Usuario(username, nombre, pass);
         usuarios.add(nuevoUsuario);
-        System.out.println("USUARIO: "+usuarios.get(0));
     }
     
 }

@@ -54,6 +54,17 @@ public class Partido implements Serializable{
     public Equipo getVisita() {
         return visita;
     }
+
+    public void setLocal(Equipo local) {
+        this.local = local;
+    }
+
+    public void setVisita(Equipo visita) {
+        this.visita = visita;
+    }
+    
+    
+    
     public int getGolLocal() {
         return golLocal;
     }
