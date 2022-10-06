@@ -23,6 +23,7 @@ import java.util.Random;
 public class Quinela extends javax.swing.JFrame {
     int estado_password = 0;
     private String usuario_global;
+    boolean configuracionFinalizada = false;
     ManejadorArchivos manejadorArchivos = new ManejadorArchivos();
     String[] fases = {"Fase de Grupos", "8vos de Final", "4tos de Final", "Semifinal", "Final"};
     String[] grupos = {"A", "B", "C", "D", "E", "F", "G", "H"};
@@ -44,7 +45,7 @@ public class Quinela extends javax.swing.JFrame {
         panel3.setVisible(false);
         panel4.setVisible(false);
     }
-    private void cambiarQuinela(int contador){
+    private void cambiarQuinela(){
         if(this.contadorFechas < 0){
             this.contadorFechas = 21;
         }
@@ -124,6 +125,29 @@ public class Quinela extends javax.swing.JFrame {
                     c_aux++; 
                 }
             }
+            else{
+                System.out.println("CONTADOR----------> " + this.contadorFechas);
+                if(configuracionFinalizada && contadorFechas > 13){
+                    String serie = "";
+                    if(fecha.equals("03-12-2022") || fecha.equals("04-12-2022") || fecha.equals("05-12-2022") || fecha.equals("06-12-2022")){
+                        serie = "Octavos de Final";
+                    }
+                    else if(fecha.equals("09-12-2022") || fecha.equals("10-12-2022")){
+                        serie = "Cuartos de Final";
+                    }
+                    else if(fecha.equals("13-12-2022") || fecha.equals("14-12-2022")){
+                        serie = "Semifinales";
+                    }
+                    else{
+                        serie = " la Final";
+                    }
+                    JOptionPane.showMessageDialog(pantallas, "No se cuentra infomación disponible para " + serie,"ERROR!", JOptionPane.ERROR_MESSAGE);
+                    this.contadorFechas = 1;
+                    cambiarQuinela();
+                }
+                
+                
+            }
             
         }
         
@@ -190,12 +214,6 @@ public class Quinela extends javax.swing.JFrame {
         //mundial.cuartosDeFinal();
         //mundial.finalMundial();
         initComponents();
-        paneles.add(panel1);
-        paneles.add(panel2);
-        paneles.add(panel3);
-        paneles.add(panel4);
-        
-        
     
         cambiar_escudos("senegal", "paises_bajos");
         ImageIcon logo = new ImageIcon("imagenes/escudos/costa_rica.png");
@@ -210,7 +228,8 @@ public class Quinela extends javax.swing.JFrame {
             partido.setGenerarResultado(generarResultado_button_quinela);
         }
         todosLosPartidos = mundial.getTodos();
-        cambiarQuinela(this.contadorFechas);
+        cambiarQuinela();
+        configuracionFinalizada = true;
         //mundial.partidosPrimeraFase[0].generarResultado();
     }
     /**
@@ -254,7 +273,6 @@ public class Quinela extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         combo1_1 = new javax.swing.JComboBox<>();
         combo2_1 = new javax.swing.JComboBox<>();
-        jornada = new javax.swing.JLabel();
         panel3 = new java.awt.Panel();
         logo1_3 = new javax.swing.JLabel();
         logo2_3 = new javax.swing.JLabel();
@@ -568,9 +586,6 @@ public class Quinela extends javax.swing.JFrame {
                 .addGap(14, 14, 14))
         );
 
-        jornada.setForeground(new java.awt.Color(255, 255, 255));
-        jornada.setText("Jornada 1");
-
         panel3.setBackground(new java.awt.Color(119, 32, 32));
 
         logo1_3.setText("Logo 1");
@@ -809,8 +824,6 @@ public class Quinela extends javax.swing.JFrame {
                     .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jornada)
-                .addGap(179, 179, 179)
                 .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -831,15 +844,13 @@ public class Quinela extends javax.swing.JFrame {
             .addGroup(quinelaLayout.createSequentialGroup()
                 .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, quinelaLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 135, Short.MAX_VALUE)
                         .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(panel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(panel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(quinelaLayout.createSequentialGroup()
                         .addComponent(quinela_label_quinela1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jornada)
-                        .addGap(0, 270, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(1, 1, 1)
                 .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(siguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1001,6 +1012,264 @@ public class Quinela extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void logout_button_padministrativaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_button_padministrativaActionPerformed
+        // TODO add your handling code here:
+        cerrar_sesion();
+    }//GEN-LAST:event_logout_button_padministrativaActionPerformed
+
+    private void administrativo_button_administrativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_administrativo_button_administrativoActionPerformed
+        // TODO add your handling code here:
+        pantallas.setSelectedIndex(0);
+    }//GEN-LAST:event_administrativo_button_administrativoActionPerformed
+
+    private void mostrar_button_administrativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar_button_administrativoActionPerformed
+        // TODO add your handling code here:
+        if(estado_password == 0){
+            password_field_administrativo.setEchoChar((char)0);
+            estado_password = 1;
+        }else{
+            password_field_administrativo.setEchoChar('*');
+            estado_password = 0;
+        }
+    }//GEN-LAST:event_mostrar_button_administrativoActionPerformed
+
+    private void acceder_button_administrativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceder_button_administrativoActionPerformed
+        // TODO add your handling code here:
+        String username = username_field_administrativo.getText();
+        String password = password_field_administrativo.getText();
+        if(!username.equals("") && !password.equals("")){
+            if(encontrar_usuario(username, password, true)){
+                usuario_global = username;
+                pantallas.setSelectedIndex(4);
+                username_field_administrativo.setText("");
+                password_field_administrativo.setText("");
+            }
+            else{
+                JOptionPane.showMessageDialog(pantallas, "Este Administrador no Existe!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(pantallas, "Debe escribir un Usuario y una Constraseña!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_acceder_button_administrativoActionPerformed
+
+    private void username_field_administrativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username_field_administrativoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_username_field_administrativoActionPerformed
+
+    private void anteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anteriorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_anteriorActionPerformed
+
+    private void anteriorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anteriorMouseReleased
+        // TODO add your handling code here:
+        this.contadorFechas --;
+        cambiarQuinela();
+        System.out.println("CONTADOR----> " + this.contadorFechas);
+    }//GEN-LAST:event_anteriorMouseReleased
+
+    private void none(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_none
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_none
+
+    private void siguienteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_siguienteMouseReleased
+        // TODO add your handling code here:
+        this.contadorFechas ++;
+        cambiarQuinela();
+        System.out.println("CONTADOR----> " + this.contadorFechas);
+    }//GEN-LAST:event_siguienteMouseReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        //String fase=(String)fase_combo_quinela.getSelectedItem();
+
+        String fecha = fechas.get(contadorFechas);
+        Partido[] partidos = new Partido[4];
+        int c_aux = 0;
+
+        for(Partido i: todosLosPartidos){
+            try{
+                if(i.date.equals(fecha)){
+                    partidos[c_aux] = i;
+                    c_aux++;
+                }
+            }
+            catch(NullPointerException e){
+
+            }
+
+        }
+
+        for (Partido partido : partidos) {
+            if(partido!=null){
+                partido.generarHeuristica();
+            }
+
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void generarResultado_button_quinelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarResultado_button_quinelaActionPerformed
+        //String fase=(String)fase_combo_quinela.getSelectedItem();
+        String fase = "";
+        String fecha = fechas.get(contadorFechas);
+        Partido[] partidos = new Partido[4];
+        int c_aux = 0;
+
+        for(Partido i: todosLosPartidos){
+            try{
+                if(i.date.equals(fecha)){
+                    partidos[c_aux] = i;
+                    c_aux++;
+                }
+            }
+            catch(NullPointerException e){
+
+            }
+
+        }
+
+        for (Partido partido : partidos) {
+            if(partido!=null){
+                partido.generarResultado();
+            }
+
+        }
+
+    }//GEN-LAST:event_generarResultado_button_quinelaActionPerformed
+
+    private void guardar_button_quinelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardar_button_quinelaActionPerformed
+        // TODO add your handling code here:
+
+        /*for (Partido partido : todosLosPartidos) {
+            if(partido.getGolLocalCB()!=null){
+
+                partido.setGolLocal(partido.getGolLocalCB().getSelectedIndex());
+                partido.setGolVisita(partido.getGolVisitaCB().getSelectedIndex());
+                System.out.println("PARTIDO: "+partido.getLocal().pais+" VS "+partido.getVisita().pais);
+                System.out.println("RESULTADO: "+partido.getGolLocal()+" VS "+partido.getGolVisita());
+                System.out.println("------------------------------------------------------------");
+            }
+
+        }*/
+        /*for(int i=0; i<this.mundial.getTodos().size();i++){
+            if(this.mundial.getTodos().get(i).getGolLocalCB()!=null){
+                this.mundial.getTodos().get(i).setGolLocal(this.mundial.getTodos().get(i).getGolLocalCB().getSelectedIndex());
+                this.mundial.getTodos().get(i).setGolVisita(this.mundial.getTodos().get(i).getGolVisitaCB().getSelectedIndex());
+            }
+        }*/
+        //manejadorArchivos.guardarMundial(this.mundial,todosLosPartidos, usuario_global);
+    }//GEN-LAST:event_guardar_button_quinelaActionPerformed
+
+    private void logout_button_quinela1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_button_quinela1ActionPerformed
+        // TODO add your handling code here:
+        cerrar_sesion();
+    }//GEN-LAST:event_logout_button_quinela1ActionPerformed
+
+    private void login_button_registrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_button_registrarseActionPerformed
+        // TODO add your handling code here:
+        pantallas.setSelectedIndex(0);
+    }//GEN-LAST:event_login_button_registrarseActionPerformed
+
+    private void registrar_button_registrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrar_button_registrarseActionPerformed
+        // TODO add your handling code here:
+        String username = username_field_registrarse.getText();
+        String password = password_field_registrarse.getText();
+        if(!username.equals("") && !password.equals("")){
+            if(!revisa_usuario(username)){
+                if(!username.contains(" ") && !username.contains("#") && !username.contains("-")){
+                    if(!password.contains(" ")){
+                        int opcion = JOptionPane.showConfirmDialog(pantallas, "Desea agregar al usuario -" + username + "- al sistema?");
+                        switch (opcion){
+                            case JOptionPane.YES_OPTION:
+                            if(manejadorArchivos.crear_carpeta("archivos/" + username) == 0){
+                                manejadorArchivos.asignarMundial(this.mundial,username,"",password);
+
+                                escribir("archivos/usuarios.txt", "#" + username + "-" + password);
+                                JOptionPane.showMessageDialog(pantallas,"Se agregó a -" + username + "- al sistema!");
+                                username_field_login.setText(username);
+                                password_field_login.setText(password);
+                                pantallas.setSelectedIndex(0);
+                                username_field_registrarse.setText("");
+                                password_field_registrarse.setText("");
+                            }
+                            else{
+                                JOptionPane.showMessageDialog(pantallas, "Ocurrio un Error!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
+                                break;
+                            }
+                            case JOptionPane.NO_OPTION:
+                            break;
+                        }
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(pantallas, "Esta Contraseña contiene Caractéres Inválidos (ESPACIO)!!!","ERROR!", JOptionPane.WARNING_MESSAGE);
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(pantallas, "Este Usuario contiene Caractéres Inválidos (# o - o ESPACIO)!!!","ERROR!", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+            else {
+                JOptionPane.showMessageDialog(pantallas, "Este Nombre de Usuario ya existe, prueba con otro!!!","ERROR!", JOptionPane.WARNING_MESSAGE);
+            }
+
+        }
+        else{
+            JOptionPane.showMessageDialog(pantallas, "Debe escribir un Usuario y una Constraseña!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_registrar_button_registrarseActionPerformed
+
+    private void administrativo_button_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_administrativo_button_loginActionPerformed
+        // TODO add your handling code here:
+        pantallas.setSelectedIndex(3);
+    }//GEN-LAST:event_administrativo_button_loginActionPerformed
+
+    private void mostrar_button_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar_button_loginActionPerformed
+        // TODO add your handling code here:
+        if(estado_password == 0){
+            password_field_login.setEchoChar((char)0);
+            estado_password = 1;
+        }else{
+            password_field_login.setEchoChar('*');
+            estado_password = 0;
+        }
+    }//GEN-LAST:event_mostrar_button_loginActionPerformed
+
+    private void registrarse_button_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarse_button_loginActionPerformed
+        pantallas.setSelectedIndex(1);
+    }//GEN-LAST:event_registrarse_button_loginActionPerformed
+
+    private void acceder_button_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceder_button_loginActionPerformed
+        // TODO add your handling code here:
+        String username = username_field_login.getText();
+        String password = String.valueOf(password_field_login.getPassword());
+
+        if(!username.equals("") && !password.equals("")){
+            if(encontrar_usuario(username, password, false)){
+                usuario_global = username;
+                System.out.println("Se encuentra el usuario");
+                this.mundial=manejadorArchivos.buscarMundial(username);
+
+                System.out.println("GUARDADA: "+this.mundial.getPartidosPrimeraFase()[0].getGolLocal());
+
+                pantallas.setSelectedIndex(2);
+                username_field_login.setText("");
+                password_field_login.setText("");
+            }
+            else{
+                JOptionPane.showMessageDialog(pantallas, "No se encontro a este usuario!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(pantallas, "Debe escribir un Usuario y una Constraseña!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_acceder_button_loginActionPerformed
+
+    private void username_field_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username_field_loginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_username_field_loginActionPerformed
+
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -1073,271 +1342,8 @@ public class Quinela extends javax.swing.JFrame {
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-    private void registrarse_button_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarse_button_loginActionPerformed
-        pantallas.setSelectedIndex(1);
-    }//GEN-LAST:event_registrarse_button_loginActionPerformed
-
-    private void acceder_button_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceder_button_loginActionPerformed
-        // TODO add your handling code here:
-        String username = username_field_login.getText();
-        String password = String.valueOf(password_field_login.getPassword());
-
-        if(!username.equals("") && !password.equals("")){
-            if(encontrar_usuario(username, password, false)){
-                usuario_global = username;
-                System.out.println("Se encuentra el usuario");
-                this.mundial=manejadorArchivos.buscarMundial(username);
-                
-                System.out.println("GUARDADA: "+this.mundial.getPartidosPrimeraFase()[0].getGolLocal());
-                
-                pantallas.setSelectedIndex(2);
-                username_field_login.setText("");
-                password_field_login.setText("");
-            }
-            else{
-                JOptionPane.showMessageDialog(pantallas, "No se encontro a este usuario!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        else{
-            JOptionPane.showMessageDialog(pantallas, "Debe escribir un Usuario y una Constraseña!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_acceder_button_loginActionPerformed
-
-    private void username_field_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username_field_loginActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_username_field_loginActionPerformed
-
-    private void registrar_button_registrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrar_button_registrarseActionPerformed
-        // TODO add your handling code here:
-        String username = username_field_registrarse.getText();
-        String password = password_field_registrarse.getText();
-        if(!username.equals("") && !password.equals("")){
-            if(!revisa_usuario(username)){
-                if(!username.contains(" ") && !username.contains("#") && !username.contains("-")){
-                    if(!password.contains(" ")){
-                        int opcion = JOptionPane.showConfirmDialog(pantallas, "Desea agregar al usuario -" + username + "- al sistema?");
-                        switch (opcion){
-                            case JOptionPane.YES_OPTION:
-                                if(manejadorArchivos.crear_carpeta("archivos/" + username) == 0){
-                                    manejadorArchivos.asignarMundial(this.mundial,username,"",password);
-                                   
-                                    escribir("archivos/usuarios.txt", "#" + username + "-" + password);
-                                    JOptionPane.showMessageDialog(pantallas,"Se agregó a -" + username + "- al sistema!");
-                                    username_field_login.setText(username);
-                                    password_field_login.setText(password);
-                                    pantallas.setSelectedIndex(0);
-                                    username_field_registrarse.setText("");
-                                    password_field_registrarse.setText("");
-                                }
-                                else{
-                                    JOptionPane.showMessageDialog(pantallas, "Ocurrio un Error!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
-                                    break;
-                                }
-                            case JOptionPane.NO_OPTION:
-                                break;
-                        }
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(pantallas, "Esta Contraseña contiene Caractéres Inválidos (ESPACIO)!!!","ERROR!", JOptionPane.WARNING_MESSAGE);
-                    }
-                }
-                else{
-                    JOptionPane.showMessageDialog(pantallas, "Este Usuario contiene Caractéres Inválidos (# o - o ESPACIO)!!!","ERROR!", JOptionPane.WARNING_MESSAGE);
-                }
-            }
-            else {
-                JOptionPane.showMessageDialog(pantallas, "Este Nombre de Usuario ya existe, prueba con otro!!!","ERROR!", JOptionPane.WARNING_MESSAGE);
-            }
-
-        }
-        else{
-            JOptionPane.showMessageDialog(pantallas, "Debe escribir un Usuario y una Constraseña!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_registrar_button_registrarseActionPerformed
-
-    private void login_button_registrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_button_registrarseActionPerformed
-        // TODO add your handling code here:
-        pantallas.setSelectedIndex(0);
-    }//GEN-LAST:event_login_button_registrarseActionPerformed
-
-    private void mostrar_button_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar_button_loginActionPerformed
-        // TODO add your handling code here:
-        if(estado_password == 0){
-            password_field_login.setEchoChar((char)0);
-            estado_password = 1;
-        }else{
-            password_field_login.setEchoChar('*');
-            estado_password = 0;
-        }
-    }//GEN-LAST:event_mostrar_button_loginActionPerformed
-
-    private void logout_button_quinela1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_button_quinela1ActionPerformed
-        // TODO add your handling code here:
-        cerrar_sesion();
-    }//GEN-LAST:event_logout_button_quinela1ActionPerformed
-
-    private void administrativo_button_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_administrativo_button_loginActionPerformed
-        // TODO add your handling code here:
-        pantallas.setSelectedIndex(3);
-    }//GEN-LAST:event_administrativo_button_loginActionPerformed
-
-    private void username_field_administrativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username_field_administrativoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_username_field_administrativoActionPerformed
-
-    private void acceder_button_administrativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceder_button_administrativoActionPerformed
-        // TODO add your handling code here:
-        String username = username_field_administrativo.getText();
-        String password = password_field_administrativo.getText();
-        if(!username.equals("") && !password.equals("")){
-            if(encontrar_usuario(username, password, true)){
-                usuario_global = username;
-                pantallas.setSelectedIndex(4);
-                username_field_administrativo.setText("");
-                password_field_administrativo.setText("");
-            }
-            else{
-                JOptionPane.showMessageDialog(pantallas, "Este Administrador no Existe!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        else{
-            JOptionPane.showMessageDialog(pantallas, "Debe escribir un Usuario y una Constraseña!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_acceder_button_administrativoActionPerformed
-
-    private void mostrar_button_administrativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar_button_administrativoActionPerformed
-        // TODO add your handling code here:
-        if(estado_password == 0){
-            password_field_administrativo.setEchoChar((char)0);
-            estado_password = 1;
-        }else{
-            password_field_administrativo.setEchoChar('*');
-            estado_password = 0;
-        }
-    }//GEN-LAST:event_mostrar_button_administrativoActionPerformed
-
-    private void administrativo_button_administrativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_administrativo_button_administrativoActionPerformed
-        // TODO add your handling code here:
-        pantallas.setSelectedIndex(0);
-    }//GEN-LAST:event_administrativo_button_administrativoActionPerformed
-
-    private void logout_button_padministrativaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_button_padministrativaActionPerformed
-        // TODO add your handling code here:
-        cerrar_sesion();
-    }//GEN-LAST:event_logout_button_padministrativaActionPerformed
-
-    private void generarResultado_button_quinelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarResultado_button_quinelaActionPerformed
-        //String fase=(String)fase_combo_quinela.getSelectedItem();
-        String fase = "";
-        String fecha = fechas.get(contadorFechas);
-        Partido[] partidos = new Partido[4];
-        int c_aux = 0;
-        
-        for(Partido i: todosLosPartidos){
-            try{
-                if(i.date.equals(fecha)){
-                partidos[c_aux] = i;
-                c_aux++;
-                }
-            }
-            catch(NullPointerException e){
-                
-            }
-            
-        }
-        
-        
-        
-        for (Partido partido : partidos) {
-            if(partido!=null){
-                partido.generarResultado();
-            }
-            
-        }
-        
-    }//GEN-LAST:event_generarResultado_button_quinelaActionPerformed
     
-    
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        //String fase=(String)fase_combo_quinela.getSelectedItem();
-        
-        String fecha = fechas.get(contadorFechas);
-        Partido[] partidos = new Partido[4];
-        int c_aux = 0;
-        
-        for(Partido i: todosLosPartidos){
-            try{
-                if(i.date.equals(fecha)){
-                partidos[c_aux] = i;
-                c_aux++;
-                }
-            }
-            catch(NullPointerException e){
-                
-            }
-            
-        }
-        
-        
-        
-        for (Partido partido : partidos) {
-            if(partido!=null){
-                partido.generarHeuristica();
-            }
-            
-        }
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void anteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anteriorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_anteriorActionPerformed
-
-    private void none(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_none
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_none
-
-    private void anteriorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anteriorMouseReleased
-        // TODO add your handling code here:
-        this.contadorFechas --;
-        cambiarQuinela(this.contadorFechas);
-        System.out.println("CONTADOR----> " + this.contadorFechas);
-    }//GEN-LAST:event_anteriorMouseReleased
-
-    private void siguienteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_siguienteMouseReleased
-        // TODO add your handling code here:
-        this.contadorFechas ++;
-        cambiarQuinela(this.contadorFechas);
-        System.out.println("CONTADOR----> " + this.contadorFechas);
-    }//GEN-LAST:event_siguienteMouseReleased
-
-    private void guardar_button_quinelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardar_button_quinelaActionPerformed
-        // TODO add your handling code here:
-        
-        /*for (Partido partido : todosLosPartidos) {
-            if(partido.getGolLocalCB()!=null){
-                
-                partido.setGolLocal(partido.getGolLocalCB().getSelectedIndex());
-                partido.setGolVisita(partido.getGolVisitaCB().getSelectedIndex());
-                System.out.println("PARTIDO: "+partido.getLocal().pais+" VS "+partido.getVisita().pais);
-                System.out.println("RESULTADO: "+partido.getGolLocal()+" VS "+partido.getGolVisita());
-                System.out.println("------------------------------------------------------------");
-            }
-            
-            
-        }*/
-        /*for(int i=0; i<this.mundial.getTodos().size();i++){
-            if(this.mundial.getTodos().get(i).getGolLocalCB()!=null){
-               this.mundial.getTodos().get(i).setGolLocal(this.mundial.getTodos().get(i).getGolLocalCB().getSelectedIndex());
-               this.mundial.getTodos().get(i).setGolVisita(this.mundial.getTodos().get(i).getGolVisitaCB().getSelectedIndex());
-            }
-        }*/
-        //manejadorArchivos.guardarMundial(this.mundial,todosLosPartidos, usuario_global);
-    }//GEN-LAST:event_guardar_button_quinelaActionPerformed
-         
+             
     /**
      * @param args the command line arguments
      */
@@ -1374,73 +1380,72 @@ public class Quinela extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton acceder_button_administrativo;
-    public javax.swing.JButton acceder_button_login;
+    private javax.swing.JButton acceder_button_administrativo;
+    private javax.swing.JButton acceder_button_login;
     private javax.swing.JPanel administrativo;
     private javax.swing.JToggleButton administrativo_button_administrativo;
     private javax.swing.JToggleButton administrativo_button_login;
     private javax.swing.JLabel administrativo_label_administrativo;
     private javax.swing.JLabel administrativo_label_padministrativa;
-    public javax.swing.JButton anterior;
-    public javax.swing.JComboBox<String> combo1_1;
-    public javax.swing.JComboBox<String> combo1_2;
-    public javax.swing.JComboBox<String> combo1_3;
-    public javax.swing.JComboBox<String> combo1_4;
-    public javax.swing.JComboBox<String> combo2_1;
-    public javax.swing.JComboBox<String> combo2_2;
-    public javax.swing.JComboBox<String> combo2_3;
-    public javax.swing.JComboBox<String> combo2_4;
-    public javax.swing.JLabel fecha_1;
-    public javax.swing.JLabel fecha_2;
-    public javax.swing.JLabel fecha_3;
-    public javax.swing.JLabel fecha_4;
+    private javax.swing.JButton anterior;
+    private javax.swing.JComboBox<String> combo1_1;
+    private javax.swing.JComboBox<String> combo1_2;
+    private javax.swing.JComboBox<String> combo1_3;
+    private javax.swing.JComboBox<String> combo1_4;
+    private javax.swing.JComboBox<String> combo2_1;
+    private javax.swing.JComboBox<String> combo2_2;
+    private javax.swing.JComboBox<String> combo2_3;
+    private javax.swing.JComboBox<String> combo2_4;
+    private javax.swing.JLabel fecha_1;
+    private javax.swing.JLabel fecha_2;
+    private javax.swing.JLabel fecha_3;
+    private javax.swing.JLabel fecha_4;
     private javax.swing.JButton generarResultado_button_quinela;
-    public javax.swing.JButton guardar_button_quinela;
+    private javax.swing.JButton guardar_button_quinela;
     private javax.swing.JLabel iniciar_label;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    public javax.swing.JLabel jornada;
-    public javax.swing.JPanel login;
-    public javax.swing.JButton login_button_registrarse;
-    public javax.swing.JLabel logo1_1;
-    public javax.swing.JLabel logo1_2;
-    public javax.swing.JLabel logo1_3;
-    public javax.swing.JLabel logo1_4;
-    public javax.swing.JLabel logo2_1;
-    public javax.swing.JLabel logo2_2;
-    public javax.swing.JLabel logo2_3;
-    public javax.swing.JLabel logo2_4;
-    public javax.swing.JButton logout_button_padministrativa;
-    public javax.swing.JButton logout_button_quinela1;
-    public javax.swing.JRadioButton mostrar_button_administrativo;
-    public javax.swing.JRadioButton mostrar_button_login;
-    public java.awt.Panel panel1;
-    public java.awt.Panel panel2;
-    public java.awt.Panel panel3;
-    public java.awt.Panel panel4;
+    private javax.swing.JPanel login;
+    private javax.swing.JButton login_button_registrarse;
+    private javax.swing.JLabel logo1_1;
+    private javax.swing.JLabel logo1_2;
+    private javax.swing.JLabel logo1_3;
+    private javax.swing.JLabel logo1_4;
+    private javax.swing.JLabel logo2_1;
+    private javax.swing.JLabel logo2_2;
+    private javax.swing.JLabel logo2_3;
+    private javax.swing.JLabel logo2_4;
+    private javax.swing.JButton logout_button_padministrativa;
+    private javax.swing.JButton logout_button_quinela1;
+    private javax.swing.JRadioButton mostrar_button_administrativo;
+    private javax.swing.JRadioButton mostrar_button_login;
+    private java.awt.Panel panel1;
+    private java.awt.Panel panel2;
+    private java.awt.Panel panel3;
+    private java.awt.Panel panel4;
     private javax.swing.JPanel pantalla_administrativa;
-    public javax.swing.JTabbedPane pantallas;
-    public javax.swing.JPasswordField password_field_administrativo;
-    public javax.swing.JPasswordField password_field_login;
-    public javax.swing.JTextField password_field_registrarse;
-    public javax.swing.JLabel password_label_administrativo;
-    public javax.swing.JLabel password_label_login;
-    public javax.swing.JLabel password_label_registrarse;
-    public javax.swing.JPanel quinela;
-    public javax.swing.JLabel quinela_label_quinela1;
+    private javax.swing.JTabbedPane pantallas;
+    private javax.swing.JPasswordField password_field_administrativo;
+    private javax.swing.JPasswordField password_field_login;
+    private javax.swing.JTextField password_field_registrarse;
+    private javax.swing.JLabel password_label_administrativo;
+    private javax.swing.JLabel password_label_login;
+    private javax.swing.JLabel password_label_registrarse;
+    private javax.swing.JPanel quinela;
+    private javax.swing.JLabel quinela_label_quinela1;
     private javax.swing.JPanel registrar;
-    public javax.swing.JButton registrar_button_registrarse;
-    public javax.swing.JButton registrarse_button_login;
-    public javax.swing.JLabel registrarse_label_registrarse;
-    public javax.swing.JButton siguiente;
-    public javax.swing.JTextField username_field_administrativo;
-    public javax.swing.JTextField username_field_login;
-    public javax.swing.JTextField username_field_registrarse;
-    public javax.swing.JLabel username_label_administrativo;
-    public javax.swing.JLabel username_label_login;
-    public javax.swing.JLabel username_label_registrarse;
+    private javax.swing.JButton registrar_button_registrarse;
+    private javax.swing.JButton registrarse_button_login;
+    private javax.swing.JLabel registrarse_label_registrarse;
+    private javax.swing.JButton siguiente;
+    private javax.swing.JTextField username_field_administrativo;
+    private javax.swing.JTextField username_field_login;
+    private javax.swing.JTextField username_field_registrarse;
+    private javax.swing.JLabel username_label_administrativo;
+    private javax.swing.JLabel username_label_login;
+    private javax.swing.JLabel username_label_registrarse;
     // End of variables declaration//GEN-END:variables
 }
