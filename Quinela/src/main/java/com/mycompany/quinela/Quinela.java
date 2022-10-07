@@ -53,17 +53,19 @@ public class Quinela extends javax.swing.JFrame {
             this.contadorFechas = 0;
         }
         ocultarPaneles();
-        
         String fecha = fechas.get(contadorFechas);
-        Partido[] partidos = new Partido[4];
+        //Partido[] partidos = new Partido[4];
+        ArrayList<Partido> partidosAux = new ArrayList<>();
         int c_aux = 0;
         
         
         for(Partido i: todosLosPartidos){
             
             try{
+                
                 if(i.date.equals(fecha)){
-                partidos[c_aux] = i;
+                //partidos[c_aux] = i;
+                partidosAux.add(i);
                 c_aux++;
                 }
             }
@@ -74,7 +76,7 @@ public class Quinela extends javax.swing.JFrame {
         }
         
         c_aux = 0;
-        for(Partido j : partidos){
+        for(Partido j : partidosAux){
             if(j != null){
                String local = j.local.pais.replace(" ", "_").replace("ñ", "n");
                 String visita = j.visita.pais.replace(" ", "_").replace("ñ", "n");
@@ -128,6 +130,7 @@ public class Quinela extends javax.swing.JFrame {
             }
             else{
                 //System.out.println("CONTADOR----------> " + this.contadorFechas);
+                
                 if(configuracionFinalizada && contadorFechas > 13){
                     String serie = "";
                     if(fecha.equals("03-12-2022") || fecha.equals("04-12-2022") || fecha.equals("05-12-2022") || fecha.equals("06-12-2022")){
@@ -1067,7 +1070,7 @@ public class Quinela extends javax.swing.JFrame {
         String fecha = fechas.get(contadorFechas);
         Partido[] partidos = new Partido[4];
         int c_aux = 0;
-        
+        System.out.println("FECHA QUINIELA ANT: "+fecha);
         for(Partido i: todosLosPartidos){
             try{
                 if(i.date.equals(fecha)){
@@ -1119,7 +1122,7 @@ public class Quinela extends javax.swing.JFrame {
                     }
                     c_aux++; 
                 }
-            }
+            }/*
             else{
                 System.out.println("CONTADOR----------> " + this.contadorFechas);
                 if(configuracionFinalizada && contadorFechas > 13){
@@ -1142,7 +1145,7 @@ public class Quinela extends javax.swing.JFrame {
                 }
                 
                 
-            }
+            }*/
             
         }
         
@@ -1159,6 +1162,7 @@ public class Quinela extends javax.swing.JFrame {
 
     private void siguienteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_siguienteMouseReleased
         // TODO add your handling code here:
+        
         String fecha = fechas.get(contadorFechas);
         Partido[] partidos = new Partido[4];
         int cont = 0;
@@ -1166,6 +1170,7 @@ public class Quinela extends javax.swing.JFrame {
         for(Partido i: todosLosPartidos){
             try{
                 if(i.date.equals(fecha)){
+                    
                 partidos[cont] = i;
                 cont++;
                 }
@@ -1214,7 +1219,7 @@ public class Quinela extends javax.swing.JFrame {
                     }
                     cont++; 
                 }
-            }
+            }/*
             else{
                 //System.out.println("CONTADOR----------> " + this.contadorFechas);
                 if(configuracionFinalizada && contadorFechas > 13){
@@ -1237,11 +1242,12 @@ public class Quinela extends javax.swing.JFrame {
                 }
                 
                 
-            }
+            }*/
             
         }
         cont=0;
         this.contadorFechas ++;
+        
         cambiarQuinela();
         //System.out.println("CONTADOR----> " + this.contadorFechas);
     }//GEN-LAST:event_siguienteMouseReleased
@@ -1309,25 +1315,114 @@ public class Quinela extends javax.swing.JFrame {
     */
     private void guardar_button_quinelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardar_button_quinelaActionPerformed
         // TODO add your handling code here:
-        
-        Mundial aux=this.mundial;
+
+        Mundial aux = this.mundial;
         for (Partido p : todosLosPartidos) {
             p.resultadoTemp();
             p.getLocal().sumarGolAFavor(p.getGolLocal());
             p.getLocal().sumarGolEnContra(p.getGolVisita());
-            
+
             p.getVisita().sumarGolAFavor(p.getGolVisita());
             p.getVisita().sumarGolEnContra(p.getGolLocal());
-            
-            if(p.getGanador()!=null){
+
+            if (p.getGanador() != null) {
                 p.getGanador().sumarPuntos(3);
-            }else{
+            } else {
                 p.getLocal().sumarPuntos(1);
                 p.getVisita().sumarPuntos(1);
             }
         }
-        mundial.ordenarGrupos();
-        manejadorArchivos.guardarMundial(aux,todosLosPartidos, usuario_global);
+        boolean grupos = false;
+        int cont = 0;
+        for (Partido p : todosLosPartidos) {
+            if (cont <= 47) {
+                
+                if (p.getGolLocal() == -1||p.getLocal().pais.equals("aux") || p.getVisita().pais.equals("aux")) {
+                    grupos = false;
+                    break;
+                }
+                grupos = true;
+            }
+            if (cont <= 55 && cont > 47) {
+                
+                if (p.getGolLocal() == -1||p.getLocal().pais.equals("aux") || p.getVisita().pais.equals("aux")) {
+                    grupos=true;
+                    mundial.octavos = false;
+                    break;
+                }
+                grupos=false;
+                mundial.octavos = true;
+            }
+            if (cont <= 59 && cont > 55) {
+                
+                if (p.getGolLocal() == -1||p.getLocal().pais.equals("aux") || p.getVisita().pais.equals("aux")) {
+                    mundial.octavos=true;
+                    mundial.cuartos = false;
+                    break;
+                }
+                mundial.octavos=false;
+                mundial.cuartos = true;
+            }
+            if (cont <= 61 && cont > 59) {
+                System.out.println("PARTIDO SEMIS: " + p.getLocal().pais + " VS " + p.getVisita().pais);
+                System.out.println("LLENO: " + p.getGolLocal());
+                System.out.println("CONT: " + cont);
+                if (p.getGolLocal() == -1 ||p.getLocal().pais.equals("aux") || p.getVisita().pais.equals("aux")) {
+                    mundial.cuartos = true;
+                    mundial.semis = false;
+                    break;
+                }
+                mundial.cuartos = false;
+                mundial.semis = true;
+
+            }
+            if (cont > 61) {
+                System.out.println("PARTIDO FINAL: " + p.getLocal().pais + " VS " + p.getVisita().pais);
+                System.out.println("LLENO: " + p.getGolLocal());
+                System.out.println("CONT: " + cont);
+                if (p.getGolLocal() == -1) {
+                    mundial.semis = true;
+                    mundial.finalMundial = false;
+                    break;
+                }
+                mundial.semis = false;
+                mundial.finalMundial = true;
+            }
+            cont++;
+
+        }
+        System.out.println("GRUPOS: "+grupos);
+        System.out.println("OCTAVOS: "+mundial.octavos);
+        System.out.println("CUARTOS: "+mundial.cuartos);
+        System.out.println("SEMIS: "+mundial.semis);
+        System.out.println("FINAL: "+mundial.finalMundial);
+        
+        if (grupos) {
+            mundial.ordenarGrupos();
+            mundial.octavosDeFinal();
+            todosLosPartidos.clear();
+            todosLosPartidos = mundial.getTodos();
+        }
+        if (mundial.octavos) {
+            mundial.ordenarOctavos();
+            mundial.cuartosDeFinal();
+            todosLosPartidos.clear();
+            todosLosPartidos = mundial.getTodos();
+        }
+        if (mundial.cuartos) {
+            mundial.ordenarCuartos();
+            mundial.semifinales();
+            todosLosPartidos.clear();
+            todosLosPartidos = mundial.getTodos();
+        }
+        if (mundial.semis) {
+            mundial.ordenarSemis();
+            mundial.finalMundial();
+            todosLosPartidos.clear();
+            todosLosPartidos = mundial.getTodos();
+        }
+
+        manejadorArchivos.guardarMundial(aux, todosLosPartidos, usuario_global);
     }//GEN-LAST:event_guardar_button_quinelaActionPerformed
 
     private void logout_button_quinela1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_button_quinela1ActionPerformed

@@ -55,6 +55,11 @@ public class Partido implements Serializable{
         return date;
     }
 
+    public void setDate(String date) {
+        this.date = date;
+    }
+    
+
     
     public Equipo getVisita() {
         return visita;

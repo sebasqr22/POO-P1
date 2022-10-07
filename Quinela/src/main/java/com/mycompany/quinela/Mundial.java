@@ -29,6 +29,10 @@ public class Mundial implements Serializable{
     private Partido[] partidosSemis=new Partido[2];
     private Equipo[] ganadoresSemis=new Equipo[2];
     
+    public boolean octavos=false;
+    public boolean cuartos=false;
+    public boolean semis=false;
+    public boolean finalMundial=false;
     
     private Partido finalPartido;
     
@@ -182,7 +186,7 @@ public class Mundial implements Serializable{
         
         partidosSemis[1]=new Partido(aux,aux, "14-12-2022");
         
-        finalPartido=new Partido(aux,aux, "16-12-2022");
+        finalPartido=new Partido(aux,aux, "18-12-2022");
     }
 
     public void primeraFase() {
@@ -245,37 +249,81 @@ public class Mundial implements Serializable{
     }
 
     public void octavosDeFinal() {
-        partidosOctavos[0] = new Partido(gruposPrimeraFase[0].getClasificados()[0], gruposPrimeraFase[1].getClasificados()[1], "03-12-2022");//1A 2B
-        partidosOctavos[1] = new Partido(gruposPrimeraFase[1].getClasificados()[0], gruposPrimeraFase[0].getClasificados()[1], "04-12-2022");//1B 2A
         
-        partidosOctavos[2] = new Partido(gruposPrimeraFase[2].getClasificados()[0], gruposPrimeraFase[3].getClasificados()[1], "03-12-2022");//1C 2D
-        partidosOctavos[3] = new Partido(gruposPrimeraFase[3].getClasificados()[0], gruposPrimeraFase[2].getClasificados()[1], "04-12-2022");//1D 2C
+        partidosOctavos[0].setLocal(gruposPrimeraFase[0].getClasificados()[0]); 
+        partidosOctavos[0].setVisita(gruposPrimeraFase[1].getClasificados()[1]);
+        partidosOctavos[0].setDate("03-12-2022");
         
-        partidosOctavos[4] = new Partido(gruposPrimeraFase[4].getClasificados()[0], gruposPrimeraFase[5].getClasificados()[1], "05-12-2022");//1E 2F
-        partidosOctavos[5] = new Partido(gruposPrimeraFase[5].getClasificados()[0], gruposPrimeraFase[4].getClasificados()[1], "06-12-2022");//1F 2E
+        partidosOctavos[1].setLocal(gruposPrimeraFase[1].getClasificados()[0]);
+        partidosOctavos[1].setVisita(gruposPrimeraFase[0].getClasificados()[1]);
+        partidosOctavos[1].setDate("04-12-2022");
+
+        partidosOctavos[2].setLocal(gruposPrimeraFase[2].getClasificados()[0]);
+        partidosOctavos[2].setVisita(gruposPrimeraFase[3].getClasificados()[1]);
+        partidosOctavos[2].setDate("03-12-2022");
         
-        partidosOctavos[6] = new Partido(gruposPrimeraFase[6].getClasificados()[0], gruposPrimeraFase[7].getClasificados()[1], "05-12-2022");//1G 2H
-        partidosOctavos[7] = new Partido(gruposPrimeraFase[7].getClasificados()[0], gruposPrimeraFase[6].getClasificados()[1], "06-12-2022");//1H 2G
-    }
+        partidosOctavos[3].setLocal(gruposPrimeraFase[3].getClasificados()[0]);
+        partidosOctavos[3].setVisita(gruposPrimeraFase[2].getClasificados()[1]);
+        partidosOctavos[3].setDate("04-12-2022");
+        
+        partidosOctavos[4].setLocal(gruposPrimeraFase[4].getClasificados()[0]);
+        partidosOctavos[4].setVisita(gruposPrimeraFase[5].getClasificados()[1]);
+        partidosOctavos[4].setDate("05-12-2022");
+        
+        partidosOctavos[5].setLocal(gruposPrimeraFase[5].getClasificados()[0]);
+        partidosOctavos[5].setVisita(gruposPrimeraFase[4].getClasificados()[1]);
+        partidosOctavos[5].setDate("06-12-2022");
+        
+        partidosOctavos[6].setLocal(gruposPrimeraFase[6].getClasificados()[0]);
+        partidosOctavos[6].setVisita(gruposPrimeraFase[7].getClasificados()[1]);
+        partidosOctavos[6].setDate("05-12-2022");
+        
+        partidosOctavos[7].setLocal(gruposPrimeraFase[7].getClasificados()[0]);
+        partidosOctavos[7].setVisita(gruposPrimeraFase[6].getClasificados()[1]);
+        partidosOctavos[7].setDate("06-12-2022");
+        
+        
+        
+    }   
 
     public void cuartosDeFinal() {
-        partidosCuartos[0]=new Partido(ganadoresOctavos[0], ganadoresOctavos[2], "09-12-2022");
+        partidosCuartos[0].setLocal(ganadoresOctavos[0]);
+        partidosCuartos[0].setVisita(ganadoresOctavos[2]);
+        partidosCuartos[0].setDate("09-12-2022");
         
-        partidosCuartos[1]=new Partido(ganadoresOctavos[1], ganadoresOctavos[3], "09-12-2022");
+         
+        partidosCuartos[1].setLocal(ganadoresOctavos[1]);
+        partidosCuartos[1].setVisita(ganadoresOctavos[3]);
+        partidosCuartos[1].setDate("09-12-2022");
         
-        partidosCuartos[2]=new Partido(ganadoresOctavos[4], ganadoresOctavos[6], "10-12-2022");
+        partidosCuartos[2].setLocal(ganadoresOctavos[4]);
+        partidosCuartos[2].setVisita(ganadoresOctavos[6]);
+        partidosCuartos[2].setDate("10-12-2022");
         
-        partidosCuartos[3]=new Partido(ganadoresOctavos[5], ganadoresOctavos[7], "10-12-2022");
+        partidosCuartos[3].setLocal(ganadoresOctavos[5]);
+        partidosCuartos[3].setVisita(ganadoresOctavos[7]);
+        partidosCuartos[3].setDate("10-12-2022");
+        
+        
     }
 
     public void semifinales() {
-        partidosSemis[0]=new Partido(ganadoresCuartos[0], ganadoresCuartos[2], "13-12-2022");
+        partidosSemis[0].setLocal(ganadoresCuartos[0]);
+        partidosSemis[0].setVisita(ganadoresCuartos[2]);
+        partidosSemis[0].setDate("13-12-2022");
         
-        partidosSemis[1]=new Partido(ganadoresCuartos[1], ganadoresCuartos[3], "14-12-2022");
+        partidosSemis[1].setLocal(ganadoresCuartos[1]);
+        partidosSemis[1].setVisita(ganadoresCuartos[3]);
+        partidosSemis[1].setDate("14-12-2022");
     }
 
     public void finalMundial() {
-        finalPartido=new Partido(ganadoresSemis[0] ,ganadoresSemis[1], "16-12-2022");
+        finalPartido.setLocal(ganadoresSemis[0]);
+        finalPartido.setVisita(ganadoresSemis[1]);
+        finalPartido.setDate("18-12-2022");
+                
+        
+        
         
     }
     
@@ -377,6 +425,32 @@ public class Mundial implements Serializable{
     public void ordenarGrupos(){
         for (Grupo grupo : gruposPrimeraFase) {
             grupo.ordenar(partidosPrimeraFase);
+        }
+        //octavosDeFinal();
+    }
+    
+    public void ordenarOctavos(){
+        int cont=0;
+        for (Partido p : partidosOctavos) {
+            System.out.println("GANADOR OCTAVOS: "+p.getGanador().pais);
+            ganadoresOctavos[cont]=p.getGanador();
+            cont++;
+        }
+    }
+    public void ordenarCuartos(){
+        int cont=0;
+        for (Partido p : partidosCuartos) {
+            System.out.println("GANADOR CUARTOS: "+p.getGanador().pais);
+            ganadoresCuartos[cont]=p.getGanador();
+            cont++;
+        }
+    }
+    public void ordenarSemis(){
+        int cont=0;
+        for (Partido p : partidosSemis) {
+            System.out.println("GANADOR SEMIS: "+p.getGanador().pais);
+            ganadoresSemis[cont]=p.getGanador();
+            cont++;
         }
     }
 }
