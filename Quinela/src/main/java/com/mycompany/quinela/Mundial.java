@@ -374,4 +374,9 @@ public class Mundial implements Serializable{
         usuarios.add(nuevoUsuario);
     }
     
+    public void ordenarGrupos(){
+        for (Grupo grupo : gruposPrimeraFase) {
+            grupo.ordenar(partidosPrimeraFase);
+        }
+    }
 }

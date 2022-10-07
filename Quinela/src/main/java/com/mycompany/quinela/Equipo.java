@@ -16,7 +16,7 @@ public class Equipo implements Serializable{
     private char grupo;
     private double ranking;
     private ArrayList<Partido> partidos;
-    private int puntos;
+    private int puntos=0;
     private int golAFavor;
     private int golEnContra;
 
@@ -45,9 +45,34 @@ public class Equipo implements Serializable{
     public double getRanking() {
         return ranking;
     } 
+    public int getPuntos() {
+        return puntos;
+    }
 
     public ArrayList<Partido> getPartidos() {
         return partidos;
+    }
+
+    public int getGolAFavor() {
+        return golAFavor;
+    }
+
+    public void sumarGolAFavor(int golAFavor) {
+        this.golAFavor = this.golAFavor+ golAFavor;
+    }
+
+    public int getGolEnContra() {
+        return golEnContra;
+    }
+
+    public void sumarGolEnContra(int golEnContra) {
+        this.golEnContra = this.golEnContra+golEnContra;
+    }
+    
+    
+    
+    public void sumarPuntos(int puntos){
+        this.puntos=this.puntos+puntos;
     }
     
 }

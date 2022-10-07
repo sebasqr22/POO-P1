@@ -18,7 +18,7 @@ public class Partido implements Serializable{
     
     public Equipo local;
     public Equipo visita;
-    private Equipo ganadorPenales;
+    private Equipo ganador;
     public char grupo;
     private int golLocal;
     private JComboBox<String> golLocalCB;
@@ -114,12 +114,12 @@ public class Partido implements Serializable{
         this.penales = penales;
     }
 
-    public Equipo getGanadorPenales() {
-        return ganadorPenales;
+    public Equipo getGanador() {
+        return ganador;
     }
 
-    public void setGanadorPenales(Equipo ganadorPenales) {
-        this.ganadorPenales = ganadorPenales;
+    public void setGanador(Equipo ganador) {
+        this.ganador = ganador;
     }
     
     
@@ -165,4 +165,21 @@ public class Partido implements Serializable{
             }
         }
     }
+    
+    public void resultadoTemp(){
+        if(golLocal!= -1 && golVisita!=-1){
+            
+            if(golLocal==golVisita){
+                ganador=null;
+            }
+            else if(golLocal>golVisita){
+                ganador=local;
+            }else{
+                ganador=visita;
+            }
+            
+        }
+        
+    }
+    
 }

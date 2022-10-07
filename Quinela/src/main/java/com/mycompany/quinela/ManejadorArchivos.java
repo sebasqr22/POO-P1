@@ -81,10 +81,6 @@ public class ManejadorArchivos {
     
     public void guardarMundial(Mundial mundial,ArrayList<Partido> todos,String user){
         
-        
-        //mundial.setTodosPartidos(todos);
-        System.out.println("GUARDANDO...."+mundial.getTodos().get(0).getGolLocal());
-        
         FileOutputStream fichero = null;
         try {
             fichero = new FileOutputStream("archivos/" + user + "/quiniela.txt",false);

@@ -63,8 +63,6 @@ public class Quinela extends javax.swing.JFrame {
             
             try{
                 if(i.date.equals(fecha)){
-                System.out.println("PARTIDO: "+i.getLocal().pais+" VS "+i.getVisita().pais);
-                System.out.println("C_AUX: "+c_aux);
                 partidos[c_aux] = i;
                 c_aux++;
                 }
@@ -129,7 +127,7 @@ public class Quinela extends javax.swing.JFrame {
                 }
             }
             else{
-                System.out.println("CONTADOR----------> " + this.contadorFechas);
+                //System.out.println("CONTADOR----------> " + this.contadorFechas);
                 if(configuracionFinalizada && contadorFechas > 13){
                     String serie = "";
                     if(fecha.equals("03-12-2022") || fecha.equals("04-12-2022") || fecha.equals("05-12-2022") || fecha.equals("06-12-2022")){
@@ -1088,21 +1086,37 @@ public class Quinela extends javax.swing.JFrame {
                 if(c_aux == 0){
                     j.setGolLocal(combo1_1.getSelectedIndex());
                     j.setGolVisita(combo2_1.getSelectedIndex());
+                    j.resultadoTemp();
+                    
+                    if(j.getGanador()!=null){
+                    }
                     c_aux++; 
                 }
                 else if(c_aux == 1){
                     j.setGolLocal(combo1_2.getSelectedIndex());
                     j.setGolVisita(combo2_2.getSelectedIndex());
+                    j.resultadoTemp();
+                    
+                    if(j.getGanador()!=null){
+                    }
                     c_aux++; 
                 }
                 else if(c_aux == 2){
                     j.setGolLocal(combo1_3.getSelectedIndex());
                     j.setGolVisita(combo2_3.getSelectedIndex());
+                    j.resultadoTemp();
+                    
+                    if(j.getGanador()!=null){
+                    }
                     c_aux++; 
                 }
                 else{
                     j.setGolLocal(combo1_4.getSelectedIndex());
                     j.setGolVisita(combo2_4.getSelectedIndex());
+                    j.resultadoTemp();
+                    
+                    if(j.getGanador()!=null){
+                    }
                     c_aux++; 
                 }
             }
@@ -1135,7 +1149,7 @@ public class Quinela extends javax.swing.JFrame {
         c_aux=0;
         this.contadorFechas --;
         cambiarQuinela();
-        System.out.println("CONTADOR----> " + this.contadorFechas);
+        //System.out.println("CONTADOR----> " + this.contadorFechas);
     }//GEN-LAST:event_anteriorMouseReleased
 
     private void none(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_none
@@ -1167,26 +1181,42 @@ public class Quinela extends javax.swing.JFrame {
                 if(cont == 0){
                     j.setGolLocal(combo1_1.getSelectedIndex());
                     j.setGolVisita(combo2_1.getSelectedIndex());
+                    j.resultadoTemp();
+                    if(j.getGanador()!=null){
+                    }
+                    
                     cont++; 
                 }
                 else if(cont == 1){
                     j.setGolLocal(combo1_2.getSelectedIndex());
                     j.setGolVisita(combo2_2.getSelectedIndex());
+                    j.resultadoTemp();
+                    
+                    if(j.getGanador()!=null){
+                    }
                     cont++; 
                 }
                 else if(cont == 2){
                     j.setGolLocal(combo1_3.getSelectedIndex());
                     j.setGolVisita(combo2_3.getSelectedIndex());
+                    j.resultadoTemp();
+                    
+                    if(j.getGanador()!=null){
+                    }
                     cont++; 
                 }
                 else{
                     j.setGolLocal(combo1_4.getSelectedIndex());
                     j.setGolVisita(combo2_4.getSelectedIndex());
+                    j.resultadoTemp();
+                    
+                    if(j.getGanador()!=null){
+                    }
                     cont++; 
                 }
             }
             else{
-                System.out.println("CONTADOR----------> " + this.contadorFechas);
+                //System.out.println("CONTADOR----------> " + this.contadorFechas);
                 if(configuracionFinalizada && contadorFechas > 13){
                     String serie = "";
                     if(fecha.equals("03-12-2022") || fecha.equals("04-12-2022") || fecha.equals("05-12-2022") || fecha.equals("06-12-2022")){
@@ -1213,7 +1243,7 @@ public class Quinela extends javax.swing.JFrame {
         cont=0;
         this.contadorFechas ++;
         cambiarQuinela();
-        System.out.println("CONTADOR----> " + this.contadorFechas);
+        //System.out.println("CONTADOR----> " + this.contadorFechas);
     }//GEN-LAST:event_siguienteMouseReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1274,22 +1304,29 @@ public class Quinela extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_generarResultado_button_quinelaActionPerformed
-
+    /*
+    * BOTON GUARDAR
+    */
     private void guardar_button_quinelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardar_button_quinelaActionPerformed
         // TODO add your handling code here:
         
         Mundial aux=this.mundial;
-        /*
-        int cont=0;
-        for(Partido p:todosLosPartidos){
-            System.out.println("PARTIDO A GUARDAR: "+p.getLocal().pais+" VS "+p.getVisita().pais);
-            System.out.println(p.getGolLocal()+" VS "+p.getGolVisita());
-            System.out.println("DATE:  "+p.getDate());
-            System.out.println("----------------------------------------------------");
-            aux.getTodos().set(cont, p);
-            cont++;
-        }*/
-        
+        for (Partido p : todosLosPartidos) {
+            p.resultadoTemp();
+            p.getLocal().sumarGolAFavor(p.getGolLocal());
+            p.getLocal().sumarGolEnContra(p.getGolVisita());
+            
+            p.getVisita().sumarGolAFavor(p.getGolVisita());
+            p.getVisita().sumarGolEnContra(p.getGolLocal());
+            
+            if(p.getGanador()!=null){
+                p.getGanador().sumarPuntos(3);
+            }else{
+                p.getLocal().sumarPuntos(1);
+                p.getVisita().sumarPuntos(1);
+            }
+        }
+        mundial.ordenarGrupos();
         manejadorArchivos.guardarMundial(aux,todosLosPartidos, usuario_global);
     }//GEN-LAST:event_guardar_button_quinelaActionPerformed
 
@@ -1383,11 +1420,6 @@ public class Quinela extends javax.swing.JFrame {
                 Mundial guardado=manejadorArchivos.buscarMundial(username);
                 int cont=0;
                 for (Partido p : todosLosPartidos) {
-                    System.out.println("PARTIDO GUARDADO: "+
-                            guardado.getTodos().get(cont).getLocal().pais+
-                            " VS "+guardado.getTodos().get(cont).getVisita().pais);
-                    
-                    System.out.println(guardado.getTodos().get(cont).getGolLocal()+" VS "+guardado.getTodos().get(cont).getGolVisita());
                     p.setGolLocal(guardado.getTodos().get(cont).getGolLocal());
                     p.setGolVisita(guardado.getTodos().get(cont).getGolVisita());
                     cont++;
