@@ -75,14 +75,14 @@ public class ManejadorArchivos {
             ex.printStackTrace();
         }
         
-        System.out.println("MUNDIAL DE FICHERO "+m.getPartidosPrimeraFase()[0].getGolLocal());
+        System.out.println("MUNDIAL DE FICHERO "+m.getTodos().get(0).getGolLocal());
         return m;
     }
     
     public void guardarMundial(Mundial mundial,ArrayList<Partido> todos,String user){
         
         
-        mundial.setTodosPartidos(todos);
+        //mundial.setTodosPartidos(todos);
         System.out.println("GUARDANDO...."+mundial.getTodos().get(0).getGolLocal());
         
         FileOutputStream fichero = null;

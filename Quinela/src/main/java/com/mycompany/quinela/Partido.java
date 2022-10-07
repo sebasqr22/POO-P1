@@ -51,6 +51,11 @@ public class Partido implements Serializable{
         return local;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    
     public Equipo getVisita() {
         return visita;
     }
@@ -132,8 +137,6 @@ public class Partido implements Serializable{
             golLocal=(new Random().nextInt(5, 9));
             golVisita=(new Random().nextInt(5,9));
         }
-        System.out.println("PROBABILIDAD: "+probabilidad+"%");
-        System.out.println("GOL "+local.pais+": "+golLocal+"  GOL "+visita.pais+": "+golVisita);
         golLocalCB.setSelectedIndex(golLocal);
         golVisitaCB.setSelectedIndex(golVisita);
     }
@@ -144,14 +147,12 @@ public class Partido implements Serializable{
     public void generarHeuristica(){
         int rankLocal = aleatorio((int) local.getRanking());
         int rankVisita = aleatorio((int) visita.getRanking());
-        System.out.println("RANKINGS randoms: " + local.pais + ": " + rankLocal + "  " + visita.pais + ": " + rankVisita);
         Equipo ganadorRanking = local;
 
         Equipo ganadorPartido = null;
         if (rankLocal < rankVisita) {
             ganadorRanking = visita;
         }
-        System.out.println("GANADOR RANKING: " + ganadorRanking.pais);
         while (ganadorRanking != ganadorPartido) {
             generarResultado();
             if (golLocal - golVisita== 0) {

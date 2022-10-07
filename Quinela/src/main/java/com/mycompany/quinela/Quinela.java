@@ -60,8 +60,11 @@ public class Quinela extends javax.swing.JFrame {
         
         
         for(Partido i: todosLosPartidos){
+            
             try{
                 if(i.date.equals(fecha)){
+                System.out.println("PARTIDO: "+i.getLocal().pais+" VS "+i.getVisita().pais);
+                System.out.println("C_AUX: "+c_aux);
                 partidos[c_aux] = i;
                 c_aux++;
                 }
@@ -1063,6 +1066,73 @@ public class Quinela extends javax.swing.JFrame {
 
     private void anteriorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anteriorMouseReleased
         // TODO add your handling code here:
+        String fecha = fechas.get(contadorFechas);
+        Partido[] partidos = new Partido[4];
+        int c_aux = 0;
+        
+        for(Partido i: todosLosPartidos){
+            try{
+                if(i.date.equals(fecha)){
+                partidos[c_aux] = i;
+                c_aux++;
+                }
+            }
+            catch(NullPointerException e){
+                
+            }
+            
+        }
+        c_aux = 0;
+        for(Partido j : partidos){
+            if(j != null){
+                if(c_aux == 0){
+                    j.setGolLocal(combo1_1.getSelectedIndex());
+                    j.setGolVisita(combo2_1.getSelectedIndex());
+                    c_aux++; 
+                }
+                else if(c_aux == 1){
+                    j.setGolLocal(combo1_2.getSelectedIndex());
+                    j.setGolVisita(combo2_2.getSelectedIndex());
+                    c_aux++; 
+                }
+                else if(c_aux == 2){
+                    j.setGolLocal(combo1_3.getSelectedIndex());
+                    j.setGolVisita(combo2_3.getSelectedIndex());
+                    c_aux++; 
+                }
+                else{
+                    j.setGolLocal(combo1_4.getSelectedIndex());
+                    j.setGolVisita(combo2_4.getSelectedIndex());
+                    c_aux++; 
+                }
+            }
+            else{
+                System.out.println("CONTADOR----------> " + this.contadorFechas);
+                if(configuracionFinalizada && contadorFechas > 13){
+                    String serie = "";
+                    if(fecha.equals("03-12-2022") || fecha.equals("04-12-2022") || fecha.equals("05-12-2022") || fecha.equals("06-12-2022")){
+                        serie = "Octavos de Final";
+                    }
+                    else if(fecha.equals("09-12-2022") || fecha.equals("10-12-2022")){
+                        serie = "Cuartos de Final";
+                    }
+                    else if(fecha.equals("13-12-2022") || fecha.equals("14-12-2022")){
+                        serie = "Semifinales";
+                    }
+                    else{
+                        serie = " la Final";
+                    }
+                    JOptionPane.showMessageDialog(pantallas, "No se cuentra infomación disponible para " + serie,"ERROR!", JOptionPane.ERROR_MESSAGE);
+                    this.contadorFechas = 1;
+                    cambiarQuinela();
+                }
+                
+                
+            }
+            
+        }
+        
+        c_aux=0;
         this.contadorFechas --;
         cambiarQuinela();
         System.out.println("CONTADOR----> " + this.contadorFechas);
@@ -1075,6 +1145,72 @@ public class Quinela extends javax.swing.JFrame {
 
     private void siguienteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_siguienteMouseReleased
         // TODO add your handling code here:
+        String fecha = fechas.get(contadorFechas);
+        Partido[] partidos = new Partido[4];
+        int cont = 0;
+        
+        for(Partido i: todosLosPartidos){
+            try{
+                if(i.date.equals(fecha)){
+                partidos[cont] = i;
+                cont++;
+                }
+            }
+            catch(NullPointerException e){
+                
+            }
+            
+        }
+        cont = 0;
+        for(Partido j : partidos){
+            if(j != null){
+                if(cont == 0){
+                    j.setGolLocal(combo1_1.getSelectedIndex());
+                    j.setGolVisita(combo2_1.getSelectedIndex());
+                    cont++; 
+                }
+                else if(cont == 1){
+                    j.setGolLocal(combo1_2.getSelectedIndex());
+                    j.setGolVisita(combo2_2.getSelectedIndex());
+                    cont++; 
+                }
+                else if(cont == 2){
+                    j.setGolLocal(combo1_3.getSelectedIndex());
+                    j.setGolVisita(combo2_3.getSelectedIndex());
+                    cont++; 
+                }
+                else{
+                    j.setGolLocal(combo1_4.getSelectedIndex());
+                    j.setGolVisita(combo2_4.getSelectedIndex());
+                    cont++; 
+                }
+            }
+            else{
+                System.out.println("CONTADOR----------> " + this.contadorFechas);
+                if(configuracionFinalizada && contadorFechas > 13){
+                    String serie = "";
+                    if(fecha.equals("03-12-2022") || fecha.equals("04-12-2022") || fecha.equals("05-12-2022") || fecha.equals("06-12-2022")){
+                        serie = "Octavos de Final";
+                    }
+                    else if(fecha.equals("09-12-2022") || fecha.equals("10-12-2022")){
+                        serie = "Cuartos de Final";
+                    }
+                    else if(fecha.equals("13-12-2022") || fecha.equals("14-12-2022")){
+                        serie = "Semifinales";
+                    }
+                    else{
+                        serie = " la Final";
+                    }
+                    JOptionPane.showMessageDialog(pantallas, "No se cuentra infomación disponible para " + serie,"ERROR!", JOptionPane.ERROR_MESSAGE);
+                    this.contadorFechas = 1;
+                    cambiarQuinela();
+                }
+                
+                
+            }
+            
+        }
+        cont=0;
         this.contadorFechas ++;
         cambiarQuinela();
         System.out.println("CONTADOR----> " + this.contadorFechas);
@@ -1141,25 +1277,20 @@ public class Quinela extends javax.swing.JFrame {
 
     private void guardar_button_quinelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardar_button_quinelaActionPerformed
         // TODO add your handling code here:
-
-        /*for (Partido partido : todosLosPartidos) {
-            if(partido.getGolLocalCB()!=null){
-
-                partido.setGolLocal(partido.getGolLocalCB().getSelectedIndex());
-                partido.setGolVisita(partido.getGolVisitaCB().getSelectedIndex());
-                System.out.println("PARTIDO: "+partido.getLocal().pais+" VS "+partido.getVisita().pais);
-                System.out.println("RESULTADO: "+partido.getGolLocal()+" VS "+partido.getGolVisita());
-                System.out.println("------------------------------------------------------------");
-            }
-
+        
+        Mundial aux=this.mundial;
+        /*
+        int cont=0;
+        for(Partido p:todosLosPartidos){
+            System.out.println("PARTIDO A GUARDAR: "+p.getLocal().pais+" VS "+p.getVisita().pais);
+            System.out.println(p.getGolLocal()+" VS "+p.getGolVisita());
+            System.out.println("DATE:  "+p.getDate());
+            System.out.println("----------------------------------------------------");
+            aux.getTodos().set(cont, p);
+            cont++;
         }*/
-        /*for(int i=0; i<this.mundial.getTodos().size();i++){
-            if(this.mundial.getTodos().get(i).getGolLocalCB()!=null){
-                this.mundial.getTodos().get(i).setGolLocal(this.mundial.getTodos().get(i).getGolLocalCB().getSelectedIndex());
-                this.mundial.getTodos().get(i).setGolVisita(this.mundial.getTodos().get(i).getGolVisitaCB().getSelectedIndex());
-            }
-        }*/
-        //manejadorArchivos.guardarMundial(this.mundial,todosLosPartidos, usuario_global);
+        
+        manejadorArchivos.guardarMundial(aux,todosLosPartidos, usuario_global);
     }//GEN-LAST:event_guardar_button_quinelaActionPerformed
 
     private void logout_button_quinela1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_button_quinela1ActionPerformed
@@ -1249,9 +1380,20 @@ public class Quinela extends javax.swing.JFrame {
             if(encontrar_usuario(username, password, false)){
                 usuario_global = username;
                 System.out.println("Se encuentra el usuario");
-                this.mundial=manejadorArchivos.buscarMundial(username);
-
-                System.out.println("GUARDADA: "+this.mundial.getPartidosPrimeraFase()[0].getGolLocal());
+                Mundial guardado=manejadorArchivos.buscarMundial(username);
+                int cont=0;
+                for (Partido p : todosLosPartidos) {
+                    System.out.println("PARTIDO GUARDADO: "+
+                            guardado.getTodos().get(cont).getLocal().pais+
+                            " VS "+guardado.getTodos().get(cont).getVisita().pais);
+                    
+                    System.out.println(guardado.getTodos().get(cont).getGolLocal()+" VS "+guardado.getTodos().get(cont).getGolVisita());
+                    p.setGolLocal(guardado.getTodos().get(cont).getGolLocal());
+                    p.setGolVisita(guardado.getTodos().get(cont).getGolVisita());
+                    cont++;
+                }
+                System.out.println("GUARDADA: "+this.mundial.getTodos().get(0).getGolLocal());
+                cambiarQuinela();
 
                 pantallas.setSelectedIndex(2);
                 username_field_login.setText("");

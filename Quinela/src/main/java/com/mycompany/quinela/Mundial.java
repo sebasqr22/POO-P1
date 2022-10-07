@@ -276,7 +276,7 @@ public class Mundial implements Serializable{
 
     public void finalMundial() {
         finalPartido=new Partido(ganadoresSemis[0] ,ganadoresSemis[1], "16-12-2022");
-        //.
+        
     }
     
     public Partido buscarPartido(String local, String visita, String fase){
@@ -322,6 +322,7 @@ public class Mundial implements Serializable{
     public Partido[] getPartidosPrimeraFase() {
         return partidosPrimeraFase;
     }
+    
 
     public Partido[] getPartidosOctavos() {
         return partidosOctavos;
@@ -345,16 +346,20 @@ public class Mundial implements Serializable{
     }
 
     public void setTodosPartidos(ArrayList<Partido> todosPartidos) {
+        
         this.todosPartidos = todosPartidos;
     }
     
     public ArrayList<Partido> getTodos(){
-        
+        todosPartidos.clear();
         for(Partido i: partidosPrimeraFase){
             todosPartidos.add(i);
         }
         for(Partido j: partidosOctavos){
             todosPartidos.add(j);
+        }
+        for (Partido k : partidosCuartos) {
+            todosPartidos.add(k);
         }
         for(Partido z: partidosSemis){
             todosPartidos.add(z);
