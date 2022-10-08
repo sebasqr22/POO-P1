@@ -140,11 +140,15 @@ public class Quinela extends javax.swing.JFrame {
                     j.setResultadoVisita(combo2_1);
                     combo2_1.setSelectedIndex(j.getGolVisita());
                     
+                    
                     if (contadorFechas > 12) {
+                        
+                        
                         ganador_combo_1.setVisible(true);
                             
                         ganador_combo_1.addItem(j.getLocal().pais);
                         ganador_combo_1.addItem(j.getVisita().pais);
+                        j.setGanadorPenalesCB(ganador_combo_1);
                        
                     } else {
                         ganador_combo_1.setVisible(false);
@@ -162,12 +166,15 @@ public class Quinela extends javax.swing.JFrame {
                     combo2_2.setSelectedIndex(j.getGolVisita());
                     
                     
+                    
                     if (contadorFechas > 12) {
+                        j.setGanadorPenalesCB(ganador_combo_2);
                         ganador_combo_2.setVisible(true);
                         
                         ganador_combo_2.removeAllItems();
                         ganador_combo_2.addItem(j.getLocal().pais);
                         ganador_combo_2.addItem(j.getVisita().pais);
+                        j.setGanadorPenalesCB(ganador_combo_2);
                         
                     } else {
                         ganador_combo_2.setVisible(false);
@@ -1665,6 +1672,8 @@ public class Quinela extends javax.swing.JFrame {
                     grupos = false;
                     break;
                 }
+                
+                
                 grupos = true;
             }
             if (cont <= 55 && cont > 47) {
@@ -1673,6 +1682,17 @@ public class Quinela extends javax.swing.JFrame {
                     grupos = true;
                     mundial.octavos = false;
                     break;
+                }
+                if(p.getGanador()==null){
+                    for (Equipo e : mundial.getEquipos()) {
+                        if(e.pais==p.getGanadorPenalesCB().getSelectedItem()){
+                            p.setGanador(e);
+                            grupos = false;
+                            mundial.octavos = true;
+                            break;
+                        }
+                    }
+                    
                 }
                 grupos = false;
                 mundial.octavos = true;
@@ -1683,6 +1703,17 @@ public class Quinela extends javax.swing.JFrame {
                     mundial.octavos = true;
                     mundial.cuartos = false;
                     break;
+                }
+                if(p.getGanador()==null){
+                    for (Equipo e : mundial.getEquipos()) {
+                        if(e.pais==p.getGanadorPenalesCB().getSelectedItem()){
+                            p.setGanador(e);
+                            grupos = false;
+                            mundial.octavos = true;
+                            break;
+                        }
+                    }
+                    
                 }
                 mundial.octavos = false;
                 mundial.cuartos = true;
@@ -1696,6 +1727,17 @@ public class Quinela extends javax.swing.JFrame {
                     mundial.semis = false;
                     break;
                 }
+                if(p.getGanador()==null){
+                    for (Equipo e : mundial.getEquipos()) {
+                        if(e.pais==p.getGanadorPenalesCB().getSelectedItem()){
+                            p.setGanador(e);
+                            grupos = false;
+                            mundial.octavos = true;
+                            break;
+                        }
+                    }
+                    
+                }
                 mundial.cuartos = false;
                 mundial.semis = true;
 
@@ -1708,6 +1750,17 @@ public class Quinela extends javax.swing.JFrame {
                     mundial.semis = true;
                     mundial.finalMundial = false;
                     break;
+                }
+                if(p.getGanador()==null){
+                    for (Equipo e : mundial.getEquipos()) {
+                        if(e.pais==p.getGanadorPenalesCB().getSelectedItem()){
+                            p.setGanador(e);
+                            grupos = false;
+                            mundial.octavos = true;
+                            break;
+                        }
+                    }
+                    
                 }
                 mundial.semis = false;
                 mundial.finalMundial = true;
