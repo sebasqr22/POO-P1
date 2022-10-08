@@ -39,6 +39,27 @@ public class Quinela extends javax.swing.JFrame {
      * Creates new form Quinela
      */
     
+    private void setJornada(String fecha){
+        String serie = "";
+
+        if(fecha.equals("03-12-2022") || fecha.equals("04-12-2022") || fecha.equals("05-12-2022") || fecha.equals("06-12-2022")){
+            serie = "Octavos de Final";
+        }
+        else if(fecha.equals("09-12-2022") || fecha.equals("10-12-2022")){
+            serie = "Cuartos de Final";
+        }
+        else if(fecha.equals("13-12-2022") || fecha.equals("14-12-2022")){
+            serie = "Semifinales";
+        }
+        else if(fecha.equals("18-12-2022")){
+            serie = " Final";
+        }
+        else{
+            serie = "Fase de Grupos";
+        }
+        jornada.setText(serie);
+    }
+    
     private void ocultarPaneles(){
         panel1.setVisible(false);
         panel2.setVisible(false);
@@ -129,34 +150,11 @@ public class Quinela extends javax.swing.JFrame {
                     combo2_4.setSelectedIndex(j.getGolVisita());
                     c_aux++; 
                 }
+                setJornada(fecha);
             }
-            else{
-                //System.out.println("CONTADOR----------> " + this.contadorFechas);
-                
-                if(configuracionFinalizada && contadorFechas > 13){
-                    String serie = "";
-                    if(fecha.equals("03-12-2022") || fecha.equals("04-12-2022") || fecha.equals("05-12-2022") || fecha.equals("06-12-2022")){
-                        serie = "Octavos de Final";
-                    }
-                    else if(fecha.equals("09-12-2022") || fecha.equals("10-12-2022")){
-                        serie = "Cuartos de Final";
-                    }
-                    else if(fecha.equals("13-12-2022") || fecha.equals("14-12-2022")){
-                        serie = "Semifinales";
-                    }
-                    else{
-                        serie = " la Final";
-                    }
-                    JOptionPane.showMessageDialog(pantallas, "No se cuentra infomación disponible para " + serie,"ERROR!", JOptionPane.ERROR_MESSAGE);
-                    this.contadorFechas = 1;
-                    cambiarQuinela();
-                }
-                
-                
-            }
-            
         }
         if(!entro){
+            setJornada(fecha);
             if(configuracionFinalizada && contadorFechas > 12){
                     String serie = "";
                     if(fecha.equals("03-12-2022") || fecha.equals("04-12-2022") || fecha.equals("05-12-2022") || fecha.equals("06-12-2022")){
@@ -192,17 +190,6 @@ public class Quinela extends javax.swing.JFrame {
             }
 
         }
-    }
-    private void seleccionar_escudos(String partido){
-        if(partido != null){
-            String[] equipos = partido.split("-");
-            String e1 = equipos[0].replace(" ", "_").replace("ñ", "n");
-            String e2 = equipos[1].replace(" ", "_").replace("ñ", "n");
-            System.out.println(e1);
-            System.out.println(e2);
-            cambiar_escudos(e1.toLowerCase(), e2.toLowerCase());
-        }
-
     }
 
 
@@ -285,6 +272,7 @@ public class Quinela extends javax.swing.JFrame {
         combo2_4 = new javax.swing.JComboBox<>();
         siguiente = new javax.swing.JButton();
         anterior = new javax.swing.JButton();
+        jornada = new javax.swing.JLabel();
         administrativo = new javax.swing.JPanel();
         administrativo_label_administrativo = new javax.swing.JLabel();
         username_field_administrativo = new javax.swing.JTextField();
@@ -791,6 +779,10 @@ public class Quinela extends javax.swing.JFrame {
             }
         });
 
+        jornada.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jornada.setForeground(new java.awt.Color(255, 255, 255));
+        jornada.setText("Fase de Grupo");
+
         javax.swing.GroupLayout quinelaLayout = new javax.swing.GroupLayout(quinela);
         quinela.setLayout(quinelaLayout);
         quinelaLayout.setHorizontalGroup(
@@ -827,6 +819,10 @@ public class Quinela extends javax.swing.JFrame {
                 .addGap(80, 80, 80)
                 .addComponent(siguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(487, 487, 487))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, quinelaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jornada)
+                .addGap(607, 607, 607))
         );
         quinelaLayout.setVerticalGroup(
             quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -839,6 +835,8 @@ public class Quinela extends javax.swing.JFrame {
                             .addComponent(panel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(quinelaLayout.createSequentialGroup()
                         .addComponent(quinela_label_quinela1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jornada)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(1, 1, 1)
                 .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1665,6 +1663,7 @@ public class Quinela extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jornada;
     public javax.swing.JPanel login;
     public javax.swing.JButton login_button_registrarse;
     public javax.swing.JLabel logo1_1;
