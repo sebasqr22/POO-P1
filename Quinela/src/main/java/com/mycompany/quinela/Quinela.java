@@ -22,6 +22,7 @@ import java.util.Collections;
  * @author sebastianqr.2208
  */
 public class Quinela extends javax.swing.JFrame {
+
     int estado_password = 0;
     private String usuario_global;
     boolean configuracionFinalizada = false;
@@ -29,82 +30,72 @@ public class Quinela extends javax.swing.JFrame {
     ManejadorArchivos manejadorArchivos = new ManejadorArchivos();
     String[] fases = {"Fase de Grupos", "8vos de Final", "4tos de Final", "Semifinal", "Final"};
     String[] grupos = {"A", "B", "C", "D", "E", "F", "G", "H"};
-    Mundial mundial =new Mundial();
+    Mundial mundial = new Mundial();
     ArrayList<String> fechas = mundial.fechas;
-    ArrayList<java.awt.Panel> paneles= new ArrayList<>();
+    ArrayList<java.awt.Panel> paneles = new ArrayList<>();
     ArrayList<Partido> todosLosPartidos = new ArrayList<>();
     String serie = "";
     int contadorFechas = 0;
-    
+
     String ultimo_partido_consultado = "";
+
     /**
      * Creates new form Quinela
      */
-    
-    private void setJornada(String fecha){
-        
 
-        if(fecha.equals("03-12-2022") || fecha.equals("04-12-2022") || fecha.equals("05-12-2022") || fecha.equals("06-12-2022")){
+    private void setJornada(String fecha) {
+
+        if (fecha.equals("03-12-2022") || fecha.equals("04-12-2022") || fecha.equals("05-12-2022") || fecha.equals("06-12-2022")) {
             serie = "Octavos de Final";
-        }
-        else if(fecha.equals("09-12-2022") || fecha.equals("10-12-2022")){
+        } else if (fecha.equals("09-12-2022") || fecha.equals("10-12-2022")) {
             serie = "Cuartos de Final";
-        }
-        else if(fecha.equals("13-12-2022") || fecha.equals("14-12-2022")){
+        } else if (fecha.equals("13-12-2022") || fecha.equals("14-12-2022")) {
             serie = "Semifinales";
-        }
-        else if(fecha.equals("18-12-2022")){
+        } else if (fecha.equals("18-12-2022")) {
             serie = " Final";
-        }
-        else{
+        } else {
             serie = "Fase de Grupos";
         }
         jornada.setText(serie);
     }
-    
-    private void ocultarPaneles(){
+
+    private void ocultarPaneles() {
         panel1.setVisible(false);
         panel2.setVisible(false);
         panel3.setVisible(false);
         panel4.setVisible(false);
     }
-    
-    private void setGanadores(boolean bandera){
+
+    private void setGanadores(boolean bandera) {
         ganador_1.setVisible(bandera);
         ganador_2.setVisible(bandera);
         ganador_3.setVisible(bandera);
         ganador_4.setVisible(bandera);
-        
+
         ganador_combo_1.setVisible(bandera);
         ganador_combo_2.setVisible(bandera);
         ganador_combo_3.setVisible(bandera);
         ganador_combo_4.setVisible(bandera);
     }
-    
-    private void setFechaGanador(String fecha){
-        if(fecha.equals("03-12-2022") || fecha.equals("04-12-2022") || fecha.equals("05-12-2022") || fecha.equals("06-12-2022")){
-           setGanadores(true);
-        }
-        else if(fecha.equals("09-12-2022") || fecha.equals("10-12-2022")){
+
+    private void setFechaGanador(String fecha) {
+        if (fecha.equals("03-12-2022") || fecha.equals("04-12-2022") || fecha.equals("05-12-2022") || fecha.equals("06-12-2022")) {
             setGanadores(true);
-        }
-        else if(fecha.equals("13-12-2022") || fecha.equals("14-12-2022")){
+        } else if (fecha.equals("09-12-2022") || fecha.equals("10-12-2022")) {
             setGanadores(true);
-        }
-        else if(fecha.equals("18-12-2022")){
+        } else if (fecha.equals("13-12-2022") || fecha.equals("14-12-2022")) {
             setGanadores(true);
-        }
-        else{
+        } else if (fecha.equals("18-12-2022")) {
+            setGanadores(true);
+        } else {
             setGanadores(false);
         }
     }
-    
-    
-    private void cambiarQuinela(){
-        if(this.contadorFechas < 0){
+
+    private void cambiarQuinela() {
+        if (this.contadorFechas < 0) {
             this.contadorFechas = 21;
-        }
-        else if(this.contadorFechas > 21){
+        } else if (this.contadorFechas > 21) {
             this.contadorFechas = 0;
         }
         ocultarPaneles();
@@ -112,35 +103,34 @@ public class Quinela extends javax.swing.JFrame {
         //Partido[] partidos = new Partido[4];
         ArrayList<Partido> partidosAux = new ArrayList<>();
         int c_aux = 0;
-        
-        
-        for(Partido i: todosLosPartidos){
-            
-            try{
-                
-                if(i.date.equals(fecha)){
-                //partidos[c_aux] = i;
-                partidosAux.add(i);
-                c_aux++;
+
+        for (Partido i : todosLosPartidos) {
+
+            try {
+
+                if (i.date.equals(fecha)) {
+                    //partidos[c_aux] = i;
+                    partidosAux.add(i);
+                    c_aux++;
                 }
+            } catch (NullPointerException e) {
+
             }
-            catch(NullPointerException e){
-                
-            }
-            
+
         }
-        
+
         c_aux = 0;
         boolean entro = false;
-        for(Partido j : partidosAux){
-            if(j != null){
-               String local = j.local.pais.replace(" ", "_").replace("ñ", "n");
+        for (Partido j : partidosAux) {
+            if (j != null) {
+                String local = j.local.pais.replace(" ", "_").replace("ñ", "n");
                 String visita = j.visita.pais.replace(" ", "_").replace("ñ", "n");
                 ImageIcon image1 = new ImageIcon("imagenes/escudos/" + local + ".png");
                 ImageIcon image2 = new ImageIcon("imagenes/escudos/" + visita + ".png");
                 entro = true;
 
-                if(c_aux == 0){
+                if (c_aux == 0) {
+                    ganador_combo_1.removeAllItems();
                     fecha_1.setText(j.date);
                     panel1.setVisible(true);
                     logo1_1.setIcon(image1);
@@ -149,25 +139,19 @@ public class Quinela extends javax.swing.JFrame {
                     combo1_1.setSelectedIndex(j.getGolLocal());
                     j.setResultadoVisita(combo2_1);
                     combo2_1.setSelectedIndex(j.getGolVisita());
-                    ganador_combo_1.setVisible(false);
                     
-                    if(serie!="Fase de Grupos" && serie!=""){
-                        
-                        if(j.getGanador()==null){
+                    if (contadorFechas > 12) {
                         ganador_combo_1.setVisible(true);
-                        ganador_combo_1.removeAllItems();
+                            
                         ganador_combo_1.addItem(j.getLocal().pais);
                         ganador_combo_1.addItem(j.getVisita().pais);
-                        JOptionPane.showMessageDialog(pantallas, "Resuleva los conflictos de igualdad en " + j.getLocal().pais + " VS " + j.getVisita().pais,"ERROR DE IGUALDAD!", JOptionPane.ERROR_MESSAGE);
-                    }else{
-                            ganador_combo_1.setVisible(false);
-                        }
-                    }else{
+                       
+                    } else {
                         ganador_combo_1.setVisible(false);
                     }
-                    c_aux++; 
-                }
-                else if(c_aux == 1){
+                    c_aux++;
+                } else if (c_aux == 1) {
+                    ganador_combo_2.removeAllItems();
                     fecha_2.setText(j.date);
                     panel2.setVisible(true);
                     logo1_2.setIcon(image1);
@@ -176,24 +160,21 @@ public class Quinela extends javax.swing.JFrame {
                     combo1_2.setSelectedIndex(j.getGolLocal());
                     j.setResultadoVisita(combo2_2);
                     combo2_2.setSelectedIndex(j.getGolVisita());
-                    ganador_combo_2.setVisible(false);
-                    if (serie != "Fase de Grupos" && serie != "") {
-                        if (j.getGanador() == null) {
-                            ganador_combo_2.setVisible(true);
-                            ganador_combo_2.removeAllItems();
-                            ganador_combo_2.addItem(j.getLocal().pais);
-                            ganador_combo_2.addItem(j.getVisita().pais);
-                            JOptionPane.showMessageDialog(pantallas, "Resuleva los conflictos de igualdad en " + j.getLocal().pais + " VS " + j.getVisita().pais,"ERROR DE IGUALDAD!", JOptionPane.ERROR_MESSAGE);
-                        } else {
-                            ganador_combo_2.setVisible(false);
-                        }
+                    
+                    
+                    if (contadorFechas > 12) {
+                        ganador_combo_2.setVisible(true);
+                        
+                        ganador_combo_2.removeAllItems();
+                        ganador_combo_2.addItem(j.getLocal().pais);
+                        ganador_combo_2.addItem(j.getVisita().pais);
+                        
                     } else {
                         ganador_combo_2.setVisible(false);
-                        
+
                     }
-                    c_aux++; 
-                }
-                else if(c_aux == 2){
+                    c_aux++;
+                } else if (c_aux == 2) {
                     fecha_3.setText(j.date);
                     panel3.setVisible(true);
                     logo1_3.setIcon(image1);
@@ -202,13 +183,11 @@ public class Quinela extends javax.swing.JFrame {
                     combo1_3.setSelectedIndex(j.getGolLocal());
                     j.setResultadoVisita(combo2_3);
                     combo2_3.setSelectedIndex(j.getGolVisita());
-                    
-                        
+
                     ganador_combo_3.setVisible(false);
-                    
-                    c_aux++; 
-                }
-                else{
+
+                    c_aux++;
+                } else {
                     fecha_4.setText(j.date);
                     panel4.setVisible(true);
                     logo1_4.setIcon(image1);
@@ -217,59 +196,53 @@ public class Quinela extends javax.swing.JFrame {
                     combo1_4.setSelectedIndex(j.getGolLocal());
                     j.setResultadoVisita(combo2_4);
                     combo2_4.setSelectedIndex(j.getGolVisita());
-                    
+
                     ganador_combo_4.setVisible(false);
-                    
-                    
-                    c_aux++; 
+
+                    c_aux++;
                 }
                 setJornada(fecha);
             }
         }
-        if(!entro){
+        if (!entro) {
             setJornada(fecha);
-            if(configuracionFinalizada && contadorFechas > 12){
-                    String serie = "";
-                    if(fecha.equals("03-12-2022") || fecha.equals("04-12-2022") || fecha.equals("05-12-2022") || fecha.equals("06-12-2022")){
-                        serie = "Octavos de Final";
-                    }
-                    else if(fecha.equals("09-12-2022") || fecha.equals("10-12-2022")){
-                        serie = "Cuartos de Final";
-                    }
-                    else if(fecha.equals("13-12-2022") || fecha.equals("14-12-2022")){
-                        serie = "Semifinales";
-                    }
-                    else{
-                        serie = " la Final";
-                    }
-                    JOptionPane.showMessageDialog(pantallas, "No se encuentra infomación disponible para " + serie,"ERROR!", JOptionPane.ERROR_MESSAGE);
-                    if(contadorFechas == 21){
-                        contadorFechas = 0;
-                    }
-                    else{
-                       this.contadorFechas --; 
-                    }
-                    cambiarQuinela();
+            if (configuracionFinalizada && contadorFechas > 12) {
+                String serie = "";
+                if (fecha.equals("03-12-2022") || fecha.equals("04-12-2022") || fecha.equals("05-12-2022") || fecha.equals("06-12-2022")) {
+                    serie = "Octavos de Final";
+                } else if (fecha.equals("09-12-2022") || fecha.equals("10-12-2022")) {
+                    serie = "Cuartos de Final";
+                } else if (fecha.equals("13-12-2022") || fecha.equals("14-12-2022")) {
+                    serie = "Semifinales";
+                } else {
+                    serie = " la Final";
                 }
+                JOptionPane.showMessageDialog(pantallas, "No se encuentra infomación disponible para " + serie, "ERROR!", JOptionPane.ERROR_MESSAGE);
+                if (contadorFechas == 21) {
+                    contadorFechas = 0;
+                } else {
+                    this.contadorFechas--;
+                }
+                cambiarQuinela();
+            }
         }
-        
-        
+
     }
-    private void set_partidos_grupos(String grupo){
-       // partido_combo_quinela.removeAllItems();
-        for(Partido partido : mundial.partidosPrimeraFase){
-            try{
+
+    private void set_partidos_grupos(String grupo) {
+        // partido_combo_quinela.removeAllItems();
+        for (Partido partido : mundial.partidosPrimeraFase) {
+            try {
                 String group = String.valueOf(partido.grupo);
-                if(group.equals(grupo)){
+                if (group.equals(grupo)) {
                     //partido_combo_quinela.addItem(partido.local.pais + "-" + partido.visita.pais);
                 }
-            }catch (NullPointerException e){
+            } catch (NullPointerException e) {
                 System.out.println("a");
             }
 
         }
     }
-
 
     public Quinela() {
         mundial.init();
@@ -287,97 +260,96 @@ public class Quinela extends javax.swing.JFrame {
         ocultarPaneles();
         setGanadores(false);
     }
-    
-    private String buscarEnLista(String num, ArrayList<String> lista){
+
+    private String buscarEnLista(String num, ArrayList<String> lista) {
         int contador = 0;
-        for(String i: lista){
+        for (String i : lista) {
             System.out.println("PARTE-> " + i);
             String[] usrs = i.split("-");
-            if(num.equals(usrs[1])){
+            if (num.equals(usrs[1])) {
                 lista.remove(contador);
                 return i;
             }
-            contador ++;
+            contador++;
         }
-       return null;
+        return null;
     }
-    
-    private void ordenarRanking(){
+
+    private void ordenarRanking() {
         String data = manejadorArchivos.leer("archivos/ranking.txt");
         System.out.println("DAAATA---> " + data);
         String[] usrs = data.split("#");
         ArrayList<String> usuarios = new ArrayList<>();
         ArrayList<String> correcta = new ArrayList<>();
         ArrayList<Integer> ordenamiento = new ArrayList<>();
-        for(String i: usrs){
-            if(!i.equals("")){
+        for (String i : usrs) {
+            if (!i.equals("")) {
                 String[] info = i.split("-");
                 usuarios.add(i);
                 ordenamiento.add(Integer.parseInt(info[1]));
             }
         }
-        Collections.sort(ordenamiento,Collections.reverseOrder());
-        for(int j:ordenamiento){
+        Collections.sort(ordenamiento, Collections.reverseOrder());
+        for (int j : ordenamiento) {
             correcta.add(buscarEnLista(String.valueOf(j), usuarios));
         }
         String completo = "";
-        for(String x : correcta){
+        for (String x : correcta) {
             completo += "#" + x;
         }
         manejadorArchivos.escribir("archivos/ranking.txt", completo);
     }
-    
-    private void generarRanking(Mundial mundialReal){
+
+    private void generarRanking(Mundial mundialReal) {
         String info = manejadorArchivos.archivosEn("archivos");
         String[] rutas = info.split("-");
         int sumatoria = 0;
         String agregar = "";
-        
-        for(String user : rutas){
-            System.out.println("ANALIZANDO---> "+user);
-            Mundial nuevo=manejadorArchivos.buscarMundial(user, false);
-            int cont=0;
+
+        for (String user : rutas) {
+            System.out.println("ANALIZANDO---> " + user);
+            Mundial nuevo = manejadorArchivos.buscarMundial(user, false);
+            int cont = 0;
             for (Partido p : nuevo.partidosPrimeraFase) {
-                    try{
-                        Equipo ganadorReal = mundialReal.partidosPrimeraFase[cont].getGanador();
-                        Equipo ganadorUser = nuevo.partidosPrimeraFase[cont].getGanador();
-                       
+                try {
+                    Equipo ganadorReal = mundialReal.partidosPrimeraFase[cont].getGanador();
+                    Equipo ganadorUser = nuevo.partidosPrimeraFase[cont].getGanador();
 
-                        if(ganadorReal.pais.equals(ganadorUser.pais)){
-                            sumatoria += 5;
-                        }
-
-                        int marcadorLocalReal = mundialReal.partidosPrimeraFase[cont].golLocal;
-                        int marcadorVisitaReal = mundialReal.partidosPrimeraFase[cont].golVisita;
-                        int marcadorLocalUser = nuevo.partidosPrimeraFase[cont].golLocal;
-                        int marcadorVisitaUser = nuevo.partidosPrimeraFase[cont].golLocal;
-                        
-                        System.out.println("Local --> Real: " + marcadorLocalReal + "\t Puesto: " + marcadorLocalUser);
-                        System.out.println("Visita --> Real: " + marcadorVisitaReal + "\t Puesto: " + marcadorVisitaUser);
-
-                        if(marcadorLocalReal == marcadorLocalUser && marcadorVisitaReal == marcadorVisitaUser){
-                            sumatoria += 10;
-                        }
-                        cont++;
+                    if (ganadorReal.pais.equals(ganadorUser.pais)) {
+                        sumatoria += 5;
                     }
-                    catch(NullPointerException e){
-                        System.out.println("Se cae en contador: " + cont);
-                        System.out.println(nuevo.partidosPrimeraFase[cont]);
-                        cont ++;
+
+                    int marcadorLocalReal = mundialReal.partidosPrimeraFase[cont].golLocal;
+                    int marcadorVisitaReal = mundialReal.partidosPrimeraFase[cont].golVisita;
+                    int marcadorLocalUser = nuevo.partidosPrimeraFase[cont].golLocal;
+                    int marcadorVisitaUser = nuevo.partidosPrimeraFase[cont].golLocal;
+
+                    System.out.println("Local --> Real: " + marcadorLocalReal + "\t Puesto: " + marcadorLocalUser);
+                    System.out.println("Visita --> Real: " + marcadorVisitaReal + "\t Puesto: " + marcadorVisitaUser);
+
+                    if (marcadorLocalReal == marcadorLocalUser && marcadorVisitaReal == marcadorVisitaUser) {
+                        sumatoria += 10;
                     }
-                    
+                    cont++;
+                } catch (NullPointerException e) {
+                    System.out.println("Se cae en contador: " + cont);
+                    System.out.println(nuevo.partidosPrimeraFase[cont]);
+                    cont++;
                 }
-                sumatoria += Integer.parseInt(manejadorArchivos.leer("archivos/" + user + "/ranking.txt"));
-                System.out.println("Se suma a " + user + ": " + sumatoria);
-                manejadorArchivos.escribir("archivos/" + user + "/ranking.txt", String.valueOf(sumatoria));
-                agregar += "#" + user + "-" + sumatoria;
-                
-                sumatoria = 0;
-         
+
+            }
+            sumatoria += Integer.parseInt(manejadorArchivos.leer("archivos/" + user + "/ranking.txt"));
+            System.out.println("Se suma a " + user + ": " + sumatoria);
+            manejadorArchivos.escribir("archivos/" + user + "/ranking.txt", String.valueOf(sumatoria));
+            agregar += "#" + user + "-" + sumatoria;
+
+            sumatoria = 0;
+
         }
         manejadorArchivos.escribir("archivos/ranking.txt", agregar);
         ordenarRanking();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1359,10 +1331,10 @@ public class Quinela extends javax.swing.JFrame {
 
     private void mostrar_button_administrativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar_button_administrativoActionPerformed
         // TODO add your handling code here:
-        if(estado_password == 0){
-            password_field_administrativo.setEchoChar((char)0);
+        if (estado_password == 0) {
+            password_field_administrativo.setEchoChar((char) 0);
             estado_password = 1;
-        }else{
+        } else {
             password_field_administrativo.setEchoChar('*');
             estado_password = 0;
         }
@@ -1372,30 +1344,28 @@ public class Quinela extends javax.swing.JFrame {
         // TODO add your handling code here:
         String username = username_field_administrativo.getText();
         String password = password_field_administrativo.getText();
-        if(!username.equals("") && !password.equals("")){
-            if(encontrar_usuario(username, password, true)){
+        if (!username.equals("") && !password.equals("")) {
+            if (encontrar_usuario(username, password, true)) {
                 usuario_global = username;
                 pantallas.setSelectedIndex(4);
                 username_field_administrativo.setText("");
                 password_field_administrativo.setText("");
                 superUser = true;
-                Mundial guardado=manejadorArchivos.buscarMundial(username, true);
-                int cont=0;
+                Mundial guardado = manejadorArchivos.buscarMundial(username, true);
+                int cont = 0;
                 for (Partido p : todosLosPartidos) {
                     p.setGolLocal(guardado.getTodos().get(cont).getGolLocal());
                     p.setGolVisita(guardado.getTodos().get(cont).getGolVisita());
                     cont++;
                 }
-                System.out.println("GUARDADA: "+this.mundial.getTodos().get(0).getGolLocal());
+                System.out.println("GUARDADA: " + this.mundial.getTodos().get(0).getGolLocal());
                 cambiarQuinela();
                 sumar_button.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(pantallas, "Este Administrador no Existe!!!", "ERROR!", JOptionPane.ERROR_MESSAGE);
             }
-            else{
-                JOptionPane.showMessageDialog(pantallas, "Este Administrador no Existe!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        else{
-            JOptionPane.showMessageDialog(pantallas, "Debe escribir un Usuario y una Constraseña!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(pantallas, "Debe escribir un Usuario y una Constraseña!!!", "ERROR!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_acceder_button_administrativoActionPerformed
 
@@ -1412,27 +1382,26 @@ public class Quinela extends javax.swing.JFrame {
         String fecha = fechas.get(contadorFechas);
         Partido[] partidos = new Partido[4];
         int c_aux = 0;
-        
-        for(Partido i: todosLosPartidos){
-            try{
-                if(i.date.equals(fecha)){
-                partidos[c_aux] = i;
-                c_aux++;
+
+        for (Partido i : todosLosPartidos) {
+            try {
+                if (i.date.equals(fecha)) {
+                    partidos[c_aux] = i;
+                    c_aux++;
                 }
+            } catch (NullPointerException e) {
+
             }
-            catch(NullPointerException e){
-                
-            }
-            
+
         }
         c_aux = 0;
-        for(Partido j : partidos){
-            if(j != null){
-                if(c_aux == 0){
+        for (Partido j : partidos) {
+            if (j != null) {
+                if (c_aux == 0) {
                     j.setGolLocal(combo1_1.getSelectedIndex());
                     j.setGolVisita(combo2_1.getSelectedIndex());
                     j.resultadoTemp();
-                    
+
                     /*if(serie!="Fase de Grupos" && serie!=""){
                         if(j.getGanador()==null){
                         ganador_combo_1.setVisible(true);
@@ -1441,9 +1410,8 @@ public class Quinela extends javax.swing.JFrame {
                     else{
                         ganador_combo_1.setVisible(false);
                     }*/
-                    c_aux++; 
-                }
-                else if(c_aux == 1){
+                    c_aux++;
+                } else if (c_aux == 1) {
                     j.setGolLocal(combo1_2.getSelectedIndex());
                     j.setGolVisita(combo2_2.getSelectedIndex());
                     j.resultadoTemp();
@@ -1456,24 +1424,19 @@ public class Quinela extends javax.swing.JFrame {
                     else{
                         ganador_combo_2.setVisible(false);
                     }*/
-                    c_aux++; 
-                }
-                else if(c_aux == 2){
+                    c_aux++;
+                } else if (c_aux == 2) {
                     j.setGolLocal(combo1_3.getSelectedIndex());
                     j.setGolVisita(combo2_3.getSelectedIndex());
                     j.resultadoTemp();
-                    
-                    
-                    
-                    c_aux++; 
-                }
-                else{
+
+                    c_aux++;
+                } else {
                     j.setGolLocal(combo1_4.getSelectedIndex());
                     j.setGolVisita(combo2_4.getSelectedIndex());
                     j.resultadoTemp();
-                    
-                   
-                    c_aux++; 
+
+                    c_aux++;
                 }
             }/*
             else{
@@ -1499,11 +1462,11 @@ public class Quinela extends javax.swing.JFrame {
                 
                 
             }*/
-            
+
         }
-        
-        c_aux=0;
-        this.contadorFechas --;
+
+        c_aux = 0;
+        this.contadorFechas--;
         cambiarQuinela();
         //System.out.println("CONTADOR----> " + this.contadorFechas);
     }//GEN-LAST:event_anteriorMouseReleased
@@ -1515,28 +1478,27 @@ public class Quinela extends javax.swing.JFrame {
 
     private void siguienteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_siguienteMouseReleased
         // TODO add your handling code here:
-        
+
         String fecha = fechas.get(contadorFechas);
         Partido[] partidos = new Partido[4];
         int cont = 0;
-        
-        for(Partido i: todosLosPartidos){
-            try{
-                if(i.date.equals(fecha)){
-                    
-                partidos[cont] = i;
-                cont++;
+
+        for (Partido i : todosLosPartidos) {
+            try {
+                if (i.date.equals(fecha)) {
+
+                    partidos[cont] = i;
+                    cont++;
                 }
+            } catch (NullPointerException e) {
+
             }
-            catch(NullPointerException e){
-                
-            }
-            
+
         }
         cont = 0;
-        for(Partido j : partidos){
-            if(j != null){
-                if(cont == 0){
+        for (Partido j : partidos) {
+            if (j != null) {
+                if (cont == 0) {
                     j.setGolLocal(combo1_1.getSelectedIndex());
                     j.setGolVisita(combo2_1.getSelectedIndex());
                     j.resultadoTemp();
@@ -1547,15 +1509,13 @@ public class Quinela extends javax.swing.JFrame {
                     }else{
                         ganador_combo_1.setVisible(false);
                     }*/
-                    
-                    
-                    cont++; 
-                }
-                else if(cont == 1){
+
+                    cont++;
+                } else if (cont == 1) {
                     j.setGolLocal(combo1_2.getSelectedIndex());
                     j.setGolVisita(combo2_2.getSelectedIndex());
                     j.resultadoTemp();
-                    
+
                     /*if(serie!="Fase de Grupos" || serie!=""){
                         if(j.getGanador()==null){
                         ganador_combo_2.setVisible(true);
@@ -1564,13 +1524,12 @@ public class Quinela extends javax.swing.JFrame {
                     else{
                         ganador_combo_2.setVisible(false);
                     }*/
-                    cont++; 
-                }
-                else if(cont == 2){
+                    cont++;
+                } else if (cont == 2) {
                     j.setGolLocal(combo1_3.getSelectedIndex());
                     j.setGolVisita(combo2_3.getSelectedIndex());
                     j.resultadoTemp();
-                    
+
                     /*if(serie!="Fase de Grupos" || serie!=""){
                         if(j.getGanador()==null){
                         ganador_combo_3.setVisible(true);
@@ -1579,15 +1538,14 @@ public class Quinela extends javax.swing.JFrame {
                     else{
                         ganador_combo_3.setVisible(false);
                     }*/
-                    cont++; 
-                }
-                else{
+                    cont++;
+                } else {
                     j.setGolLocal(combo1_4.getSelectedIndex());
                     j.setGolVisita(combo2_4.getSelectedIndex());
                     j.resultadoTemp();
-                    
+
                     ganador_combo_4.setVisible(false);
-                    cont++; 
+                    cont++;
                 }
             }/*
             else{
@@ -1613,11 +1571,11 @@ public class Quinela extends javax.swing.JFrame {
                 
                 
             }*/
-            
+
         }
-        cont=0;
-        this.contadorFechas ++;
-        
+        cont = 0;
+        this.contadorFechas++;
+
         cambiarQuinela();
         //System.out.println("CONTADOR----> " + this.contadorFechas);
     }//GEN-LAST:event_siguienteMouseReleased
@@ -1625,26 +1583,24 @@ public class Quinela extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         //String fase=(String)fase_combo_quinela.getSelectedItem();
-
         String fecha = fechas.get(contadorFechas);
         Partido[] partidos = new Partido[4];
         int c_aux = 0;
 
-        for(Partido i: todosLosPartidos){
-            try{
-                if(i.date.equals(fecha)){
+        for (Partido i : todosLosPartidos) {
+            try {
+                if (i.date.equals(fecha)) {
                     partidos[c_aux] = i;
                     c_aux++;
                 }
-            }
-            catch(NullPointerException e){
+            } catch (NullPointerException e) {
 
             }
 
         }
 
         for (Partido partido : partidos) {
-            if(partido!=null){
+            if (partido != null) {
                 partido.generarHeuristica();
             }
 
@@ -1659,21 +1615,20 @@ public class Quinela extends javax.swing.JFrame {
         Partido[] partidos = new Partido[4];
         int c_aux = 0;
 
-        for(Partido i: todosLosPartidos){
-            try{
-                if(i.date.equals(fecha)){
+        for (Partido i : todosLosPartidos) {
+            try {
+                if (i.date.equals(fecha)) {
                     partidos[c_aux] = i;
                     c_aux++;
                 }
-            }
-            catch(NullPointerException e){
+            } catch (NullPointerException e) {
 
             }
 
         }
 
         for (Partido partido : partidos) {
-            if(partido!=null){
+            if (partido != null) {
                 partido.generarResultado();
             }
 
@@ -1682,7 +1637,7 @@ public class Quinela extends javax.swing.JFrame {
     }//GEN-LAST:event_generarResultado_button_quinelaActionPerformed
     /*
     * BOTON GUARDAR
-    */
+     */
     private void guardar_button_quinelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardar_button_quinelaActionPerformed
         // TODO add your handling code here:
         Mundial aux = this.mundial;
@@ -1705,38 +1660,38 @@ public class Quinela extends javax.swing.JFrame {
         int cont = 0;
         for (Partido p : todosLosPartidos) {
             if (cont <= 47) {
-                
-                if (p.getGolLocal() == -1||p.getLocal().pais.equals("aux") || p.getVisita().pais.equals("aux")) {
+
+                if (p.getGolLocal() == -1 || p.getLocal().pais.equals("aux") || p.getVisita().pais.equals("aux")) {
                     grupos = false;
                     break;
                 }
                 grupos = true;
             }
             if (cont <= 55 && cont > 47) {
-                
-                if (p.getGolLocal() == -1||p.getLocal().pais.equals("aux") || p.getVisita().pais.equals("aux")) {
-                    grupos=true;
+
+                if (p.getGolLocal() == -1 || p.getLocal().pais.equals("aux") || p.getVisita().pais.equals("aux")) {
+                    grupos = true;
                     mundial.octavos = false;
                     break;
                 }
-                grupos=false;
+                grupos = false;
                 mundial.octavos = true;
             }
             if (cont <= 59 && cont > 55) {
-                
-                if (p.getGolLocal() == -1||p.getLocal().pais.equals("aux") || p.getVisita().pais.equals("aux")) {
-                    mundial.octavos=true;
+
+                if (p.getGolLocal() == -1 || p.getLocal().pais.equals("aux") || p.getVisita().pais.equals("aux")) {
+                    mundial.octavos = true;
                     mundial.cuartos = false;
                     break;
                 }
-                mundial.octavos=false;
+                mundial.octavos = false;
                 mundial.cuartos = true;
             }
             if (cont <= 61 && cont > 59) {
                 System.out.println("PARTIDO SEMIS: " + p.getLocal().pais + " VS " + p.getVisita().pais);
                 System.out.println("LLENO: " + p.getGolLocal());
                 System.out.println("CONT: " + cont);
-                if (p.getGolLocal() == -1 ||p.getLocal().pais.equals("aux") || p.getVisita().pais.equals("aux")) {
+                if (p.getGolLocal() == -1 || p.getLocal().pais.equals("aux") || p.getVisita().pais.equals("aux")) {
                     mundial.cuartos = true;
                     mundial.semis = false;
                     break;
@@ -1760,12 +1715,12 @@ public class Quinela extends javax.swing.JFrame {
             cont++;
 
         }
-        System.out.println("GRUPOS: "+grupos);
-        System.out.println("OCTAVOS: "+mundial.octavos);
-        System.out.println("CUARTOS: "+mundial.cuartos);
-        System.out.println("SEMIS: "+mundial.semis);
-        System.out.println("FINAL: "+mundial.finalMundial);
-        
+        System.out.println("GRUPOS: " + grupos);
+        System.out.println("OCTAVOS: " + mundial.octavos);
+        System.out.println("CUARTOS: " + mundial.cuartos);
+        System.out.println("SEMIS: " + mundial.semis);
+        System.out.println("FINAL: " + mundial.finalMundial);
+
         if (grupos) {
             mundial.ordenarGrupos();
             mundial.octavosDeFinal();
@@ -1791,7 +1746,7 @@ public class Quinela extends javax.swing.JFrame {
             todosLosPartidos = mundial.getTodos();
         }
         manejadorArchivos.guardarMundial(aux, todosLosPartidos, usuario_global, superUser);
-        JOptionPane.showMessageDialog(pantallas, "Se guardó correctamente!!!","ERROR!", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(pantallas, "Se guardó correctamente!!!", "ERROR!", JOptionPane.WARNING_MESSAGE);
 
     }//GEN-LAST:event_guardar_button_quinelaActionPerformed
 
@@ -1810,47 +1765,42 @@ public class Quinela extends javax.swing.JFrame {
         // TODO add your handling code here:
         String username = username_field_registrarse.getText();
         String password = password_field_registrarse.getText();
-        if(!username.equals("") && !password.equals("")){
-            if(!revisa_usuario(username)){
-                if(!username.contains(" ") && !username.contains("#") && !username.contains("-")){
-                    if(!password.contains(" ")){
+        if (!username.equals("") && !password.equals("")) {
+            if (!revisa_usuario(username)) {
+                if (!username.contains(" ") && !username.contains("#") && !username.contains("-")) {
+                    if (!password.contains(" ")) {
                         int opcion = JOptionPane.showConfirmDialog(pantallas, "Desea agregar al usuario -" + username + "- al sistema?");
-                        switch (opcion){
+                        switch (opcion) {
                             case JOptionPane.YES_OPTION:
-                            if(manejadorArchivos.crear_carpeta("archivos/" + username) == 0){
-                                manejadorArchivos.asignarMundial(this.mundial,username,"",password);
+                                if (manejadorArchivos.crear_carpeta("archivos/" + username) == 0) {
+                                    manejadorArchivos.asignarMundial(this.mundial, username, "", password);
 
-                                escribir("archivos/usuarios.txt", "#" + username + "-" + password);
-                                JOptionPane.showMessageDialog(pantallas,"Se agregó a -" + username + "- al sistema!");
-                                username_field_login.setText(username);
-                                password_field_login.setText(password);
-                                pantallas.setSelectedIndex(0);
-                                username_field_registrarse.setText("");
-                                password_field_registrarse.setText("");
-                            }
-                            else{
-                                JOptionPane.showMessageDialog(pantallas, "Ocurrio un Error!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
-                                break;
-                            }
+                                    escribir("archivos/usuarios.txt", "#" + username + "-" + password);
+                                    JOptionPane.showMessageDialog(pantallas, "Se agregó a -" + username + "- al sistema!");
+                                    username_field_login.setText(username);
+                                    password_field_login.setText(password);
+                                    pantallas.setSelectedIndex(0);
+                                    username_field_registrarse.setText("");
+                                    password_field_registrarse.setText("");
+                                } else {
+                                    JOptionPane.showMessageDialog(pantallas, "Ocurrio un Error!!!", "ERROR!", JOptionPane.ERROR_MESSAGE);
+                                    break;
+                                }
                             case JOptionPane.NO_OPTION:
-                            break;
+                                break;
                         }
+                    } else {
+                        JOptionPane.showMessageDialog(pantallas, "Esta Contraseña contiene Caractéres Inválidos (ESPACIO)!!!", "ERROR!", JOptionPane.WARNING_MESSAGE);
                     }
-                    else{
-                        JOptionPane.showMessageDialog(pantallas, "Esta Contraseña contiene Caractéres Inválidos (ESPACIO)!!!","ERROR!", JOptionPane.WARNING_MESSAGE);
-                    }
+                } else {
+                    JOptionPane.showMessageDialog(pantallas, "Este Usuario contiene Caractéres Inválidos (# o - o ESPACIO)!!!", "ERROR!", JOptionPane.WARNING_MESSAGE);
                 }
-                else{
-                    JOptionPane.showMessageDialog(pantallas, "Este Usuario contiene Caractéres Inválidos (# o - o ESPACIO)!!!","ERROR!", JOptionPane.WARNING_MESSAGE);
-                }
-            }
-            else {
-                JOptionPane.showMessageDialog(pantallas, "Este Nombre de Usuario ya existe, prueba con otro!!!","ERROR!", JOptionPane.WARNING_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(pantallas, "Este Nombre de Usuario ya existe, prueba con otro!!!", "ERROR!", JOptionPane.WARNING_MESSAGE);
             }
 
-        }
-        else{
-            JOptionPane.showMessageDialog(pantallas, "Debe escribir un Usuario y una Constraseña!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(pantallas, "Debe escribir un Usuario y una Constraseña!!!", "ERROR!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_registrar_button_registrarseActionPerformed
 
@@ -1861,10 +1811,10 @@ public class Quinela extends javax.swing.JFrame {
 
     private void mostrar_button_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrar_button_loginActionPerformed
         // TODO add your handling code here:
-        if(estado_password == 0){
-            password_field_login.setEchoChar((char)0);
+        if (estado_password == 0) {
+            password_field_login.setEchoChar((char) 0);
             estado_password = 1;
-        }else{
+        } else {
             password_field_login.setEchoChar('*');
             estado_password = 0;
         }
@@ -1879,31 +1829,29 @@ public class Quinela extends javax.swing.JFrame {
         String username = username_field_login.getText();
         String password = String.valueOf(password_field_login.getPassword());
 
-        if(!username.equals("") && !password.equals("")){
-            if(encontrar_usuario(username, password, false)){
+        if (!username.equals("") && !password.equals("")) {
+            if (encontrar_usuario(username, password, false)) {
                 usuario_global = username;
                 System.out.println("Se encuentra el usuario");
-                Mundial guardado=manejadorArchivos.buscarMundial(username, false);
-                int cont=0;
+                Mundial guardado = manejadorArchivos.buscarMundial(username, false);
+                int cont = 0;
                 for (Partido p : todosLosPartidos) {
                     p.setGolLocal(guardado.getTodos().get(cont).getGolLocal());
                     p.setGolVisita(guardado.getTodos().get(cont).getGolVisita());
                     cont++;
                 }
-                System.out.println("GUARDADA: "+this.mundial.getTodos().get(0).getGolLocal());
+                System.out.println("GUARDADA: " + this.mundial.getTodos().get(0).getGolLocal());
                 cambiarQuinela();
 
                 pantallas.setSelectedIndex(2);
                 username_field_login.setText("");
                 password_field_login.setText("");
                 sumar_button.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(pantallas, "No se encontro a este usuario!!!", "ERROR!", JOptionPane.ERROR_MESSAGE);
             }
-            else{
-                JOptionPane.showMessageDialog(pantallas, "No se encontro a este usuario!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        else{
-            JOptionPane.showMessageDialog(pantallas, "Debe escribir un Usuario y una Constraseña!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(pantallas, "Debe escribir un Usuario y una Constraseña!!!", "ERROR!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_acceder_button_loginActionPerformed
 
@@ -1924,15 +1872,15 @@ public class Quinela extends javax.swing.JFrame {
         area_ranking.setText("");
         String todo = "";
         int c = 0;
-        for(String i : data){
-            if(!i.equals(""))
+        for (String i : data) {
+            if (!i.equals("")) {
                 todo += c + ") " + i + " pts\n";
+            }
             c++;
         }
-        if(!todo.equals("")){
+        if (!todo.equals("")) {
             area_ranking.append(todo);
-        }
-        else{
+        } else {
             area_ranking.append("Sin informacion por el momento!");
         }
         pantallas.setSelectedIndex(5);
@@ -1940,14 +1888,14 @@ public class Quinela extends javax.swing.JFrame {
 
     private void quienela_rankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quienela_rankingActionPerformed
         // TODO add your handling code here:
-        Mundial guardado=manejadorArchivos.buscarMundial(usuario_global, superUser);
-        int cont=0;
+        Mundial guardado = manejadorArchivos.buscarMundial(usuario_global, superUser);
+        int cont = 0;
         for (Partido p : todosLosPartidos) {
             p.setGolLocal(guardado.getTodos().get(cont).getGolLocal());
             p.setGolVisita(guardado.getTodos().get(cont).getGolVisita());
             cont++;
         }
-        System.out.println("GUARDADA: "+this.mundial.getTodos().get(0).getGolLocal());
+        System.out.println("GUARDADA: " + this.mundial.getTodos().get(0).getGolLocal());
         cambiarQuinela();
         pantallas.setSelectedIndex(2);
     }//GEN-LAST:event_quienela_rankingActionPerformed
@@ -1962,7 +1910,7 @@ public class Quinela extends javax.swing.JFrame {
         // TODO add your handling code here:
         Mundial aux = this.mundial;
         generarRanking(aux);
-        JOptionPane.showMessageDialog(pantallas, "Se realizo la sumatoria correctamente!!!","SUMATORIA", JOptionPane.OK_OPTION);
+        JOptionPane.showMessageDialog(pantallas, "Se realizo la sumatoria correctamente!!!", "SUMATORIA", JOptionPane.OK_OPTION);
     }//GEN-LAST:event_sumar_buttonActionPerformed
 
     private void combo1_1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo1_1ItemStateChanged
@@ -1990,7 +1938,7 @@ public class Quinela extends javax.swing.JFrame {
         }else{
             ganador_combo_1.setVisible(false);
         }*/
-        
+
     }//GEN-LAST:event_combo1_1ItemStateChanged
 
     private void combo2_1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo2_1ItemStateChanged
@@ -2098,7 +2046,7 @@ public class Quinela extends javax.swing.JFrame {
 
     private void combo2_3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo2_3ItemStateChanged
         // TODO add your handling code here:
-       /* String fecha = fecha_1.getText();
+        /* String fecha = fecha_1.getText();
         int selected = combo1_3.getSelectedIndex();
         int selected2 = combo2_3.getSelectedIndex();
         
@@ -2170,40 +2118,37 @@ public class Quinela extends javax.swing.JFrame {
             ganador_combo_4.setVisible(false);
         }*/
     }//GEN-LAST:event_combo2_4ItemStateChanged
- 
-    
-    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    private void escribir(String ruta, String data){
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    private void escribir(String ruta, String data) {
         String info = manejadorArchivos.leer(ruta);
         int escribir = manejadorArchivos.escribir(ruta, info + data);
 
-        if(escribir == 1){
+        if (escribir == 1) {
             JOptionPane.showMessageDialog(pantallas, "Ocurrio un error, intente de nuevo!!!!");
         }
     }
 
-    private Boolean encontrar_usuario(String username, String password, Boolean admin){
+    private Boolean encontrar_usuario(String username, String password, Boolean admin) {
         String todos;
-        if(!admin){
+        if (!admin) {
             todos = manejadorArchivos.leer("archivos/usuarios.txt");
-        }
-        else{
+        } else {
             todos = manejadorArchivos.leer("archivos/admins.txt");
         }
         String[] usuarios = todos.split("#");
         String[] datos;
 
-        for(String usuario : usuarios){
-            if(!usuario.equals("")){
+        for (String usuario : usuarios) {
+            if (!usuario.equals("")) {
                 datos = usuario.split("-");
-                if(datos[0].equals(username) && datos[1].equals(password)){
+                if (datos[0].equals(username) && datos[1].equals(password)) {
                     return true;
                 }
             }
@@ -2211,24 +2156,25 @@ public class Quinela extends javax.swing.JFrame {
         return false;
     }
 
-    private Boolean revisa_usuario(String username){
+    private Boolean revisa_usuario(String username) {
         String todos = manejadorArchivos.leer("archivos/usuarios.txt");
         String[] usuarios = todos.split("#");
         String[] datos;
 
-        for(String usuario : usuarios){
-            if(!usuario.equals("")){
+        for (String usuario : usuarios) {
+            if (!usuario.equals("")) {
                 datos = usuario.split("-");
-                if(datos[0].equals(username)){
+                if (datos[0].equals(username)) {
                     return true;
                 }
             }
         }
         return false;
     }
-    private void cerrar_sesion(){
+
+    private void cerrar_sesion() {
         int opcion = JOptionPane.showConfirmDialog(pantallas, "Desea cerrar la sesión activa?");
-        switch (opcion){
+        switch (opcion) {
             case JOptionPane.YES_OPTION:
                 usuario_global = null;
                 superUser = false;
@@ -2246,8 +2192,7 @@ public class Quinela extends javax.swing.JFrame {
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    
-             
+
     /**
      * @param args the command line arguments
      */
