@@ -16,6 +16,24 @@ public class ManejadorArchivos {
     ManejadorArchivos(){
 
     }
+    
+    public String archivosEn(String ruta){
+        File f = new File(ruta);
+        if(f.exists()){
+            File[] archivos = f.listFiles();
+            String todos = "";
+            for(File i: archivos){
+                if(!i.getName().equals("administrativo") && !i.getName().contains(".")){
+                    todos += i.getName();
+                }
+            }
+            System.out.println(todos);
+            return todos;
+        }
+        else{
+            return "1";
+        }
+    }
 
     public String leer(String ruta){
         try{
