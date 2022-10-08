@@ -99,6 +99,7 @@ public class Quinela extends javax.swing.JFrame {
         }
     }
     
+    
     private void cambiarQuinela(){
         if(this.contadorFechas < 0){
             this.contadorFechas = 21;
@@ -157,6 +158,7 @@ public class Quinela extends javax.swing.JFrame {
                         ganador_combo_1.removeAllItems();
                         ganador_combo_1.addItem(j.getLocal().pais);
                         ganador_combo_1.addItem(j.getVisita().pais);
+                        JOptionPane.showMessageDialog(pantallas, "Resuleva los conflictos de igualdad en " + j.getLocal().pais + " VS " + j.getVisita().pais,"ERROR DE IGUALDAD!", JOptionPane.ERROR_MESSAGE);
                     }else{
                             ganador_combo_1.setVisible(false);
                         }
@@ -181,6 +183,7 @@ public class Quinela extends javax.swing.JFrame {
                             ganador_combo_2.removeAllItems();
                             ganador_combo_2.addItem(j.getLocal().pais);
                             ganador_combo_2.addItem(j.getVisita().pais);
+                            JOptionPane.showMessageDialog(pantallas, "Resuleva los conflictos de igualdad en " + j.getLocal().pais + " VS " + j.getVisita().pais,"ERROR DE IGUALDAD!", JOptionPane.ERROR_MESSAGE);
                         } else {
                             ganador_combo_2.setVisible(false);
                         }
