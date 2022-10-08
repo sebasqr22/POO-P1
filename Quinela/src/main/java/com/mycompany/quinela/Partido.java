@@ -20,11 +20,11 @@ public class Partido implements Serializable{
     public Equipo visita;
     private Equipo ganador;
     public char grupo;
-    private int golLocal;
+    public int golLocal;
     private JComboBox<String> golLocalCB;
     private JComboBox<String> golVisitaCB;
     private JButton generarResultado;
-    private int golVisita;
+    public int golVisita;
     private boolean penales;
     public String date = "";
 

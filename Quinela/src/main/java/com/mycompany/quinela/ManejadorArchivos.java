@@ -24,11 +24,11 @@ public class ManejadorArchivos {
             String todos = "";
             for(File i: archivos){
                 if(!i.getName().equals("administrativo") && !i.getName().contains(".")){
-                    todos += i.getName();
+                    todos += i.getName() + "-";
                 }
             }
-            System.out.println(todos);
-            return todos;
+            System.out.println(todos.substring(0, todos.length()-1));
+            return todos.substring(0, todos.length()-1);
         }
         else{
             return "1";
@@ -85,6 +85,7 @@ public class ManejadorArchivos {
             if(!superUser)
                 ficheroEntrada= new FileInputStream("archivos/" + user + "/quiniela.txt");
             else{
+                System.out.println("USER NORMAL");
                 ficheroEntrada= new FileInputStream("archivos/administrativo/reales.txt");
             }
             ObjectInputStream tuberiaEntrada = new ObjectInputStream(ficheroEntrada);
@@ -132,11 +133,15 @@ public class ManejadorArchivos {
     public void asignarMundial(Mundial mundial, String username, String nombre, String password) {
         mundial.crearUsuario(username, nombre, password);
         FileOutputStream fichero = null;
+        FileOutputStream fichero2 = null;
         try {
            
              fichero = new FileOutputStream("archivos/" + username + "/quiniela.txt");
+             fichero2 = new FileOutputStream("archivos/" + username + "/ranking.txt");
            
             ObjectOutputStream tuberia = new ObjectOutputStream(fichero);
+            ObjectOutputStream tuberia2 = new ObjectOutputStream(fichero2);
+            escribir("archivos/" + username + "/ranking.txt", "0");
             tuberia.writeObject(mundial);
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();

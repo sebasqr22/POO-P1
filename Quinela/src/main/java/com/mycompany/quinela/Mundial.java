@@ -20,13 +20,13 @@ public class Mundial implements Serializable{
     private Grupo[] gruposPrimeraFase=new Grupo[8];
     public Partido[] partidosPrimeraFase = new Partido[48];
     
-    private Partido[] partidosOctavos= new Partido[8];
+    public Partido[] partidosOctavos= new Partido[8];
     private Equipo[] ganadoresOctavos= new Equipo[8];
     
-    private Partido[] partidosCuartos= new Partido[4];
+    public Partido[] partidosCuartos= new Partido[4];
     private Equipo[] ganadoresCuartos=new Equipo[4];
     
-    private Partido[] partidosSemis=new Partido[2];
+    public Partido[] partidosSemis=new Partido[2];
     private Equipo[] ganadoresSemis=new Equipo[2];
     
     public boolean octavos=false;

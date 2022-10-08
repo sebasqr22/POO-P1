@@ -171,7 +171,12 @@ public class Quinela extends javax.swing.JFrame {
                         serie = " la Final";
                     }
                     JOptionPane.showMessageDialog(pantallas, "No se encuentra infomación disponible para " + serie,"ERROR!", JOptionPane.ERROR_MESSAGE);
-                    this.contadorFechas --;
+                    if(contadorFechas == 21){
+                        contadorFechas = 0;
+                    }
+                    else{
+                       this.contadorFechas --; 
+                    }
                     cambiarQuinela();
                 }
         }
@@ -207,7 +212,60 @@ public class Quinela extends javax.swing.JFrame {
         todosLosPartidos = mundial.getTodos();
         cambiarQuinela();
         configuracionFinalizada = true;
+        ocultarPaneles();
         //mundial.partidosPrimeraFase[0].generarResultado();
+    }
+    
+    private void ordenarRanking(){
+        String data = manejadorArchivos.leer("archivos/ranking.txt");
+        String[] usuarios = data.split("#");
+    }
+    
+    private void generarRanking(Mundial mundialReal){
+        String info = manejadorArchivos.archivosEn("archivos");
+        String[] rutas = info.split("-");
+        int sumatoria = 0;
+        
+        for(String user : rutas){
+            Mundial nuevo=manejadorArchivos.buscarMundial(user, false);
+            int cont=0;
+            for (Partido p : nuevo.partidosPrimeraFase) {
+                    try{
+                        Equipo ganadorReal = mundialReal.partidosPrimeraFase[cont].getGanador();
+                        Equipo ganadorUser = nuevo.partidosPrimeraFase[cont].getGanador();
+                       
+
+                        if(ganadorReal.pais.equals(ganadorUser.pais)){
+                            sumatoria += 5;
+                        }
+
+                        int marcadorLocalReal = mundialReal.partidosPrimeraFase[cont].golLocal;
+                        int marcadorVisitaReal = mundialReal.partidosPrimeraFase[cont].golVisita;
+                        int marcadorLocalUser = nuevo.partidosPrimeraFase[cont].golLocal;
+                        int marcadorVisitaUser = nuevo.partidosPrimeraFase[cont].golLocal;
+                        
+                        System.out.println("Local --> Real: " + marcadorLocalReal + "\t Puesto: " + marcadorLocalUser);
+                        System.out.println("Visita --> Real: " + marcadorVisitaReal + "\t Puesto: " + marcadorVisitaUser);
+
+                        if(marcadorLocalReal == marcadorLocalUser && marcadorVisitaReal == marcadorVisitaUser){
+                            sumatoria += 10;
+                        }
+                        cont++;
+                    }
+                    catch(NullPointerException e){
+                        System.out.println("Se cae en contador: " + cont);
+                        System.out.println(nuevo.partidosPrimeraFase[cont]);
+                        cont ++;
+                    }
+                    
+                }
+                sumatoria += Integer.parseInt(manejadorArchivos.leer("archivos/" + user + "/ranking.txt"));
+                System.out.println("Se suma a " + user + ": " + sumatoria);
+                manejadorArchivos.escribir("archivos/" + user + "/ranking.txt", String.valueOf(sumatoria));
+                manejadorArchivos.escribir("archivos/ranking.txt", "#" + user + "-" + sumatoria);
+                sumatoria = 0;
+         
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -274,6 +332,7 @@ public class Quinela extends javax.swing.JFrame {
         siguiente = new javax.swing.JButton();
         anterior = new javax.swing.JButton();
         jornada = new javax.swing.JLabel();
+        ranking_quinela = new javax.swing.JButton();
         administrativo = new javax.swing.JPanel();
         administrativo_label_administrativo = new javax.swing.JLabel();
         username_field_administrativo = new javax.swing.JTextField();
@@ -286,6 +345,13 @@ public class Quinela extends javax.swing.JFrame {
         pantalla_administrativa = new javax.swing.JPanel();
         administrativo_label_padministrativa = new javax.swing.JLabel();
         logout_button_padministrativa = new javax.swing.JButton();
+        editar_button = new javax.swing.JButton();
+        ranking = new javax.swing.JPanel();
+        quinela_label_quinela3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        area_ranking = new javax.swing.JTextArea();
+        quienela_ranking = new javax.swing.JButton();
+        logout_ranking = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -365,7 +431,7 @@ public class Quinela extends javax.swing.JFrame {
                     .addGroup(loginLayout.createSequentialGroup()
                         .addGap(573, 573, 573)
                         .addComponent(iniciar_label)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(592, Short.MAX_VALUE))
         );
         loginLayout.setVerticalGroup(
             loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,7 +453,7 @@ public class Quinela extends javax.swing.JFrame {
                 .addComponent(mostrar_button_login)
                 .addGap(45, 45, 45)
                 .addComponent(acceder_button_login, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 513, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 403, Short.MAX_VALUE)
                 .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registrarse_button_login)
                     .addComponent(administrativo_button_login))
@@ -462,7 +528,7 @@ public class Quinela extends javax.swing.JFrame {
                     .addComponent(password_label_registrarse))
                 .addGap(90, 90, 90)
                 .addComponent(registrar_button_registrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 505, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 395, Short.MAX_VALUE)
                 .addComponent(login_button_registrarse)
                 .addContainerGap())
         );
@@ -505,6 +571,7 @@ public class Quinela extends javax.swing.JFrame {
         });
 
         panel1.setBackground(new java.awt.Color(119, 32, 32));
+        panel1.setPreferredSize(new java.awt.Dimension(430, 279));
 
         logo1_1.setText("Logo 1");
 
@@ -530,13 +597,12 @@ public class Quinela extends javax.swing.JFrame {
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
-                        .addComponent(combo1_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(combo1_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addComponent(logo1_1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(69, 69, 69)
+                        .addComponent(jLabel1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logo2_1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
@@ -653,7 +719,7 @@ public class Quinela extends javax.swing.JFrame {
                     .addGroup(panel2Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addComponent(combo1_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panel2Layout.createSequentialGroup()
                         .addComponent(logo1_2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -785,6 +851,13 @@ public class Quinela extends javax.swing.JFrame {
         jornada.setForeground(new java.awt.Color(255, 255, 255));
         jornada.setText("Fase de Grupo");
 
+        ranking_quinela.setText("Ranking");
+        ranking_quinela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ranking_quinelaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout quinelaLayout = new javax.swing.GroupLayout(quinela);
         quinela.setLayout(quinelaLayout);
         quinelaLayout.setHorizontalGroup(
@@ -805,7 +878,9 @@ public class Quinela extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(131, 131, 131)
+                .addComponent(ranking_quinela, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -831,7 +906,7 @@ public class Quinela extends javax.swing.JFrame {
             .addGroup(quinelaLayout.createSequentialGroup()
                 .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, quinelaLayout.createSequentialGroup()
-                        .addGap(0, 193, Short.MAX_VALUE)
+                        .addGap(0, 83, Short.MAX_VALUE)
                         .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(panel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(panel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -844,10 +919,15 @@ public class Quinela extends javax.swing.JFrame {
                 .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(siguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(anterior, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(quinelaLayout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(quinelaLayout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(ranking_quinela, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(67, 67, 67)
                 .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -942,7 +1022,7 @@ public class Quinela extends javax.swing.JFrame {
                 .addComponent(mostrar_button_administrativo)
                 .addGap(48, 48, 48)
                 .addComponent(acceder_button_administrativo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 516, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 406, Short.MAX_VALUE)
                 .addComponent(administrativo_button_administrativo)
                 .addGap(17, 17, 17))
         );
@@ -960,32 +1040,107 @@ public class Quinela extends javax.swing.JFrame {
             }
         });
 
+        editar_button.setText("Editar Resultados");
+        editar_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editar_buttonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pantalla_administrativaLayout = new javax.swing.GroupLayout(pantalla_administrativa);
         pantalla_administrativa.setLayout(pantalla_administrativaLayout);
         pantalla_administrativaLayout.setHorizontalGroup(
             pantalla_administrativaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pantalla_administrativaLayout.createSequentialGroup()
-                .addGap(428, 428, 428)
-                .addComponent(administrativo_label_padministrativa)
-                .addContainerGap(679, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pantalla_administrativaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(logout_button_padministrativa)
+                .addGroup(pantalla_administrativaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pantalla_administrativaLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(logout_button_padministrativa))
+                    .addGroup(pantalla_administrativaLayout.createSequentialGroup()
+                        .addGap(428, 428, 428)
+                        .addComponent(administrativo_label_padministrativa)
+                        .addGap(0, 673, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(pantalla_administrativaLayout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(editar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pantalla_administrativaLayout.setVerticalGroup(
             pantalla_administrativaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pantalla_administrativaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(administrativo_label_padministrativa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 820, Short.MAX_VALUE)
+                .addGap(176, 176, 176)
+                .addComponent(editar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 489, Short.MAX_VALUE)
                 .addComponent(logout_button_padministrativa)
                 .addGap(17, 17, 17))
         );
 
         pantallas.addTab("tab5", pantalla_administrativa);
 
-        getContentPane().add(pantallas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -31, -1, 930));
+        ranking.setBackground(new java.awt.Color(147, 25, 49));
+
+        quinela_label_quinela3.setFont(new java.awt.Font("Noto Serif Myanmar", 1, 48)); // NOI18N
+        quinela_label_quinela3.setForeground(new java.awt.Color(255, 255, 255));
+        quinela_label_quinela3.setText("Quiniela");
+
+        area_ranking.setColumns(20);
+        area_ranking.setRows(5);
+        area_ranking.setEnabled(false);
+        jScrollPane1.setViewportView(area_ranking);
+
+        quienela_ranking.setText("Quinela");
+        quienela_ranking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quienela_rankingActionPerformed(evt);
+            }
+        });
+
+        logout_ranking.setText("Logout");
+        logout_ranking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logout_rankingActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout rankingLayout = new javax.swing.GroupLayout(ranking);
+        ranking.setLayout(rankingLayout);
+        rankingLayout.setHorizontalGroup(
+            rankingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rankingLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(quinela_label_quinela3)
+                .addGap(577, 577, 577))
+            .addGroup(rankingLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(rankingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(quienela_ranking, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                    .addComponent(logout_ranking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(132, 132, 132)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(380, Short.MAX_VALUE))
+        );
+        rankingLayout.setVerticalGroup(
+            rankingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rankingLayout.createSequentialGroup()
+                .addComponent(quinela_label_quinela3)
+                .addGroup(rankingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(rankingLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(rankingLayout.createSequentialGroup()
+                        .addGap(84, 84, 84)
+                        .addComponent(quienela_ranking, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(logout_ranking, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(116, Short.MAX_VALUE))
+        );
+
+        pantallas.addTab("tab6", ranking);
+
+        getContentPane().add(pantallas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -31, -1, 820));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1406,12 +1561,16 @@ public class Quinela extends javax.swing.JFrame {
         }
         manejadorArchivos.guardarMundial(aux, todosLosPartidos, usuario_global, superUser);
         JOptionPane.showMessageDialog(pantallas, "Se guardó correctamente!!!","ERROR!", JOptionPane.WARNING_MESSAGE);
+        if(superUser){
+            generarRanking(aux);
+        }
 
     }//GEN-LAST:event_guardar_button_quinelaActionPerformed
 
     private void logout_button_quinela1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_button_quinela1ActionPerformed
         // TODO add your handling code here:
         cerrar_sesion();
+        ocultarPaneles();
     }//GEN-LAST:event_logout_button_quinela1ActionPerformed
 
     private void login_button_registrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_button_registrarseActionPerformed
@@ -1488,7 +1647,7 @@ public class Quinela extends javax.swing.JFrame {
     }//GEN-LAST:event_registrarse_button_loginActionPerformed
 
     private void acceder_button_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceder_button_loginActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here
         String username = username_field_login.getText();
         String password = String.valueOf(password_field_login.getPassword());
 
@@ -1522,6 +1681,29 @@ public class Quinela extends javax.swing.JFrame {
     private void username_field_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username_field_loginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_username_field_loginActionPerformed
+
+    private void editar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editar_buttonActionPerformed
+        // TODO add your handling code here:
+        pantallas.setSelectedIndex(2);
+    }//GEN-LAST:event_editar_buttonActionPerformed
+
+    private void ranking_quinelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ranking_quinelaActionPerformed
+        // TODO add your handling code here:
+        area_ranking.setText(manejadorArchivos.leer("archivos/ranking.txt"));
+        pantallas.setSelectedIndex(5);
+    }//GEN-LAST:event_ranking_quinelaActionPerformed
+
+    private void quienela_rankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quienela_rankingActionPerformed
+        // TODO add your handling code here:
+        cambiarQuinela();
+        pantallas.setSelectedIndex(2);
+    }//GEN-LAST:event_quienela_rankingActionPerformed
+
+    private void logout_rankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_rankingActionPerformed
+        // TODO add your handling code here:
+        cerrar_sesion();
+        ocultarPaneles();
+    }//GEN-LAST:event_logout_rankingActionPerformed
 
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -1641,6 +1823,7 @@ public class Quinela extends javax.swing.JFrame {
     private javax.swing.JLabel administrativo_label_administrativo;
     private javax.swing.JLabel administrativo_label_padministrativa;
     public javax.swing.JButton anterior;
+    public javax.swing.JTextArea area_ranking;
     public javax.swing.JComboBox<String> combo1_1;
     public javax.swing.JComboBox<String> combo1_2;
     public javax.swing.JComboBox<String> combo1_3;
@@ -1649,6 +1832,7 @@ public class Quinela extends javax.swing.JFrame {
     public javax.swing.JComboBox<String> combo2_2;
     public javax.swing.JComboBox<String> combo2_3;
     public javax.swing.JComboBox<String> combo2_4;
+    public javax.swing.JButton editar_button;
     public javax.swing.JLabel fecha_1;
     public javax.swing.JLabel fecha_2;
     public javax.swing.JLabel fecha_3;
@@ -1661,6 +1845,7 @@ public class Quinela extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jornada;
     public javax.swing.JPanel login;
     public javax.swing.JButton login_button_registrarse;
@@ -1674,6 +1859,7 @@ public class Quinela extends javax.swing.JFrame {
     public javax.swing.JLabel logo2_4;
     public javax.swing.JButton logout_button_padministrativa;
     public javax.swing.JButton logout_button_quinela1;
+    private javax.swing.JButton logout_ranking;
     public javax.swing.JRadioButton mostrar_button_administrativo;
     public javax.swing.JRadioButton mostrar_button_login;
     public java.awt.Panel panel1;
@@ -1688,8 +1874,12 @@ public class Quinela extends javax.swing.JFrame {
     public javax.swing.JLabel password_label_administrativo;
     public javax.swing.JLabel password_label_login;
     public javax.swing.JLabel password_label_registrarse;
+    public javax.swing.JButton quienela_ranking;
     public javax.swing.JPanel quinela;
     public javax.swing.JLabel quinela_label_quinela1;
+    public javax.swing.JLabel quinela_label_quinela3;
+    public javax.swing.JPanel ranking;
+    public javax.swing.JButton ranking_quinela;
     private javax.swing.JPanel registrar;
     public javax.swing.JButton registrar_button_registrarse;
     public javax.swing.JButton registrarse_button_login;
