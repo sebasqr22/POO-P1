@@ -76,12 +76,14 @@ public class Quinela extends javax.swing.JFrame {
         }
         
         c_aux = 0;
+        boolean entro = false;
         for(Partido j : partidosAux){
             if(j != null){
                String local = j.local.pais.replace(" ", "_").replace("ñ", "n");
                 String visita = j.visita.pais.replace(" ", "_").replace("ñ", "n");
                 ImageIcon image1 = new ImageIcon("imagenes/escudos/" + local + ".png");
                 ImageIcon image2 = new ImageIcon("imagenes/escudos/" + visita + ".png");
+                entro = true;
 
                 if(c_aux == 0){
                     fecha_1.setText(j.date);
@@ -154,28 +156,29 @@ public class Quinela extends javax.swing.JFrame {
             }
             
         }
+        if(!entro){
+            if(configuracionFinalizada && contadorFechas > 12){
+                    String serie = "";
+                    if(fecha.equals("03-12-2022") || fecha.equals("04-12-2022") || fecha.equals("05-12-2022") || fecha.equals("06-12-2022")){
+                        serie = "Octavos de Final";
+                    }
+                    else if(fecha.equals("09-12-2022") || fecha.equals("10-12-2022")){
+                        serie = "Cuartos de Final";
+                    }
+                    else if(fecha.equals("13-12-2022") || fecha.equals("14-12-2022")){
+                        serie = "Semifinales";
+                    }
+                    else{
+                        serie = " la Final";
+                    }
+                    JOptionPane.showMessageDialog(pantallas, "No se encuentra infomación disponible para " + serie,"ERROR!", JOptionPane.ERROR_MESSAGE);
+                    this.contadorFechas = 0;
+                    cambiarQuinela();
+                }
+        }
         
         
     }
-    
-    private void crear_lista_goles(int maximo){
-        for(int i=0; i<=maximo; i++){
-            //resultado1_combo_quinela.addItem(String.valueOf(i));
-            //resultado2_combo_quinela.addItem(String.valueOf(i));
-        }
-    }
-
-    private void crear_fases(){
-        //fase_combo_quinela.removeAllItems();
-        for(String fase : fases){
-           // fase_combo_quinela.addItem(fase);
-        }
-        //grupo_combo_quinela.removeAllItems();
-        for(String i : grupos){
-            //grupo_combo_quinela.addItem(i);
-        }
-    }
-
     private void set_partidos_grupos(String grupo){
        // partido_combo_quinela.removeAllItems();
         for(Partido partido : mundial.partidosPrimeraFase){
@@ -190,14 +193,6 @@ public class Quinela extends javax.swing.JFrame {
 
         }
     }
-
-    private void cambiar_escudos(String e1, String e2){
-        ImageIcon image1 = new ImageIcon("imagenes/escudos/" + e1 + ".png");
-        ImageIcon image2 = new ImageIcon("imagenes/escudos/" + e2 + ".png");
-        //escudo1.setIcon(image1);
-        //escudo2.setIcon(image2);
-    }
-
     private void seleccionar_escudos(String partido){
         if(partido != null){
             String[] equipos = partido.split("-");
@@ -218,16 +213,6 @@ public class Quinela extends javax.swing.JFrame {
         //mundial.cuartosDeFinal();
         //mundial.finalMundial();
         initComponents();
-    
-        cambiar_escudos("senegal", "paises_bajos");
-        ImageIcon logo = new ImageIcon("imagenes/escudos/costa_rica.png");
-        ImageIcon logo2 = new ImageIcon("imagenes/escudos/alemania.png");
-        //borrar_resultados();
-        logo1_1.setIcon(logo);
-        logo2_1.setIcon(logo2);
-        logo1_3.setIcon(logo);
-        crear_lista_goles(15);
-        crear_fases();
         for (Partido partido : mundial.partidosPrimeraFase) {
             partido.setGenerarResultado(generarResultado_button_quinela);
         }
@@ -412,7 +397,7 @@ public class Quinela extends javax.swing.JFrame {
                 .addComponent(mostrar_button_login)
                 .addGap(45, 45, 45)
                 .addComponent(acceder_button_login, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 455, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 476, Short.MAX_VALUE)
                 .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registrarse_button_login)
                     .addComponent(administrativo_button_login))
@@ -487,7 +472,7 @@ public class Quinela extends javax.swing.JFrame {
                     .addComponent(password_label_registrarse))
                 .addGap(90, 90, 90)
                 .addComponent(registrar_button_registrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 447, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 468, Short.MAX_VALUE)
                 .addComponent(login_button_registrarse)
                 .addContainerGap())
         );
@@ -848,7 +833,7 @@ public class Quinela extends javax.swing.JFrame {
             .addGroup(quinelaLayout.createSequentialGroup()
                 .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, quinelaLayout.createSequentialGroup()
-                        .addGap(0, 135, Short.MAX_VALUE)
+                        .addGap(0, 156, Short.MAX_VALUE)
                         .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(panel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(panel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -957,7 +942,7 @@ public class Quinela extends javax.swing.JFrame {
                 .addComponent(mostrar_button_administrativo)
                 .addGap(54, 54, 54)
                 .addComponent(acceder_button_administrativo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 452, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 473, Short.MAX_VALUE)
                 .addComponent(administrativo_button_administrativo)
                 .addGap(17, 17, 17))
         );
@@ -993,7 +978,7 @@ public class Quinela extends javax.swing.JFrame {
             .addGroup(pantalla_administrativaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(administrativo_label_padministrativa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 762, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 783, Short.MAX_VALUE)
                 .addComponent(logout_button_padministrativa)
                 .addGap(17, 17, 17))
         );
@@ -1004,13 +989,16 @@ public class Quinela extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(pantallas, javax.swing.GroupLayout.PREFERRED_SIZE, 1349, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pantallas)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pantallas)
+                .addContainerGap())
         );
 
         pack();
@@ -1649,72 +1637,72 @@ public class Quinela extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton acceder_button_administrativo;
-    private javax.swing.JButton acceder_button_login;
+    public javax.swing.JButton acceder_button_administrativo;
+    public javax.swing.JButton acceder_button_login;
     private javax.swing.JPanel administrativo;
     private javax.swing.JToggleButton administrativo_button_administrativo;
     private javax.swing.JToggleButton administrativo_button_login;
     private javax.swing.JLabel administrativo_label_administrativo;
     private javax.swing.JLabel administrativo_label_padministrativa;
-    private javax.swing.JButton anterior;
-    private javax.swing.JComboBox<String> combo1_1;
-    private javax.swing.JComboBox<String> combo1_2;
-    private javax.swing.JComboBox<String> combo1_3;
-    private javax.swing.JComboBox<String> combo1_4;
-    private javax.swing.JComboBox<String> combo2_1;
-    private javax.swing.JComboBox<String> combo2_2;
-    private javax.swing.JComboBox<String> combo2_3;
-    private javax.swing.JComboBox<String> combo2_4;
-    private javax.swing.JLabel fecha_1;
-    private javax.swing.JLabel fecha_2;
-    private javax.swing.JLabel fecha_3;
-    private javax.swing.JLabel fecha_4;
+    public javax.swing.JButton anterior;
+    public javax.swing.JComboBox<String> combo1_1;
+    public javax.swing.JComboBox<String> combo1_2;
+    public javax.swing.JComboBox<String> combo1_3;
+    public javax.swing.JComboBox<String> combo1_4;
+    public javax.swing.JComboBox<String> combo2_1;
+    public javax.swing.JComboBox<String> combo2_2;
+    public javax.swing.JComboBox<String> combo2_3;
+    public javax.swing.JComboBox<String> combo2_4;
+    public javax.swing.JLabel fecha_1;
+    public javax.swing.JLabel fecha_2;
+    public javax.swing.JLabel fecha_3;
+    public javax.swing.JLabel fecha_4;
     private javax.swing.JButton generarResultado_button_quinela;
-    private javax.swing.JButton guardar_button_quinela;
+    public javax.swing.JButton guardar_button_quinela;
     private javax.swing.JLabel iniciar_label;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel login;
-    private javax.swing.JButton login_button_registrarse;
-    private javax.swing.JLabel logo1_1;
-    private javax.swing.JLabel logo1_2;
-    private javax.swing.JLabel logo1_3;
-    private javax.swing.JLabel logo1_4;
-    private javax.swing.JLabel logo2_1;
-    private javax.swing.JLabel logo2_2;
-    private javax.swing.JLabel logo2_3;
-    private javax.swing.JLabel logo2_4;
-    private javax.swing.JButton logout_button_padministrativa;
-    private javax.swing.JButton logout_button_quinela1;
-    private javax.swing.JRadioButton mostrar_button_administrativo;
-    private javax.swing.JRadioButton mostrar_button_login;
-    private java.awt.Panel panel1;
-    private java.awt.Panel panel2;
-    private java.awt.Panel panel3;
-    private java.awt.Panel panel4;
+    public javax.swing.JPanel login;
+    public javax.swing.JButton login_button_registrarse;
+    public javax.swing.JLabel logo1_1;
+    public javax.swing.JLabel logo1_2;
+    public javax.swing.JLabel logo1_3;
+    public javax.swing.JLabel logo1_4;
+    public javax.swing.JLabel logo2_1;
+    public javax.swing.JLabel logo2_2;
+    public javax.swing.JLabel logo2_3;
+    public javax.swing.JLabel logo2_4;
+    public javax.swing.JButton logout_button_padministrativa;
+    public javax.swing.JButton logout_button_quinela1;
+    public javax.swing.JRadioButton mostrar_button_administrativo;
+    public javax.swing.JRadioButton mostrar_button_login;
+    public java.awt.Panel panel1;
+    public java.awt.Panel panel2;
+    public java.awt.Panel panel3;
+    public java.awt.Panel panel4;
     private javax.swing.JPanel pantalla_administrativa;
-    private javax.swing.JTabbedPane pantallas;
-    private javax.swing.JPasswordField password_field_administrativo;
-    private javax.swing.JPasswordField password_field_login;
-    private javax.swing.JTextField password_field_registrarse;
-    private javax.swing.JLabel password_label_administrativo;
-    private javax.swing.JLabel password_label_login;
-    private javax.swing.JLabel password_label_registrarse;
-    private javax.swing.JPanel quinela;
-    private javax.swing.JLabel quinela_label_quinela1;
+    public javax.swing.JTabbedPane pantallas;
+    public javax.swing.JPasswordField password_field_administrativo;
+    public javax.swing.JPasswordField password_field_login;
+    public javax.swing.JTextField password_field_registrarse;
+    public javax.swing.JLabel password_label_administrativo;
+    public javax.swing.JLabel password_label_login;
+    public javax.swing.JLabel password_label_registrarse;
+    public javax.swing.JPanel quinela;
+    public javax.swing.JLabel quinela_label_quinela1;
     private javax.swing.JPanel registrar;
-    private javax.swing.JButton registrar_button_registrarse;
-    private javax.swing.JButton registrarse_button_login;
-    private javax.swing.JLabel registrarse_label_registrarse;
-    private javax.swing.JButton siguiente;
-    private javax.swing.JTextField username_field_administrativo;
-    private javax.swing.JTextField username_field_login;
-    private javax.swing.JTextField username_field_registrarse;
-    private javax.swing.JLabel username_label_administrativo;
-    private javax.swing.JLabel username_label_login;
-    private javax.swing.JLabel username_label_registrarse;
+    public javax.swing.JButton registrar_button_registrarse;
+    public javax.swing.JButton registrarse_button_login;
+    public javax.swing.JLabel registrarse_label_registrarse;
+    public javax.swing.JButton siguiente;
+    public javax.swing.JTextField username_field_administrativo;
+    public javax.swing.JTextField username_field_login;
+    public javax.swing.JTextField username_field_registrarse;
+    public javax.swing.JLabel username_label_administrativo;
+    public javax.swing.JLabel username_label_login;
+    public javax.swing.JLabel username_label_registrarse;
     // End of variables declaration//GEN-END:variables
 }
