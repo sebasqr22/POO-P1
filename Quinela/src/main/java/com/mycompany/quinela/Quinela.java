@@ -24,6 +24,7 @@ public class Quinela extends javax.swing.JFrame {
     int estado_password = 0;
     private String usuario_global;
     boolean configuracionFinalizada = false;
+    boolean superUser = false;
     ManejadorArchivos manejadorArchivos = new ManejadorArchivos();
     String[] fases = {"Fase de Grupos", "8vos de Final", "4tos de Final", "Semifinal", "Final"};
     String[] grupos = {"A", "B", "C", "D", "E", "F", "G", "H"};
@@ -170,7 +171,7 @@ public class Quinela extends javax.swing.JFrame {
                         serie = " la Final";
                     }
                     JOptionPane.showMessageDialog(pantallas, "No se encuentra infomación disponible para " + serie,"ERROR!", JOptionPane.ERROR_MESSAGE);
-                    this.contadorFechas = 0;
+                    this.contadorFechas --;
                     cambiarQuinela();
                 }
         }
@@ -914,13 +915,13 @@ public class Quinela extends javax.swing.JFrame {
                 .addGap(282, 282, 282))
             .addGroup(administrativoLayout.createSequentialGroup()
                 .addGroup(administrativoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(administrativo_button_administrativo)
                     .addGroup(administrativoLayout.createSequentialGroup()
-                        .addGap(425, 425, 425)
+                        .addGap(529, 529, 529)
                         .addComponent(administrativo_label_administrativo))
                     .addGroup(administrativoLayout.createSequentialGroup()
-                        .addGap(457, 457, 457)
-                        .addComponent(acceder_button_administrativo, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(administrativo_button_administrativo))
+                        .addGap(545, 545, 545)
+                        .addComponent(acceder_button_administrativo, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         administrativoLayout.setVerticalGroup(
@@ -938,9 +939,9 @@ public class Quinela extends javax.swing.JFrame {
                     .addComponent(password_label_administrativo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mostrar_button_administrativo)
-                .addGap(54, 54, 54)
+                .addGap(48, 48, 48)
                 .addComponent(acceder_button_administrativo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 473, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 479, Short.MAX_VALUE)
                 .addComponent(administrativo_button_administrativo)
                 .addGap(17, 17, 17))
         );
@@ -1033,6 +1034,16 @@ public class Quinela extends javax.swing.JFrame {
                 pantallas.setSelectedIndex(4);
                 username_field_administrativo.setText("");
                 password_field_administrativo.setText("");
+                superUser = true;
+                Mundial guardado=manejadorArchivos.buscarMundial(username, true);
+                int cont=0;
+                for (Partido p : todosLosPartidos) {
+                    p.setGolLocal(guardado.getTodos().get(cont).getGolLocal());
+                    p.setGolVisita(guardado.getTodos().get(cont).getGolVisita());
+                    cont++;
+                }
+                System.out.println("GUARDADA: "+this.mundial.getTodos().get(0).getGolLocal());
+                cambiarQuinela();
             }
             else{
                 JOptionPane.showMessageDialog(pantallas, "Este Administrador no Existe!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
@@ -1301,7 +1312,6 @@ public class Quinela extends javax.swing.JFrame {
     */
     private void guardar_button_quinelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardar_button_quinelaActionPerformed
         // TODO add your handling code here:
-
         Mundial aux = this.mundial;
         for (Partido p : todosLosPartidos) {
             p.resultadoTemp();
@@ -1407,8 +1417,9 @@ public class Quinela extends javax.swing.JFrame {
             todosLosPartidos.clear();
             todosLosPartidos = mundial.getTodos();
         }
+        manejadorArchivos.guardarMundial(aux, todosLosPartidos, usuario_global, superUser);
+        JOptionPane.showMessageDialog(pantallas, "Se guardó correctamente!!!","ERROR!", JOptionPane.WARNING_MESSAGE);
 
-        manejadorArchivos.guardarMundial(aux, todosLosPartidos, usuario_global);
     }//GEN-LAST:event_guardar_button_quinelaActionPerformed
 
     private void logout_button_quinela1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout_button_quinela1ActionPerformed
@@ -1498,7 +1509,7 @@ public class Quinela extends javax.swing.JFrame {
             if(encontrar_usuario(username, password, false)){
                 usuario_global = username;
                 System.out.println("Se encuentra el usuario");
-                Mundial guardado=manejadorArchivos.buscarMundial(username);
+                Mundial guardado=manejadorArchivos.buscarMundial(username, false);
                 int cont=0;
                 for (Partido p : todosLosPartidos) {
                     p.setGolLocal(guardado.getTodos().get(cont).getGolLocal());

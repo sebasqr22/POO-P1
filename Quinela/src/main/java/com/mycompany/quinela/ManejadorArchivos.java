@@ -59,12 +59,16 @@ public class ManejadorArchivos {
         }
     }
     
-    public Mundial buscarMundial(String user){
+    public Mundial buscarMundial(String user, boolean superUser){
         Mundial m=null;
         FileInputStream ficheroEntrada=null;
         
         try{
-            ficheroEntrada= new FileInputStream("archivos/" + user + "/quiniela.txt");
+            if(!superUser)
+                ficheroEntrada= new FileInputStream("archivos/" + user + "/quiniela.txt");
+            else{
+                ficheroEntrada= new FileInputStream("archivos/administrativo/reales.txt");
+            }
             ObjectInputStream tuberiaEntrada = new ObjectInputStream(ficheroEntrada);
             m=(Mundial)tuberiaEntrada.readObject();
         }catch(FileNotFoundException ex){
@@ -79,11 +83,17 @@ public class ManejadorArchivos {
         return m;
     }
     
-    public void guardarMundial(Mundial mundial,ArrayList<Partido> todos,String user){
+    public void guardarMundial(Mundial mundial,ArrayList<Partido> todos,String user, boolean superUser){
+        
         
         FileOutputStream fichero = null;
         try {
-            fichero = new FileOutputStream("archivos/" + user + "/quiniela.txt",false);
+            if(!superUser)
+                fichero = new FileOutputStream("archivos/" + user + "/quiniela.txt",false);
+           
+            else{
+                fichero = new FileOutputStream("archivos/administrativo/reales.txt",false);
+            }
             
             ObjectOutputStream tuberia = new ObjectOutputStream(fichero);
             tuberia.writeObject(mundial);
@@ -105,7 +115,9 @@ public class ManejadorArchivos {
         mundial.crearUsuario(username, nombre, password);
         FileOutputStream fichero = null;
         try {
-            fichero = new FileOutputStream("archivos/" + username + "/quiniela.txt");
+           
+             fichero = new FileOutputStream("archivos/" + username + "/quiniela.txt");
+           
             ObjectOutputStream tuberia = new ObjectOutputStream(fichero);
             tuberia.writeObject(mundial);
         } catch (FileNotFoundException ex) {

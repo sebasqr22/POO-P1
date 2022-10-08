@@ -1294,15 +1294,15 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="425" max="-2" attributes="0"/>
+                          <Component id="administrativo_button_administrativo" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="529" max="-2" attributes="0"/>
                               <Component id="administrativo_label_administrativo" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="457" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="545" max="-2" attributes="0"/>
                               <Component id="acceder_button_administrativo" min="-2" pref="197" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="administrativo_button_administrativo" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -1325,9 +1325,9 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="mostrar_button_administrativo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                       <Component id="acceder_button_administrativo" min="-2" pref="37" max="-2" attributes="0"/>
-                      <EmptySpace pref="473" max="32767" attributes="0"/>
+                      <EmptySpace pref="479" max="32767" attributes="0"/>
                       <Component id="administrativo_button_administrativo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   </Group>
