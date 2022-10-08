@@ -736,7 +736,7 @@ public class Quinela extends javax.swing.JFrame {
                                 .addComponent(logo1_1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(69, 69, 69)
                                 .addComponent(jLabel1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(logo2_1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
@@ -1074,16 +1074,16 @@ public class Quinela extends javax.swing.JFrame {
                             .addGroup(quinelaLayout.createSequentialGroup()
                                 .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(quinelaLayout.createSequentialGroup()
-                                        .addGap(80, 80, 80)
-                                        .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(ranking_quinela, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(sumar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(quinelaLayout.createSequentialGroup()
                                         .addGap(87, 87, 87)
                                         .addComponent(quinela_label_quinela1))
                                     .addGroup(quinelaLayout.createSequentialGroup()
                                         .addGap(120, 120, 120)
-                                        .addComponent(jornada)))
+                                        .addComponent(jornada))
+                                    .addGroup(quinelaLayout.createSequentialGroup()
+                                        .addGap(80, 80, 80)
+                                        .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(ranking_quinela, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(sumar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(54, 54, 54))
                             .addGroup(quinelaLayout.createSequentialGroup()
                                 .addGap(31, 31, 31)
@@ -1789,9 +1789,6 @@ public class Quinela extends javax.swing.JFrame {
         }
         manejadorArchivos.guardarMundial(aux, todosLosPartidos, usuario_global, superUser);
         JOptionPane.showMessageDialog(pantallas, "Se guardó correctamente!!!","ERROR!", JOptionPane.WARNING_MESSAGE);
-        if(superUser){
-            generarRanking(aux);
-        }
 
     }//GEN-LAST:event_guardar_button_quinelaActionPerformed
 
@@ -1960,6 +1957,9 @@ public class Quinela extends javax.swing.JFrame {
 
     private void sumar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumar_buttonActionPerformed
         // TODO add your handling code here:
+        Mundial aux = this.mundial;
+        generarRanking(aux);
+        JOptionPane.showMessageDialog(pantallas, "Se realizo la sumatoria correctamente!!!","SUMATORIA", JOptionPane.OK_OPTION);
     }//GEN-LAST:event_sumar_buttonActionPerformed
 
     private void combo1_1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo1_1ItemStateChanged
