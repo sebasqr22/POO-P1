@@ -80,6 +80,25 @@ public class Quinela extends javax.swing.JFrame {
         ganador_combo_3.setVisible(bandera);
         ganador_combo_4.setVisible(bandera);
     }
+    
+    private void setFechaGanador(String fecha){
+        if(fecha.equals("03-12-2022") || fecha.equals("04-12-2022") || fecha.equals("05-12-2022") || fecha.equals("06-12-2022")){
+           setGanadores(true);
+        }
+        else if(fecha.equals("09-12-2022") || fecha.equals("10-12-2022")){
+            setGanadores(true);
+        }
+        else if(fecha.equals("13-12-2022") || fecha.equals("14-12-2022")){
+            setGanadores(true);
+        }
+        else if(fecha.equals("18-12-2022")){
+            setGanadores(true);
+        }
+        else{
+            setGanadores(false);
+        }
+    }
+    
     private void cambiarQuinela(){
         if(this.contadorFechas < 0){
             this.contadorFechas = 21;
@@ -647,8 +666,18 @@ public class Quinela extends javax.swing.JFrame {
         jLabel1.setText("VS");
 
         combo1_1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
+        combo1_1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combo1_1ItemStateChanged(evt);
+            }
+        });
 
         combo2_1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
+        combo2_1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combo2_1ItemStateChanged(evt);
+            }
+        });
 
         ganador_1.setForeground(new java.awt.Color(255, 255, 255));
         ganador_1.setText("Ganador:");
@@ -1289,6 +1318,7 @@ public class Quinela extends javax.swing.JFrame {
                 }
                 System.out.println("GUARDADA: "+this.mundial.getTodos().get(0).getGolLocal());
                 cambiarQuinela();
+                sumar_button.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(pantallas, "Este Administrador no Existe!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
@@ -1771,6 +1801,7 @@ public class Quinela extends javax.swing.JFrame {
                 pantallas.setSelectedIndex(2);
                 username_field_login.setText("");
                 password_field_login.setText("");
+                sumar_button.setVisible(false);
             }
             else{
                 JOptionPane.showMessageDialog(pantallas, "No se encontro a este usuario!!!","ERROR!", JOptionPane.ERROR_MESSAGE);
@@ -1835,6 +1866,40 @@ public class Quinela extends javax.swing.JFrame {
     private void sumar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumar_buttonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_sumar_buttonActionPerformed
+
+    private void combo1_1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo1_1ItemStateChanged
+        // TODO add your handling code here:
+        String fecha = fecha_1.getText();
+        int selected = combo1_1.getSelectedIndex();
+        int selected2 = combo2_1.getSelectedIndex();
+        
+        if(selected == selected2){
+            setFechaGanador(fecha);
+            ganador_combo_1.removeAllItems();
+            String pais1 = logo1_1.getIcon().toString().split("/")[2];
+            String pais2 = logo2_1.getIcon().toString().split("/")[2];
+            if(pais1.equals("espana")){
+                pais1 = "España";
+            }
+            else if(pais2.equals("espana")){
+                pais2 = "España";
+            }
+            ganador_combo_1.addItem(pais1.replace("_", " "));
+            ganador_combo_1.addItem(pais2.replace("_", " "));
+        }
+        
+    }//GEN-LAST:event_combo1_1ItemStateChanged
+
+    private void combo2_1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo2_1ItemStateChanged
+        // TODO add your handling code here:
+        String fecha = fecha_1.getText();
+        int selected = combo1_1.getSelectedIndex();
+        int selected2 = combo2_1.getSelectedIndex();
+        
+        if(selected == selected2){
+            setFechaGanador(fecha);
+        }
+    }//GEN-LAST:event_combo2_1ItemStateChanged
 
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
