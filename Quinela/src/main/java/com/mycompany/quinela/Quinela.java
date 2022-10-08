@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
+import java.util.Collections;
 
 /**
  *
@@ -216,17 +217,53 @@ public class Quinela extends javax.swing.JFrame {
         //mundial.partidosPrimeraFase[0].generarResultado();
     }
     
+    private String buscarEnLista(String num, ArrayList<String> lista){
+        int contador = 0;
+        for(String i: lista){
+            System.out.println("PARTE-> " + i);
+            String[] usrs = i.split("-");
+            if(num.equals(usrs[1])){
+                lista.remove(contador);
+                return i;
+            }
+            contador ++;
+        }
+       return null;
+    }
+    
     private void ordenarRanking(){
         String data = manejadorArchivos.leer("archivos/ranking.txt");
-        String[] usuarios = data.split("#");
+        System.out.println("DAAATA---> " + data);
+        String[] usrs = data.split("#");
+        ArrayList<String> usuarios = new ArrayList<>();
+        ArrayList<String> correcta = new ArrayList<>();
+        ArrayList<Integer> ordenamiento = new ArrayList<>();
+        for(String i: usrs){
+            if(!i.equals("")){
+                String[] info = i.split("-");
+                usuarios.add(i);
+                ordenamiento.add(Integer.parseInt(info[1]));
+            }
+        }
+        Collections.sort(ordenamiento,Collections.reverseOrder());
+        for(int j:ordenamiento){
+            correcta.add(buscarEnLista(String.valueOf(j), usuarios));
+        }
+        String completo = "";
+        for(String x : correcta){
+            completo += "#" + x;
+        }
+        manejadorArchivos.escribir("archivos/ranking.txt", completo);
     }
     
     private void generarRanking(Mundial mundialReal){
         String info = manejadorArchivos.archivosEn("archivos");
         String[] rutas = info.split("-");
         int sumatoria = 0;
+        String agregar = "";
         
         for(String user : rutas){
+            System.out.println("ANALIZANDO---> "+user);
             Mundial nuevo=manejadorArchivos.buscarMundial(user, false);
             int cont=0;
             for (Partido p : nuevo.partidosPrimeraFase) {
@@ -262,10 +299,13 @@ public class Quinela extends javax.swing.JFrame {
                 sumatoria += Integer.parseInt(manejadorArchivos.leer("archivos/" + user + "/ranking.txt"));
                 System.out.println("Se suma a " + user + ": " + sumatoria);
                 manejadorArchivos.escribir("archivos/" + user + "/ranking.txt", String.valueOf(sumatoria));
-                manejadorArchivos.escribir("archivos/ranking.txt", "#" + user + "-" + sumatoria);
+                agregar += "#" + user + "-" + sumatoria;
+                
                 sumatoria = 0;
          
         }
+        manejadorArchivos.escribir("archivos/ranking.txt", agregar);
+        ordenarRanking();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1086,7 +1126,10 @@ public class Quinela extends javax.swing.JFrame {
         quinela_label_quinela3.setForeground(new java.awt.Color(255, 255, 255));
         quinela_label_quinela3.setText("Quiniela");
 
+        area_ranking.setBackground(new java.awt.Color(147, 25, 49));
         area_ranking.setColumns(20);
+        area_ranking.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        area_ranking.setForeground(new java.awt.Color(255, 255, 255));
         area_ranking.setRows(5);
         area_ranking.setEnabled(false);
         jScrollPane1.setViewportView(area_ranking);
@@ -1689,12 +1732,36 @@ public class Quinela extends javax.swing.JFrame {
 
     private void ranking_quinelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ranking_quinelaActionPerformed
         // TODO add your handling code here:
-        area_ranking.setText(manejadorArchivos.leer("archivos/ranking.txt"));
+        String info = manejadorArchivos.leer("archivos/ranking.txt");
+        System.out.println(info);
+        String[] data = info.split("#");
+        area_ranking.setText("");
+        String todo = "";
+        int c = 0;
+        for(String i : data){
+            if(!i.equals(""))
+                todo += c + ") " + i + " pts\n";
+            c++;
+        }
+        if(!todo.equals("")){
+            area_ranking.append(todo);
+        }
+        else{
+            area_ranking.append("Sin informacion por el momento!");
+        }
         pantallas.setSelectedIndex(5);
     }//GEN-LAST:event_ranking_quinelaActionPerformed
 
     private void quienela_rankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quienela_rankingActionPerformed
         // TODO add your handling code here:
+        Mundial guardado=manejadorArchivos.buscarMundial(usuario_global, superUser);
+        int cont=0;
+        for (Partido p : todosLosPartidos) {
+            p.setGolLocal(guardado.getTodos().get(cont).getGolLocal());
+            p.setGolVisita(guardado.getTodos().get(cont).getGolVisita());
+            cont++;
+        }
+        System.out.println("GUARDADA: "+this.mundial.getTodos().get(0).getGolLocal());
         cambiarQuinela();
         pantallas.setSelectedIndex(2);
     }//GEN-LAST:event_quienela_rankingActionPerformed
@@ -1764,6 +1831,8 @@ public class Quinela extends javax.swing.JFrame {
         switch (opcion){
             case JOptionPane.YES_OPTION:
                 usuario_global = null;
+                superUser = false;
+                ocultarPaneles();
                 pantallas.setSelectedIndex(0);
 
             case JOptionPane.NO_OPTION:
