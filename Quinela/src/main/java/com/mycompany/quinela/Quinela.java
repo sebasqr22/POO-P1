@@ -33,7 +33,7 @@ public class Quinela extends javax.swing.JFrame {
     ArrayList<String> fechas = mundial.fechas;
     ArrayList<java.awt.Panel> paneles= new ArrayList<>();
     ArrayList<Partido> todosLosPartidos = new ArrayList<>();
-    
+    String serie = "";
     int contadorFechas = 0;
     
     String ultimo_partido_consultado = "";
@@ -42,7 +42,7 @@ public class Quinela extends javax.swing.JFrame {
      */
     
     private void setJornada(String fecha){
-        String serie = "";
+        
 
         if(fecha.equals("03-12-2022") || fecha.equals("04-12-2022") || fecha.equals("05-12-2022") || fecha.equals("06-12-2022")){
             serie = "Octavos de Final";
@@ -148,6 +148,21 @@ public class Quinela extends javax.swing.JFrame {
                     combo1_1.setSelectedIndex(j.getGolLocal());
                     j.setResultadoVisita(combo2_1);
                     combo2_1.setSelectedIndex(j.getGolVisita());
+                    ganador_combo_1.setVisible(false);
+                    
+                    if(serie!="Fase de Grupos" && serie!=""){
+                        
+                        if(j.getGanador()==null){
+                        ganador_combo_1.setVisible(true);
+                        ganador_combo_1.removeAllItems();
+                        ganador_combo_1.addItem(j.getLocal().pais);
+                        ganador_combo_1.addItem(j.getVisita().pais);
+                    }else{
+                            ganador_combo_1.setVisible(false);
+                        }
+                    }else{
+                        ganador_combo_1.setVisible(false);
+                    }
                     c_aux++; 
                 }
                 else if(c_aux == 1){
@@ -159,6 +174,20 @@ public class Quinela extends javax.swing.JFrame {
                     combo1_2.setSelectedIndex(j.getGolLocal());
                     j.setResultadoVisita(combo2_2);
                     combo2_2.setSelectedIndex(j.getGolVisita());
+                    ganador_combo_2.setVisible(false);
+                    if (serie != "Fase de Grupos" && serie != "") {
+                        if (j.getGanador() == null) {
+                            ganador_combo_2.setVisible(true);
+                            ganador_combo_2.removeAllItems();
+                            ganador_combo_2.addItem(j.getLocal().pais);
+                            ganador_combo_2.addItem(j.getVisita().pais);
+                        } else {
+                            ganador_combo_2.setVisible(false);
+                        }
+                    } else {
+                        ganador_combo_2.setVisible(false);
+                        
+                    }
                     c_aux++; 
                 }
                 else if(c_aux == 2){
@@ -170,6 +199,10 @@ public class Quinela extends javax.swing.JFrame {
                     combo1_3.setSelectedIndex(j.getGolLocal());
                     j.setResultadoVisita(combo2_3);
                     combo2_3.setSelectedIndex(j.getGolVisita());
+                    
+                        
+                    ganador_combo_3.setVisible(false);
+                    
                     c_aux++; 
                 }
                 else{
@@ -181,6 +214,10 @@ public class Quinela extends javax.swing.JFrame {
                     combo1_4.setSelectedIndex(j.getGolLocal());
                     j.setResultadoVisita(combo2_4);
                     combo2_4.setSelectedIndex(j.getGolVisita());
+                    
+                    ganador_combo_4.setVisible(false);
+                    
+                    
                     c_aux++; 
                 }
                 setJornada(fecha);
@@ -699,7 +736,7 @@ public class Quinela extends javax.swing.JFrame {
                                 .addComponent(logo1_1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(69, 69, 69)
                                 .addComponent(jLabel1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(logo2_1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
@@ -761,9 +798,19 @@ public class Quinela extends javax.swing.JFrame {
         panel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 101, -1, -1));
 
         combo1_3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
+        combo1_3.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combo1_3ItemStateChanged(evt);
+            }
+        });
         panel3.add(combo1_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 241, -1, -1));
 
         combo2_3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
+        combo2_3.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combo2_3ItemStateChanged(evt);
+            }
+        });
         panel3.add(combo2_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(322, 241, -1, -1));
 
         ganador_3.setForeground(new java.awt.Color(255, 255, 255));
@@ -788,8 +835,18 @@ public class Quinela extends javax.swing.JFrame {
         jLabel5.setText("VS");
 
         combo1_2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
+        combo1_2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combo1_2ItemStateChanged(evt);
+            }
+        });
 
         combo2_2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
+        combo2_2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combo2_2ItemStateChanged(evt);
+            }
+        });
 
         ganador_2.setForeground(new java.awt.Color(255, 255, 255));
         ganador_2.setText("Ganador:");
@@ -875,8 +932,18 @@ public class Quinela extends javax.swing.JFrame {
         jLabel6.setText("VS");
 
         combo1_4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
+        combo1_4.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combo1_4ItemStateChanged(evt);
+            }
+        });
 
         combo2_4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
+        combo2_4.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combo2_4ItemStateChanged(evt);
+            }
+        });
 
         ganador_combo_4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -1342,7 +1409,7 @@ public class Quinela extends javax.swing.JFrame {
         String fecha = fechas.get(contadorFechas);
         Partido[] partidos = new Partido[4];
         int c_aux = 0;
-        System.out.println("FECHA QUINIELA ANT: "+fecha);
+        
         for(Partido i: todosLosPartidos){
             try{
                 if(i.date.equals(fecha)){
@@ -1363,17 +1430,29 @@ public class Quinela extends javax.swing.JFrame {
                     j.setGolVisita(combo2_1.getSelectedIndex());
                     j.resultadoTemp();
                     
-                    if(j.getGanador()!=null){
+                    /*if(serie!="Fase de Grupos" && serie!=""){
+                        if(j.getGanador()==null){
+                        ganador_combo_1.setVisible(true);
                     }
+                    }
+                    else{
+                        ganador_combo_1.setVisible(false);
+                    }*/
                     c_aux++; 
                 }
                 else if(c_aux == 1){
                     j.setGolLocal(combo1_2.getSelectedIndex());
                     j.setGolVisita(combo2_2.getSelectedIndex());
                     j.resultadoTemp();
-                    
-                    if(j.getGanador()!=null){
+                    /*
+                    if(serie!="Fase de Grupos" && serie!=""){
+                        if(j.getGanador()==null){
+                        ganador_combo_2.setVisible(true);
                     }
+                    }
+                    else{
+                        ganador_combo_2.setVisible(false);
+                    }*/
                     c_aux++; 
                 }
                 else if(c_aux == 2){
@@ -1381,8 +1460,8 @@ public class Quinela extends javax.swing.JFrame {
                     j.setGolVisita(combo2_3.getSelectedIndex());
                     j.resultadoTemp();
                     
-                    if(j.getGanador()!=null){
-                    }
+                    
+                    
                     c_aux++; 
                 }
                 else{
@@ -1390,8 +1469,7 @@ public class Quinela extends javax.swing.JFrame {
                     j.setGolVisita(combo2_4.getSelectedIndex());
                     j.resultadoTemp();
                     
-                    if(j.getGanador()!=null){
-                    }
+                   
                     c_aux++; 
                 }
             }/*
@@ -1459,8 +1537,14 @@ public class Quinela extends javax.swing.JFrame {
                     j.setGolLocal(combo1_1.getSelectedIndex());
                     j.setGolVisita(combo2_1.getSelectedIndex());
                     j.resultadoTemp();
-                    if(j.getGanador()!=null){
+                    /*if(serie!="Fase de Grupos" || serie!=""){
+                        if(j.getGanador()==null){
+                        ganador_combo_1.setVisible(true);
                     }
+                    }else{
+                        ganador_combo_1.setVisible(false);
+                    }*/
+                    
                     
                     cont++; 
                 }
@@ -1469,8 +1553,14 @@ public class Quinela extends javax.swing.JFrame {
                     j.setGolVisita(combo2_2.getSelectedIndex());
                     j.resultadoTemp();
                     
-                    if(j.getGanador()!=null){
+                    /*if(serie!="Fase de Grupos" || serie!=""){
+                        if(j.getGanador()==null){
+                        ganador_combo_2.setVisible(true);
                     }
+                    }
+                    else{
+                        ganador_combo_2.setVisible(false);
+                    }*/
                     cont++; 
                 }
                 else if(cont == 2){
@@ -1478,8 +1568,14 @@ public class Quinela extends javax.swing.JFrame {
                     j.setGolVisita(combo2_3.getSelectedIndex());
                     j.resultadoTemp();
                     
-                    if(j.getGanador()!=null){
+                    /*if(serie!="Fase de Grupos" || serie!=""){
+                        if(j.getGanador()==null){
+                        ganador_combo_3.setVisible(true);
                     }
+                    }
+                    else{
+                        ganador_combo_3.setVisible(false);
+                    }*/
                     cont++; 
                 }
                 else{
@@ -1487,8 +1583,7 @@ public class Quinela extends javax.swing.JFrame {
                     j.setGolVisita(combo2_4.getSelectedIndex());
                     j.resultadoTemp();
                     
-                    if(j.getGanador()!=null){
-                    }
+                    ganador_combo_4.setVisible(false);
                     cont++; 
                 }
             }/*
@@ -1869,12 +1964,15 @@ public class Quinela extends javax.swing.JFrame {
 
     private void combo1_1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo1_1ItemStateChanged
         // TODO add your handling code here:
+        //cambiarQuinela();
+        /*
         String fecha = fecha_1.getText();
         int selected = combo1_1.getSelectedIndex();
         int selected2 = combo2_1.getSelectedIndex();
-        
-        if(selected == selected2){
-            setFechaGanador(fecha);
+        ganador_combo_1.setVisible(false);
+        if(selected==selected2){
+            //setFechaGanador(fecha);
+            ganador_combo_1.setVisible(true);
             ganador_combo_1.removeAllItems();
             String pais1 = logo1_1.getIcon().toString().split("/")[2];
             String pais2 = logo2_1.getIcon().toString().split("/")[2];
@@ -1886,21 +1984,191 @@ public class Quinela extends javax.swing.JFrame {
             }
             ganador_combo_1.addItem(pais1.replace("_", " "));
             ganador_combo_1.addItem(pais2.replace("_", " "));
-        }
+        }else{
+            ganador_combo_1.setVisible(false);
+        }*/
         
     }//GEN-LAST:event_combo1_1ItemStateChanged
 
     private void combo2_1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo2_1ItemStateChanged
         // TODO add your handling code here:
-        String fecha = fecha_1.getText();
+        //cambiarQuinela();
+        /*String fecha = fecha_1.getText();
         int selected = combo1_1.getSelectedIndex();
         int selected2 = combo2_1.getSelectedIndex();
+        ganador_combo_1.setVisible(false);
+        if(selected == selected2){
+            setFechaGanador(fecha);
+            ganador_combo_1.setVisible(true);
+            ganador_combo_1.removeAllItems();
+            String pais1 = logo1_1.getIcon().toString().split("/")[2];
+            String pais2 = logo2_1.getIcon().toString().split("/")[2];
+            if(pais1.equals("espana")){
+                pais1 = "España";
+            }
+            else if(pais2.equals("espana")){
+                pais2 = "España";
+            }
+            ganador_combo_1.addItem(pais1.replace("_", " "));
+            ganador_combo_1.addItem(pais2.replace("_", " "));
+        }else{
+            ganador_combo_1.setVisible(false);
+        }*/
+    }//GEN-LAST:event_combo2_1ItemStateChanged
+
+    private void combo1_2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo1_2ItemStateChanged
+        // TODO add your handling code here:
+        //cambiarQuinela();
+        /*String fecha = fecha_1.getText();
+        int selected = combo1_2.getSelectedIndex();
+        int selected2 = combo2_2.getSelectedIndex();
+        ganador_combo_2.setVisible(false);
+        if(selected == selected2){
+            setFechaGanador(fecha);
+            ganador_combo_2.setVisible(true);
+            ganador_combo_2.removeAllItems();
+            String pais1 = logo1_2.getIcon().toString().split("/")[2];
+            String pais2 = logo2_2.getIcon().toString().split("/")[2];
+            if(pais1.equals("espana")){
+                pais1 = "España";
+            }
+            else if(pais2.equals("espana")){
+                pais2 = "España";
+            }
+            ganador_combo_2.addItem(pais1.replace("_", " "));
+            ganador_combo_2.addItem(pais2.replace("_", " "));
+        }else{
+            ganador_combo_2.setVisible(false);
+        }*/
+    }//GEN-LAST:event_combo1_2ItemStateChanged
+
+    private void combo2_2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo2_2ItemStateChanged
+        // TODO add your handling code here:
+        //cambiarQuinela();
+        /*String fecha = fecha_1.getText();
+        int selected = combo1_2.getSelectedIndex();
+        int selected2 = combo2_2.getSelectedIndex();
+        ganador_combo_2.setVisible(false);
+        if(selected == selected2){
+            setFechaGanador(fecha);
+            ganador_combo_2.setVisible(true);
+            ganador_combo_2.removeAllItems();
+            String pais1 = logo1_2.getIcon().toString().split("/")[2];
+            String pais2 = logo2_2.getIcon().toString().split("/")[2];
+            if(pais1.equals("espana")){
+                pais1 = "España";
+            }
+            else if(pais2.equals("espana")){
+                pais2 = "España";
+            }
+            ganador_combo_2.addItem(pais1.replace("_", " "));
+            ganador_combo_2.addItem(pais2.replace("_", " "));
+        }else{
+            ganador_combo_2.setVisible(false);
+        }*/
+    }//GEN-LAST:event_combo2_2ItemStateChanged
+
+    private void combo1_3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo1_3ItemStateChanged
+        // TODO add your handling code here:
+        /*String fecha = fecha_1.getText();
+        int selected = combo1_3.getSelectedIndex();
+        int selected2 = combo2_3.getSelectedIndex();
         
         if(selected == selected2){
             setFechaGanador(fecha);
-        }
-    }//GEN-LAST:event_combo2_1ItemStateChanged
+            ganador_combo_3.setVisible(true);
+            ganador_combo_3.removeAllItems();
+            String pais1 = logo1_3.getIcon().toString().split("/")[2];
+            String pais2 = logo2_3.getIcon().toString().split("/")[2];
+            if(pais1.equals("espana")){
+                pais1 = "España";
+            }
+            else if(pais2.equals("espana")){
+                pais2 = "España";
+            }
+            ganador_combo_3.addItem(pais1.replace("_", " "));
+            ganador_combo_3.addItem(pais2.replace("_", " "));
+        }else{
+            ganador_combo_3.setVisible(false);
+        }*/
+    }//GEN-LAST:event_combo1_3ItemStateChanged
 
+    private void combo2_3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo2_3ItemStateChanged
+        // TODO add your handling code here:
+       /* String fecha = fecha_1.getText();
+        int selected = combo1_3.getSelectedIndex();
+        int selected2 = combo2_3.getSelectedIndex();
+        
+        if(selected == selected2){
+            setFechaGanador(fecha);
+            ganador_combo_3.setVisible(true);
+            ganador_combo_3.removeAllItems();
+            String pais1 = logo1_3.getIcon().toString().split("/")[2];
+            String pais2 = logo2_3.getIcon().toString().split("/")[2];
+            if(pais1.equals("espana")){
+                pais1 = "España";
+            }
+            else if(pais2.equals("espana")){
+                pais2 = "España";
+            }
+            ganador_combo_3.addItem(pais1.replace("_", " "));
+            ganador_combo_3.addItem(pais2.replace("_", " "));
+        }else{
+            ganador_combo_3.setVisible(false);
+        }*/
+    }//GEN-LAST:event_combo2_3ItemStateChanged
+
+    private void combo1_4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo1_4ItemStateChanged
+        // TODO add your handling code here:
+        /*String fecha = fecha_1.getText();
+        int selected = combo1_4.getSelectedIndex();
+        int selected2 = combo2_4.getSelectedIndex();
+        
+        if(selected == selected2){
+            setFechaGanador(fecha);
+            ganador_combo_4.setVisible(true);
+            ganador_combo_4.removeAllItems();
+            String pais1 = logo1_4.getIcon().toString().split("/")[2];
+            String pais2 = logo2_4.getIcon().toString().split("/")[2];
+            if(pais1.equals("espana")){
+                pais1 = "España";
+            }
+            else if(pais2.equals("espana")){
+                pais2 = "España";
+            }
+            ganador_combo_4.addItem(pais1.replace("_", " "));
+            ganador_combo_4.addItem(pais2.replace("_", " "));
+        }else{
+            ganador_combo_4.setVisible(false);
+        }*/
+    }//GEN-LAST:event_combo1_4ItemStateChanged
+
+    private void combo2_4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo2_4ItemStateChanged
+        // TODO add your handling code here:
+        /*String fecha = fecha_1.getText();
+        int selected = combo1_4.getSelectedIndex();
+        int selected2 = combo2_4.getSelectedIndex();
+        
+        if(selected == selected2){
+            setFechaGanador(fecha);
+            ganador_combo_4.setVisible(true);
+            ganador_combo_4.removeAllItems();
+            String pais1 = logo1_4.getIcon().toString().split("/")[2];
+            String pais2 = logo2_4.getIcon().toString().split("/")[2];
+            if(pais1.equals("espana")){
+                pais1 = "España";
+            }
+            else if(pais2.equals("espana")){
+                pais2 = "España";
+            }
+            ganador_combo_4.addItem(pais1.replace("_", " "));
+            ganador_combo_4.addItem(pais2.replace("_", " "));
+        }else{
+            ganador_combo_4.setVisible(false);
+        }*/
+    }//GEN-LAST:event_combo2_4ItemStateChanged
+ 
+    
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
