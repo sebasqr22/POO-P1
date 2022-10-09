@@ -1371,12 +1371,6 @@ public class Quinela extends javax.swing.JFrame {
                 Mundial guardado = manejadorArchivos.buscarMundial(username, true);
                 todosLosPartidos.clear();
                 todosLosPartidos=guardado.getTodos();
-                int cont = 0;
-                for (Partido p : todosLosPartidos) {
-                    p.setGolLocal(guardado.getTodos().get(cont).getGolLocal());
-                    p.setGolVisita(guardado.getTodos().get(cont).getGolVisita());
-                    cont++;
-                }
                 System.out.println("GUARDADA: " + this.mundial.getTodos().get(0).getGolLocal());
                 cambiarQuinela();
                 sumar_button.setVisible(true);
