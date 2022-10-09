@@ -14,7 +14,7 @@ import java.util.Arrays;
  * @author sergio
  */
 public class Mundial implements Serializable{
-    private ArrayList<Partido> todosPartidos = new ArrayList<>();
+    public ArrayList<Partido> todosPartidos = new ArrayList<>();
     private ArrayList<Equipo> equipos=new ArrayList<Equipo>();
     private ArrayList<Usuario> usuarios=new ArrayList<Usuario>();
     private Grupo[] gruposPrimeraFase=new Grupo[8];
