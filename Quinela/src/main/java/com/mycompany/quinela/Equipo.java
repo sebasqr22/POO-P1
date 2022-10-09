@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author sergio
  */
-public class Equipo implements Serializable{
+public class Equipo implements Serializable , Comparable<Equipo>{
     public String pais;
     private char grupo;
     private double ranking;
@@ -65,14 +65,30 @@ public class Equipo implements Serializable{
         return golEnContra;
     }
 
+    public void setGolAFavor(int golAFavor) {
+        this.golAFavor = golAFavor;
+    }
+
+    public void setGolEnContra(int golEnContra) {
+        this.golEnContra = golEnContra;
+    }
+    
+
     public void sumarGolEnContra(int golEnContra) {
         this.golEnContra = this.golEnContra+golEnContra;
     }
     
-    
-    
     public void sumarPuntos(int puntos){
         this.puntos=this.puntos+puntos;
     }
+
+    @Override
+    public int compareTo(Equipo o) {
+        String a =new String(String.valueOf(this.getPuntos())+String.valueOf((this.golAFavor-this.golEnContra))+String.valueOf(this.golAFavor));
+        String b =new String(String.valueOf(o.getPuntos())+String.valueOf((o.golAFavor-o.golEnContra))+String.valueOf(o.golAFavor));
+        return b.compareTo(a);
+    }
+    
+    
     
 }

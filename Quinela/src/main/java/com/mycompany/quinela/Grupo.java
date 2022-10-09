@@ -41,7 +41,8 @@ public class Grupo implements Serializable{
     
     public void ordenar(Partido[] partidos){
         Equipo aux=null;
-        for(int i=0; i<equipos.size()-1;i++){
+        Collections.sort(equipos);
+        /*for(int i=0; i<equipos.size()-1;i++){
             Equipo e1=equipos.get(i);
             Equipo e2=equipos.get(i+1);
             aux=e1;
@@ -55,7 +56,7 @@ public class Grupo implements Serializable{
         });
             
             if (e1.getPuntos() == e2.getPuntos()) {
-                
+                System.out.println("PUNTOS IGUALES: "+e1.pais+": "+e1.getPuntos() +" "+e2.pais+": "+ e2.getPuntos());
                 int golDiffe1=e1.getGolAFavor() - e1.getGolEnContra();
                 int golDiffe2=e2.getGolAFavor() - e2.getGolEnContra();
                 
@@ -121,7 +122,7 @@ public class Grupo implements Serializable{
             }
             
             
-        }
+        }*/
         clasificados[0]= equipos.get(0);
         clasificados[1]=equipos.get(1);
         System.out.println("GRUPO: "+grupo);

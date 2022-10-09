@@ -82,9 +82,9 @@ public class ManejadorArchivos {
         FileInputStream ficheroEntrada=null;
         
         try{
-            if(!superUser)
+            if(!superUser){
                 ficheroEntrada= new FileInputStream("archivos/" + user + "/quiniela.txt");
-            else{
+            }else{
                 System.out.println("USER NORMAL");
                 ficheroEntrada= new FileInputStream("archivos/administrativo/reales.txt");
             }
@@ -132,6 +132,7 @@ public class ManejadorArchivos {
     
     public void asignarMundial(Mundial mundial, String username, String nombre, String password) {
         mundial.crearUsuario(username, nombre, password);
+        System.out.println("ASIGNAR: "+mundial.getTodos());
         FileOutputStream fichero = null;
         FileOutputStream fichero2 = null;
         try {

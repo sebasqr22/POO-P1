@@ -44,7 +44,6 @@ public class Quinela extends javax.swing.JFrame {
     /**
      * Creates new form Quinela
      */
-
     private void setJornada(String fecha) {
 
         if (fecha.equals("03-12-2022") || fecha.equals("04-12-2022") || fecha.equals("05-12-2022") || fecha.equals("06-12-2022")) {
@@ -141,14 +140,13 @@ public class Quinela extends javax.swing.JFrame {
                     combo1_1.setSelectedIndex(j.getGolLocal());
                     j.setResultadoVisita(combo2_1);
                     combo2_1.setSelectedIndex(j.getGolVisita());
-                    
-                    
+
                     if (contadorFechas > 12) {
                         this.partido1 = j;
                         ganador_combo_1.setVisible(true);
                         ganador_combo_1.addItem(j.getLocal().pais);
                         ganador_combo_1.addItem(j.getVisita().pais);
-                       
+
                     } else {
                         ganador_combo_1.setVisible(false);
                     }
@@ -163,13 +161,11 @@ public class Quinela extends javax.swing.JFrame {
                     combo1_2.setSelectedIndex(j.getGolLocal());
                     j.setResultadoVisita(combo2_2);
                     combo2_2.setSelectedIndex(j.getGolVisita());
-                    
-                    
-                    
+
                     if (contadorFechas > 12) {
                         this.partido2 = j;
                         ganador_combo_2.setVisible(true);
-                        
+
                         ganador_combo_2.removeAllItems();
                         ganador_combo_2.addItem(j.getLocal().pais);
                         ganador_combo_2.addItem(j.getVisita().pais);
@@ -1394,7 +1390,7 @@ public class Quinela extends javax.swing.JFrame {
                 superUser = true;
                 Mundial guardado = manejadorArchivos.buscarMundial(username, true);
                 todosLosPartidos.clear();
-                todosLosPartidos=guardado.getTodos();
+                todosLosPartidos = guardado.getTodos();
                 System.out.println("GUARDADA: " + this.mundial.getTodos().get(0).getGolLocal());
                 cambiarQuinela();
                 sumar_button.setVisible(true);
@@ -1685,44 +1681,77 @@ public class Quinela extends javax.swing.JFrame {
 
             p.getVisita().sumarGolAFavor(p.getGolVisita());
             p.getVisita().sumarGolEnContra(p.getGolLocal());
-
+            
             if (p.getGanador() != null) {
+                
                 p.getGanador().sumarPuntos(3);
             } else {
                 p.getLocal().sumarPuntos(1);
                 p.getVisita().sumarPuntos(1);
             }
+            
+                
+        }
+        for (Partido p : mundial.partidosPrimeraFase) {
+            p.getLocal().sumarPuntos(-p.getLocal().getPuntos());
+            p.getVisita().sumarPuntos(-p.getVisita().getPuntos());
+            p.getLocal().setGolAFavor(0);
+            p.getLocal().setGolEnContra(0);
+            
+            p.getVisita().setGolAFavor(0);
+            p.getVisita().setGolEnContra(0);
+            
+            System.out.println("RESET: " + p.getLocal().pais + " " + p.getLocal().getPuntos());
+            System.out.println("RESET: " + p.getVisita().pais + " " + p.getVisita().getPuntos());
         }
         boolean grupos = false;
         int cont = 0;
         for (Partido p : todosLosPartidos) {
             if (cont <= 47) {
-                   System.out.println("GOL LOCAL: " + p.getGolLocal());
+
+                
+
+                p.resultadoTemp();
+                p.getLocal().sumarGolAFavor(p.getGolLocal());
+                p.getLocal().sumarGolEnContra(p.getGolVisita());
+
+                p.getVisita().sumarGolAFavor(p.getGolVisita());
+                p.getVisita().sumarGolEnContra(p.getGolLocal());
+                System.out.println("PARTIDO: " + p.getLocal().pais + " VS " + p.getVisita().pais);
+                System.out.println("MARCADOR: " + p.getGolLocal() + " VS " + p.getGolVisita());
+                if (p.getGanador() != null) {
+
+                    p.getGanador().sumarPuntos(3);
+                } else {
+                    p.getLocal().sumarPuntos(1);
+                    p.getVisita().sumarPuntos(1);
+                }
+                System.out.println("PUNTAJE: " + p.getLocal().getPuntos() + " VS " + p.getVisita().getPuntos());
+
                 if (p.getGolLocal() == -1 || p.getLocal().pais.equals("aux") || p.getVisita().pais.equals("aux")) {
                     grupos = false;
                     break;
                 }
-                
-                
+
                 grupos = true;
             }
             if (cont <= 55 && cont > 47) {
-                   
+
                 if (p.getGolLocal() == -1 || p.getLocal().pais.equals("aux") || p.getVisita().pais.equals("aux")) {
                     grupos = true;
                     mundial.octavos = false;
                     break;
                 }
-                if(p.getGanador()==null){
+                if (p.getGanador() == null) {
                     for (Equipo e : mundial.getEquipos()) {
-                        if(e.pais==p.ganadorPenalesCB){
+                        if (e.pais == p.ganadorPenalesCB) {
                             p.setGanador(e);
                             grupos = false;
                             mundial.octavos = true;
                             break;
                         }
                     }
-                    
+
                 }
                 grupos = false;
                 mundial.octavos = true;
@@ -1734,16 +1763,16 @@ public class Quinela extends javax.swing.JFrame {
                     mundial.cuartos = false;
                     break;
                 }
-                if(p.getGanador()==null){
+                if (p.getGanador() == null) {
                     for (Equipo e : mundial.getEquipos()) {
-                        if(e.pais==p.ganadorPenalesCB){
+                        if (e.pais == p.ganadorPenalesCB) {
                             p.setGanador(e);
                             grupos = false;
                             mundial.octavos = true;
                             break;
                         }
                     }
-                    
+
                 }
                 mundial.octavos = false;
                 mundial.cuartos = true;
@@ -1757,16 +1786,16 @@ public class Quinela extends javax.swing.JFrame {
                     mundial.semis = false;
                     break;
                 }
-                if(p.getGanador()==null){
+                if (p.getGanador() == null) {
                     for (Equipo e : mundial.getEquipos()) {
-                        if(e.pais==p.ganadorPenalesCB){
+                        if (e.pais == p.ganadorPenalesCB) {
                             p.setGanador(e);
                             grupos = false;
                             mundial.octavos = true;
                             break;
                         }
                     }
-                    
+
                 }
                 mundial.cuartos = false;
                 mundial.semis = true;
@@ -1781,16 +1810,16 @@ public class Quinela extends javax.swing.JFrame {
                     mundial.finalMundial = false;
                     break;
                 }
-                if(p.getGanador()==null){
+                if (p.getGanador() == null) {
                     for (Equipo e : mundial.getEquipos()) {
-                        if(e.pais==p.ganadorPenalesCB){
+                        if (e.pais == p.ganadorPenalesCB) {
                             p.setGanador(e);
                             grupos = false;
                             mundial.octavos = true;
                             break;
                         }
                     }
-                    
+
                 }
                 mundial.semis = false;
                 mundial.finalMundial = true;
@@ -1805,6 +1834,7 @@ public class Quinela extends javax.swing.JFrame {
         System.out.println("FINAL: " + mundial.finalMundial);
 
         if (grupos) {
+
             mundial.ordenarGrupos();
             mundial.octavosDeFinal();
             todosLosPartidos.clear();
@@ -1856,6 +1886,10 @@ public class Quinela extends javax.swing.JFrame {
                         switch (opcion) {
                             case JOptionPane.YES_OPTION:
                                 if (manejadorArchivos.crear_carpeta("archivos/" + username) == 0) {
+                                    Mundial nuevo = new Mundial();
+                                    nuevo.init();
+                                    nuevo.primeraFase();
+                                    this.mundial = nuevo;
                                     manejadorArchivos.asignarMundial(this.mundial, username, "", password);
 
                                     escribir("archivos/usuarios.txt", "#" + username + "-" + password);
@@ -1911,16 +1945,16 @@ public class Quinela extends javax.swing.JFrame {
         // TODO add your handling code here
         String username = username_field_login.getText();
         String password = String.valueOf(password_field_login.getPassword());
-        superUser=false;
+        superUser = false;
         if (!username.equals("") && !password.equals("")) {
             if (encontrar_usuario(username, password, false)) {
                 usuario_global = username;
                 System.out.println("Se encuentra el usuario");
-               
+
                 Mundial guardado = manejadorArchivos.buscarMundial(username, false);
                 this.mundial = guardado;
                 todosLosPartidos.clear();
-                this.todosLosPartidos=guardado.getTodos();
+                this.todosLosPartidos = guardado.getTodos();
                 System.out.println("GUARDADA: " + this.mundial.getTodos().get(3).getGolLocal());
                 cambiarQuinela();
 
@@ -2196,21 +2230,19 @@ public class Quinela extends javax.swing.JFrame {
 
     private void ganador_combo_1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ganador_combo_1ItemStateChanged
         // TODO add your handling code here:
-        try{
+        try {
             partido1.ganadorPenalesCB = ganador_combo_1.getSelectedItem().toString();
-        }
-        catch(Exception e){
-            
+        } catch (Exception e) {
+
         }
     }//GEN-LAST:event_ganador_combo_1ItemStateChanged
 
     private void ganador_combo_2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ganador_combo_2ItemStateChanged
         // TODO add your handling code here:
-        try{
+        try {
             partido2.ganadorPenalesCB = ganador_combo_2.getSelectedItem().toString();
-        }
-        catch(Exception e){
-            
+        } catch (Exception e) {
+
         }
     }//GEN-LAST:event_ganador_combo_2ItemStateChanged
 
