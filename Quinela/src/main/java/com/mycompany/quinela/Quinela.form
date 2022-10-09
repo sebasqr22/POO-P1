@@ -62,7 +62,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
                       <Component id="username_field_login" min="-2" pref="240" max="-2" attributes="0"/>
-                      <EmptySpace pref="526" max="32767" attributes="0"/>
+                      <EmptySpace pref="548" max="32767" attributes="0"/>
                       <Component id="password_field_login" min="-2" pref="240" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="337" max="-2" attributes="0"/>
                   </Group>
@@ -84,7 +84,7 @@
                               <Component id="iniciar_label" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="709" max="32767" attributes="0"/>
+                      <EmptySpace pref="751" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
@@ -227,7 +227,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
                       <Component id="username_field_registrarse" min="-2" pref="261" max="-2" attributes="0"/>
-                      <EmptySpace pref="464" max="32767" attributes="0"/>
+                      <EmptySpace pref="486" max="32767" attributes="0"/>
                       <Component id="password_field_registrarse" min="-2" pref="261" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="379" max="-2" attributes="0"/>
                   </Group>
@@ -415,7 +415,7 @@
                                   <Component id="panel3" min="-2" max="-2" attributes="0"/>
                                   <Component id="panel4" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="273" max="32767" attributes="0"/>
+                              <EmptySpace pref="293" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -554,7 +554,7 @@
                                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="74" max="32767" attributes="0"/>
+                                  <EmptySpace pref="73" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="logo2_1" min="-2" pref="125" max="-2" attributes="0"/>
                                       <Group type="102" alignment="1" attributes="0">
@@ -1495,13 +1495,6 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
-                      <Component id="username_field_administrativo" min="-2" pref="240" max="-2" attributes="0"/>
-                      <EmptySpace pref="618" max="32767" attributes="0"/>
-                      <Component id="password_field_administrativo" min="-2" pref="240" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="221" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="263" max="-2" attributes="0"/>
                       <Component id="username_label_administrativo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -1515,7 +1508,6 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="administrativo_button_administrativo" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="529" max="-2" attributes="0"/>
                               <Component id="administrativo_label_administrativo" min="-2" max="-2" attributes="0"/>
@@ -1526,6 +1518,21 @@
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="administrativo_button_administrativo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
+                              <Component id="username_field_administrativo" min="-2" pref="240" max="-2" attributes="0"/>
+                              <EmptySpace pref="640" max="32767" attributes="0"/>
+                              <Component id="password_field_administrativo" min="-2" pref="240" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="221" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1548,7 +1555,7 @@
                       <Component id="mostrar_button_administrativo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                       <Component id="acceder_button_administrativo" min="-2" pref="37" max="-2" attributes="0"/>
-                      <EmptySpace pref="406" max="32767" attributes="0"/>
+                      <EmptySpace pref="408" max="32767" attributes="0"/>
                       <Component id="administrativo_button_administrativo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   </Group>
@@ -1654,6 +1661,20 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                       <Component id="editar_button" min="-2" pref="189" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="Crear_Escenario_button_administrativo" pref="165" max="32767" attributes="0"/>
+                          <Component id="escenarios_button_administrativo" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="escenario_textField_administrativo" min="-2" pref="280" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="Nombre_NuevoEscenario_textField_administrativo" min="-2" pref="162" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="Guardar_NuevoEscenario_button_Administrativo" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -1664,8 +1685,20 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="administrativo_label_padministrativa" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="176" max="-2" attributes="0"/>
-                      <Component id="editar_button" min="-2" pref="45" max="-2" attributes="0"/>
-                      <EmptySpace pref="489" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="escenario_textField_administrativo" max="32767" attributes="0"/>
+                          <Component id="escenarios_button_administrativo" max="32767" attributes="0"/>
+                          <Component id="editar_button" pref="45" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="Guardar_NuevoEscenario_button_Administrativo" pref="48" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="Nombre_NuevoEscenario_textField_administrativo" pref="48" max="32767" attributes="0"/>
+                              <Component id="Crear_Escenario_button_administrativo" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="394" max="32767" attributes="0"/>
                       <Component id="logout_button_padministrativa" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   </Group>
@@ -1704,6 +1737,43 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
             </Component>
+            <Component class="javax.swing.JButton" name="escenarios_button_administrativo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Escenarios"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="escenarios_button_administrativoActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="escenario_textField_administrativo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Elegido"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="Crear_Escenario_button_administrativo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Crear Escenario"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Crear_Escenario_button_administrativoActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="Nombre_NuevoEscenario_textField_administrativo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nombre"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Nombre_NuevoEscenario_textField_administrativoActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="Guardar_NuevoEscenario_button_Administrativo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Guardar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Guardar_NuevoEscenario_button_AdministrativoActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="ranking">
@@ -1739,7 +1809,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="616" max="-2" attributes="0"/>
-                      <EmptySpace pref="517" max="32767" attributes="0"/>
+                      <EmptySpace pref="539" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1847,7 +1917,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="p1" min="-2" pref="245" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="1241" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="1263" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

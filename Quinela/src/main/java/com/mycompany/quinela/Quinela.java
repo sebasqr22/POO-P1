@@ -4,6 +4,7 @@
  */
 package com.mycompany.quinela;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -16,6 +17,7 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
 import java.util.Collections;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -247,6 +249,7 @@ public class Quinela extends javax.swing.JFrame {
     public Quinela() {
         mundial.init();
         mundial.primeraFase();
+        
         //mundial.octavosDeFinal();
         //mundial.cuartosDeFinal();
         //mundial.finalMundial();
@@ -438,6 +441,11 @@ public class Quinela extends javax.swing.JFrame {
         administrativo_label_padministrativa = new javax.swing.JLabel();
         logout_button_padministrativa = new javax.swing.JButton();
         editar_button = new javax.swing.JButton();
+        escenarios_button_administrativo = new javax.swing.JButton();
+        escenario_textField_administrativo = new javax.swing.JTextField();
+        Crear_Escenario_button_administrativo = new javax.swing.JButton();
+        Nombre_NuevoEscenario_textField_administrativo = new javax.swing.JTextField();
+        Guardar_NuevoEscenario_button_Administrativo = new javax.swing.JButton();
         ranking = new javax.swing.JPanel();
         quinela_label_quinela3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -504,7 +512,7 @@ public class Quinela extends javax.swing.JFrame {
             .addGroup(loginLayout.createSequentialGroup()
                 .addGap(143, 143, 143)
                 .addComponent(username_field_login, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 526, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 548, Short.MAX_VALUE)
                 .addComponent(password_field_login, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(337, 337, 337))
             .addGroup(loginLayout.createSequentialGroup()
@@ -521,7 +529,7 @@ public class Quinela extends javax.swing.JFrame {
                     .addGroup(loginLayout.createSequentialGroup()
                         .addGap(573, 573, 573)
                         .addComponent(iniciar_label)))
-                .addContainerGap(709, Short.MAX_VALUE))
+                .addContainerGap(751, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(mostrar_button_login)
@@ -587,7 +595,7 @@ public class Quinela extends javax.swing.JFrame {
             .addGroup(registrarLayout.createSequentialGroup()
                 .addGap(121, 121, 121)
                 .addComponent(username_field_registrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 464, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 486, Short.MAX_VALUE)
                 .addComponent(password_field_registrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(379, 379, 379))
             .addGroup(registrarLayout.createSequentialGroup()
@@ -721,7 +729,7 @@ public class Quinela extends javax.swing.JFrame {
                                 .addComponent(logo1_1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(69, 69, 69)
                                 .addComponent(jLabel1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(logo2_1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
@@ -1084,7 +1092,7 @@ public class Quinela extends javax.swing.JFrame {
                         .addGroup(quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(panel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(273, Short.MAX_VALUE))))
+                        .addContainerGap(293, Short.MAX_VALUE))))
         );
         quinelaLayout.setVerticalGroup(
             quinelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1165,12 +1173,6 @@ public class Quinela extends javax.swing.JFrame {
         administrativoLayout.setHorizontalGroup(
             administrativoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, administrativoLayout.createSequentialGroup()
-                .addGap(167, 167, 167)
-                .addComponent(username_field_administrativo, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 618, Short.MAX_VALUE)
-                .addComponent(password_field_administrativo, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(221, 221, 221))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, administrativoLayout.createSequentialGroup()
                 .addGap(263, 263, 263)
                 .addComponent(username_label_administrativo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1182,7 +1184,6 @@ public class Quinela extends javax.swing.JFrame {
                 .addGap(282, 282, 282))
             .addGroup(administrativoLayout.createSequentialGroup()
                 .addGroup(administrativoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(administrativo_button_administrativo)
                     .addGroup(administrativoLayout.createSequentialGroup()
                         .addGap(529, 529, 529)
                         .addComponent(administrativo_label_administrativo))
@@ -1190,6 +1191,17 @@ public class Quinela extends javax.swing.JFrame {
                         .addGap(545, 545, 545)
                         .addComponent(acceder_button_administrativo, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, administrativoLayout.createSequentialGroup()
+                .addGroup(administrativoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(administrativoLayout.createSequentialGroup()
+                        .addComponent(administrativo_button_administrativo)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(administrativoLayout.createSequentialGroup()
+                        .addGap(167, 167, 167)
+                        .addComponent(username_field_administrativo, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 640, Short.MAX_VALUE)
+                        .addComponent(password_field_administrativo, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(221, 221, 221))
         );
         administrativoLayout.setVerticalGroup(
             administrativoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1208,7 +1220,7 @@ public class Quinela extends javax.swing.JFrame {
                 .addComponent(mostrar_button_administrativo)
                 .addGap(48, 48, 48)
                 .addComponent(acceder_button_administrativo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 406, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 408, Short.MAX_VALUE)
                 .addComponent(administrativo_button_administrativo)
                 .addGap(17, 17, 17))
         );
@@ -1233,6 +1245,36 @@ public class Quinela extends javax.swing.JFrame {
             }
         });
 
+        escenarios_button_administrativo.setText("Escenarios");
+        escenarios_button_administrativo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                escenarios_button_administrativoActionPerformed(evt);
+            }
+        });
+
+        escenario_textField_administrativo.setText("Elegido");
+
+        Crear_Escenario_button_administrativo.setText("Crear Escenario");
+        Crear_Escenario_button_administrativo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Crear_Escenario_button_administrativoActionPerformed(evt);
+            }
+        });
+
+        Nombre_NuevoEscenario_textField_administrativo.setText("Nombre");
+        Nombre_NuevoEscenario_textField_administrativo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Nombre_NuevoEscenario_textField_administrativoActionPerformed(evt);
+            }
+        });
+
+        Guardar_NuevoEscenario_button_Administrativo.setText("Guardar");
+        Guardar_NuevoEscenario_button_Administrativo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Guardar_NuevoEscenario_button_AdministrativoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pantalla_administrativaLayout = new javax.swing.GroupLayout(pantalla_administrativa);
         pantalla_administrativa.setLayout(pantalla_administrativaLayout);
         pantalla_administrativaLayout.setHorizontalGroup(
@@ -1250,6 +1292,17 @@ public class Quinela extends javax.swing.JFrame {
             .addGroup(pantalla_administrativaLayout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(editar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(119, 119, 119)
+                .addGroup(pantalla_administrativaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Crear_Escenario_button_administrativo, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                    .addComponent(escenarios_button_administrativo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(89, 89, 89)
+                .addGroup(pantalla_administrativaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(escenario_textField_administrativo, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pantalla_administrativaLayout.createSequentialGroup()
+                        .addComponent(Nombre_NuevoEscenario_textField_administrativo, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Guardar_NuevoEscenario_button_Administrativo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pantalla_administrativaLayout.setVerticalGroup(
@@ -1258,8 +1311,17 @@ public class Quinela extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(administrativo_label_padministrativa)
                 .addGap(176, 176, 176)
-                .addComponent(editar_button, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 489, Short.MAX_VALUE)
+                .addGroup(pantalla_administrativaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(escenario_textField_administrativo)
+                    .addComponent(escenarios_button_administrativo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(editar_button, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
+                .addGap(47, 47, 47)
+                .addGroup(pantalla_administrativaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Guardar_NuevoEscenario_button_Administrativo, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                    .addGroup(pantalla_administrativaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(Nombre_NuevoEscenario_textField_administrativo, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                        .addComponent(Crear_Escenario_button_administrativo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 394, Short.MAX_VALUE)
                 .addComponent(logout_button_padministrativa)
                 .addGap(17, 17, 17))
         );
@@ -1309,7 +1371,7 @@ public class Quinela extends javax.swing.JFrame {
                     .addComponent(logout_ranking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(132, 132, 132)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(517, Short.MAX_VALUE))
+                .addContainerGap(539, Short.MAX_VALUE))
         );
         rankingLayout.setVerticalGroup(
             rankingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1339,7 +1401,7 @@ public class Quinela extends javax.swing.JFrame {
             comparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(comparacionLayout.createSequentialGroup()
                 .addComponent(p1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1241, Short.MAX_VALUE))
+                .addGap(0, 1263, Short.MAX_VALUE))
         );
         comparacionLayout.setVerticalGroup(
             comparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1388,11 +1450,13 @@ public class Quinela extends javax.swing.JFrame {
                 username_field_administrativo.setText("");
                 password_field_administrativo.setText("");
                 superUser = true;
+                /*
                 Mundial guardado = manejadorArchivos.buscarMundial(username, true);
                 todosLosPartidos.clear();
                 todosLosPartidos = guardado.getTodos();
                 System.out.println("GUARDADA: " + this.mundial.getTodos().get(0).getGolLocal());
                 cambiarQuinela();
+                */
                 sumar_button.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(pantallas, "Este Administrador no Existe!!!", "ERROR!", JOptionPane.ERROR_MESSAGE);
@@ -1858,7 +1922,7 @@ public class Quinela extends javax.swing.JFrame {
             todosLosPartidos.clear();
             todosLosPartidos = mundial.getTodos();
         }
-        manejadorArchivos.guardarMundial(aux, todosLosPartidos, usuario_global, superUser);
+        manejadorArchivos.guardarMundial(aux, todosLosPartidos, usuario_global, superUser,this.escenario_textField_administrativo.getText());
         JOptionPane.showMessageDialog(pantallas, "Se guardó correctamente!!!", "ERROR!", JOptionPane.WARNING_MESSAGE);
 
     }//GEN-LAST:event_guardar_button_quinelaActionPerformed
@@ -1950,7 +2014,7 @@ public class Quinela extends javax.swing.JFrame {
             if (encontrar_usuario(username, password, false)) {
                 usuario_global = username;
                 System.out.println("Se encuentra el usuario");
-
+                
                 Mundial guardado = manejadorArchivos.buscarMundial(username, false);
                 this.mundial = guardado;
                 todosLosPartidos.clear();
@@ -2024,208 +2088,43 @@ public class Quinela extends javax.swing.JFrame {
 
     private void combo1_1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo1_1ItemStateChanged
         // TODO add your handling code here:
-        //cambiarQuinela();
-        /*
-        String fecha = fecha_1.getText();
-        int selected = combo1_1.getSelectedIndex();
-        int selected2 = combo2_1.getSelectedIndex();
-        ganador_combo_1.setVisible(false);
-        if(selected==selected2){
-            //setFechaGanador(fecha);
-            ganador_combo_1.setVisible(true);
-            ganador_combo_1.removeAllItems();
-            String pais1 = logo1_1.getIcon().toString().split("/")[2];
-            String pais2 = logo2_1.getIcon().toString().split("/")[2];
-            if(pais1.equals("espana")){
-                pais1 = "España";
-            }
-            else if(pais2.equals("espana")){
-                pais2 = "España";
-            }
-            ganador_combo_1.addItem(pais1.replace("_", " "));
-            ganador_combo_1.addItem(pais2.replace("_", " "));
-        }else{
-            ganador_combo_1.setVisible(false);
-        }*/
+        
 
     }//GEN-LAST:event_combo1_1ItemStateChanged
 
     private void combo2_1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo2_1ItemStateChanged
         // TODO add your handling code here:
-        //cambiarQuinela();
-        /*String fecha = fecha_1.getText();
-        int selected = combo1_1.getSelectedIndex();
-        int selected2 = combo2_1.getSelectedIndex();
-        ganador_combo_1.setVisible(false);
-        if(selected == selected2){
-            setFechaGanador(fecha);
-            ganador_combo_1.setVisible(true);
-            ganador_combo_1.removeAllItems();
-            String pais1 = logo1_1.getIcon().toString().split("/")[2];
-            String pais2 = logo2_1.getIcon().toString().split("/")[2];
-            if(pais1.equals("espana")){
-                pais1 = "España";
-            }
-            else if(pais2.equals("espana")){
-                pais2 = "España";
-            }
-            ganador_combo_1.addItem(pais1.replace("_", " "));
-            ganador_combo_1.addItem(pais2.replace("_", " "));
-        }else{
-            ganador_combo_1.setVisible(false);
-        }*/
+        
     }//GEN-LAST:event_combo2_1ItemStateChanged
 
     private void combo1_2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo1_2ItemStateChanged
         // TODO add your handling code here:
-        //cambiarQuinela();
-        /*String fecha = fecha_1.getText();
-        int selected = combo1_2.getSelectedIndex();
-        int selected2 = combo2_2.getSelectedIndex();
-        ganador_combo_2.setVisible(false);
-        if(selected == selected2){
-            setFechaGanador(fecha);
-            ganador_combo_2.setVisible(true);
-            ganador_combo_2.removeAllItems();
-            String pais1 = logo1_2.getIcon().toString().split("/")[2];
-            String pais2 = logo2_2.getIcon().toString().split("/")[2];
-            if(pais1.equals("espana")){
-                pais1 = "España";
-            }
-            else if(pais2.equals("espana")){
-                pais2 = "España";
-            }
-            ganador_combo_2.addItem(pais1.replace("_", " "));
-            ganador_combo_2.addItem(pais2.replace("_", " "));
-        }else{
-            ganador_combo_2.setVisible(false);
-        }*/
+        
     }//GEN-LAST:event_combo1_2ItemStateChanged
 
     private void combo2_2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo2_2ItemStateChanged
         // TODO add your handling code here:
-        //cambiarQuinela();
-        /*String fecha = fecha_1.getText();
-        int selected = combo1_2.getSelectedIndex();
-        int selected2 = combo2_2.getSelectedIndex();
-        ganador_combo_2.setVisible(false);
-        if(selected == selected2){
-            setFechaGanador(fecha);
-            ganador_combo_2.setVisible(true);
-            ganador_combo_2.removeAllItems();
-            String pais1 = logo1_2.getIcon().toString().split("/")[2];
-            String pais2 = logo2_2.getIcon().toString().split("/")[2];
-            if(pais1.equals("espana")){
-                pais1 = "España";
-            }
-            else if(pais2.equals("espana")){
-                pais2 = "España";
-            }
-            ganador_combo_2.addItem(pais1.replace("_", " "));
-            ganador_combo_2.addItem(pais2.replace("_", " "));
-        }else{
-            ganador_combo_2.setVisible(false);
-        }*/
+        
     }//GEN-LAST:event_combo2_2ItemStateChanged
 
     private void combo1_3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo1_3ItemStateChanged
         // TODO add your handling code here:
-        /*String fecha = fecha_1.getText();
-        int selected = combo1_3.getSelectedIndex();
-        int selected2 = combo2_3.getSelectedIndex();
         
-        if(selected == selected2){
-            setFechaGanador(fecha);
-            ganador_combo_3.setVisible(true);
-            ganador_combo_3.removeAllItems();
-            String pais1 = logo1_3.getIcon().toString().split("/")[2];
-            String pais2 = logo2_3.getIcon().toString().split("/")[2];
-            if(pais1.equals("espana")){
-                pais1 = "España";
-            }
-            else if(pais2.equals("espana")){
-                pais2 = "España";
-            }
-            ganador_combo_3.addItem(pais1.replace("_", " "));
-            ganador_combo_3.addItem(pais2.replace("_", " "));
-        }else{
-            ganador_combo_3.setVisible(false);
-        }*/
     }//GEN-LAST:event_combo1_3ItemStateChanged
 
     private void combo2_3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo2_3ItemStateChanged
         // TODO add your handling code here:
-        /* String fecha = fecha_1.getText();
-        int selected = combo1_3.getSelectedIndex();
-        int selected2 = combo2_3.getSelectedIndex();
         
-        if(selected == selected2){
-            setFechaGanador(fecha);
-            ganador_combo_3.setVisible(true);
-            ganador_combo_3.removeAllItems();
-            String pais1 = logo1_3.getIcon().toString().split("/")[2];
-            String pais2 = logo2_3.getIcon().toString().split("/")[2];
-            if(pais1.equals("espana")){
-                pais1 = "España";
-            }
-            else if(pais2.equals("espana")){
-                pais2 = "España";
-            }
-            ganador_combo_3.addItem(pais1.replace("_", " "));
-            ganador_combo_3.addItem(pais2.replace("_", " "));
-        }else{
-            ganador_combo_3.setVisible(false);
-        }*/
     }//GEN-LAST:event_combo2_3ItemStateChanged
 
     private void combo1_4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo1_4ItemStateChanged
         // TODO add your handling code here:
-        /*String fecha = fecha_1.getText();
-        int selected = combo1_4.getSelectedIndex();
-        int selected2 = combo2_4.getSelectedIndex();
         
-        if(selected == selected2){
-            setFechaGanador(fecha);
-            ganador_combo_4.setVisible(true);
-            ganador_combo_4.removeAllItems();
-            String pais1 = logo1_4.getIcon().toString().split("/")[2];
-            String pais2 = logo2_4.getIcon().toString().split("/")[2];
-            if(pais1.equals("espana")){
-                pais1 = "España";
-            }
-            else if(pais2.equals("espana")){
-                pais2 = "España";
-            }
-            ganador_combo_4.addItem(pais1.replace("_", " "));
-            ganador_combo_4.addItem(pais2.replace("_", " "));
-        }else{
-            ganador_combo_4.setVisible(false);
-        }*/
     }//GEN-LAST:event_combo1_4ItemStateChanged
 
     private void combo2_4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combo2_4ItemStateChanged
         // TODO add your handling code here:
-        /*String fecha = fecha_1.getText();
-        int selected = combo1_4.getSelectedIndex();
-        int selected2 = combo2_4.getSelectedIndex();
         
-        if(selected == selected2){
-            setFechaGanador(fecha);
-            ganador_combo_4.setVisible(true);
-            ganador_combo_4.removeAllItems();
-            String pais1 = logo1_4.getIcon().toString().split("/")[2];
-            String pais2 = logo2_4.getIcon().toString().split("/")[2];
-            if(pais1.equals("espana")){
-                pais1 = "España";
-            }
-            else if(pais2.equals("espana")){
-                pais2 = "España";
-            }
-            ganador_combo_4.addItem(pais1.replace("_", " "));
-            ganador_combo_4.addItem(pais2.replace("_", " "));
-        }else{
-            ganador_combo_4.setVisible(false);
-        }*/
     }//GEN-LAST:event_combo2_4ItemStateChanged
 
     private void ganador_combo_1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ganador_combo_1ItemStateChanged
@@ -2245,6 +2144,48 @@ public class Quinela extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_ganador_combo_2ItemStateChanged
+
+    private void escenarios_button_administrativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_escenarios_button_administrativoActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fc=new JFileChooser();
+        
+        this.escenario_textField_administrativo.setEditable(false);
+        int seleccion=fc.showOpenDialog(this);
+        if(seleccion== JFileChooser.APPROVE_OPTION){
+            File fichero=fc.getSelectedFile();
+            this.escenario_textField_administrativo.setText(fichero.getName());
+            Mundial guardado = manejadorArchivos.buscarEscenario(fichero.getName());
+            this.mundial = guardado;
+            todosLosPartidos.clear();
+            this.todosLosPartidos = guardado.getTodos();
+            System.out.println("GUARDADA: " + this.mundial.getTodos().get(3).getGolLocal());
+            cambiarQuinela();
+            
+        }
+        
+    }//GEN-LAST:event_escenarios_button_administrativoActionPerformed
+
+    private void Crear_Escenario_button_administrativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Crear_Escenario_button_administrativoActionPerformed
+        // TODO add your handling code here:
+        this.Nombre_NuevoEscenario_textField_administrativo.setVisible(true);
+        this.Guardar_NuevoEscenario_button_Administrativo.setVisible(true);
+        
+    }//GEN-LAST:event_Crear_Escenario_button_administrativoActionPerformed
+
+    private void Nombre_NuevoEscenario_textField_administrativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nombre_NuevoEscenario_textField_administrativoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Nombre_NuevoEscenario_textField_administrativoActionPerformed
+
+    private void Guardar_NuevoEscenario_button_AdministrativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Guardar_NuevoEscenario_button_AdministrativoActionPerformed
+        // TODO add your handling code here:
+        String nuevo=this.Nombre_NuevoEscenario_textField_administrativo.getText();
+        Mundial nuevoMundial=new Mundial();
+        nuevoMundial.init();
+        nuevoMundial.primeraFase();
+        this.mundial=nuevoMundial;
+        
+        manejadorArchivos.nuevoMundialAdmin(nuevo, this.mundial);
+    }//GEN-LAST:event_Guardar_NuevoEscenario_button_AdministrativoActionPerformed
 
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -2357,6 +2298,9 @@ public class Quinela extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Crear_Escenario_button_administrativo;
+    private javax.swing.JButton Guardar_NuevoEscenario_button_Administrativo;
+    private javax.swing.JTextField Nombre_NuevoEscenario_textField_administrativo;
     public javax.swing.JButton acceder_button_administrativo;
     public javax.swing.JButton acceder_button_login;
     private javax.swing.JPanel administrativo;
@@ -2376,6 +2320,8 @@ public class Quinela extends javax.swing.JFrame {
     public javax.swing.JComboBox<String> combo2_4;
     private javax.swing.JPanel comparacion;
     public javax.swing.JButton editar_button;
+    private javax.swing.JTextField escenario_textField_administrativo;
+    private javax.swing.JButton escenarios_button_administrativo;
     public javax.swing.JLabel fecha_1;
     public javax.swing.JLabel fecha_2;
     public javax.swing.JLabel fecha_3;
