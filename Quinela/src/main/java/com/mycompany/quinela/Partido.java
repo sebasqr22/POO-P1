@@ -23,7 +23,7 @@ public class Partido implements Serializable{
     public int golLocal;
     private JComboBox<String> golLocalCB;
     private JComboBox<String> golVisitaCB;
-    private JComboBox<String> ganadorPenalesCB;
+    public String ganadorPenalesCB;
     private JButton generarResultado;
     public int golVisita;
     private boolean penales;
@@ -47,6 +47,9 @@ public class Partido implements Serializable{
        // this.local.getPartidos().add(this);
         //this.visita.getPartidos().add(this);
     }
+    public Partido(String temporal){
+        
+    }
 
     public Equipo getLocal() {
         return local;
@@ -58,17 +61,7 @@ public class Partido implements Serializable{
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public JComboBox<String> getGanadorPenalesCB() {
-        return ganadorPenalesCB;
-    }
-
-    public void setGanadorPenalesCB(JComboBox<String> ganadorPenalesCB) {
-        this.ganadorPenalesCB = ganadorPenalesCB;
-    }
-    
-    
+    }    
     
     public Equipo getVisita() {
         return visita;

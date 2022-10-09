@@ -36,6 +36,8 @@ public class Quinela extends javax.swing.JFrame {
     ArrayList<Partido> todosLosPartidos = new ArrayList<>();
     String serie = "";
     int contadorFechas = 0;
+    Partido partido1 = new Partido("saprissa");
+    Partido partido2 = new Partido("saprissa");
 
     String ultimo_partido_consultado = "";
 
@@ -142,13 +144,10 @@ public class Quinela extends javax.swing.JFrame {
                     
                     
                     if (contadorFechas > 12) {
-                        
-                        
+                        this.partido1 = j;
                         ganador_combo_1.setVisible(true);
-                            
                         ganador_combo_1.addItem(j.getLocal().pais);
                         ganador_combo_1.addItem(j.getVisita().pais);
-                        j.setGanadorPenalesCB(ganador_combo_1);
                        
                     } else {
                         ganador_combo_1.setVisible(false);
@@ -168,14 +167,12 @@ public class Quinela extends javax.swing.JFrame {
                     
                     
                     if (contadorFechas > 12) {
-                        j.setGanadorPenalesCB(ganador_combo_2);
+                        this.partido2 = j;
                         ganador_combo_2.setVisible(true);
                         
                         ganador_combo_2.removeAllItems();
                         ganador_combo_2.addItem(j.getLocal().pais);
                         ganador_combo_2.addItem(j.getVisita().pais);
-                        j.setGanadorPenalesCB(ganador_combo_2);
-                        
                     } else {
                         ganador_combo_2.setVisible(false);
 
@@ -505,23 +502,19 @@ public class Quinela extends javax.swing.JFrame {
                 .addComponent(administrativo_button_login)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(registrarse_button_login)
-                .addGap(15, 15, 15))
+                .addGap(275, 275, 275))
             .addGroup(loginLayout.createSequentialGroup()
                 .addGap(143, 143, 143)
                 .addComponent(username_field_login, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 629, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 526, Short.MAX_VALUE)
                 .addComponent(password_field_login, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(234, 234, 234))
+                .addGap(337, 337, 337))
             .addGroup(loginLayout.createSequentialGroup()
                 .addGap(226, 226, 226)
                 .addComponent(username_label_login)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(password_label_login)
-                .addGap(316, 316, 316))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(mostrar_button_login)
-                .addGap(284, 284, 284))
+                .addGap(422, 422, 422))
             .addGroup(loginLayout.createSequentialGroup()
                 .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(loginLayout.createSequentialGroup()
@@ -530,7 +523,11 @@ public class Quinela extends javax.swing.JFrame {
                     .addGroup(loginLayout.createSequentialGroup()
                         .addGap(573, 573, 573)
                         .addComponent(iniciar_label)))
-                .addContainerGap(729, Short.MAX_VALUE))
+                .addContainerGap(709, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(mostrar_button_login)
+                .addGap(379, 379, 379))
         );
         loginLayout.setVerticalGroup(
             loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -552,11 +549,14 @@ public class Quinela extends javax.swing.JFrame {
                 .addComponent(mostrar_button_login)
                 .addGap(45, 45, 45)
                 .addComponent(acceder_button_login, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 403, Short.MAX_VALUE)
-                .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(registrarse_button_login)
-                    .addComponent(administrativo_button_login))
-                .addGap(15, 15, 15))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 395, Short.MAX_VALUE)
+                .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginLayout.createSequentialGroup()
+                        .addComponent(administrativo_button_login)
+                        .addGap(15, 15, 15))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginLayout.createSequentialGroup()
+                        .addComponent(registrarse_button_login)
+                        .addGap(23, 23, 23))))
         );
 
         pantallas.addTab("tab1", login);
@@ -589,15 +589,15 @@ public class Quinela extends javax.swing.JFrame {
             .addGroup(registrarLayout.createSequentialGroup()
                 .addGap(121, 121, 121)
                 .addComponent(username_field_registrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 654, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 464, Short.MAX_VALUE)
                 .addComponent(password_field_registrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(189, 189, 189))
+                .addGap(379, 379, 379))
             .addGroup(registrarLayout.createSequentialGroup()
                 .addGap(220, 220, 220)
                 .addComponent(username_label_registrarse)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(password_label_registrarse)
-                .addGap(281, 281, 281))
+                .addGap(483, 483, 483))
             .addGroup(registrarLayout.createSequentialGroup()
                 .addGroup(registrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(registrarLayout.createSequentialGroup()
@@ -610,7 +610,7 @@ public class Quinela extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, registrarLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(login_button_registrarse)
-                .addGap(14, 14, 14))
+                .addGap(351, 351, 351))
         );
         registrarLayout.setVerticalGroup(
             registrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -627,9 +627,9 @@ public class Quinela extends javax.swing.JFrame {
                     .addComponent(password_label_registrarse))
                 .addGap(90, 90, 90)
                 .addComponent(registrar_button_registrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 395, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 342, Short.MAX_VALUE)
                 .addComponent(login_button_registrarse)
-                .addContainerGap())
+                .addGap(59, 59, 59))
         );
 
         pantallas.addTab("tab2", registrar);
@@ -702,6 +702,11 @@ public class Quinela extends javax.swing.JFrame {
         ganador_1.setText("Ganador:");
 
         ganador_combo_1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ganador_combo_1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ganador_combo_1ItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -834,6 +839,11 @@ public class Quinela extends javax.swing.JFrame {
         ganador_2.setText("Ganador:");
 
         ganador_combo_2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ganador_combo_2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ganador_combo_2ItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
         panel2.setLayout(panel2Layout);
@@ -1685,7 +1695,7 @@ public class Quinela extends javax.swing.JFrame {
                 }
                 if(p.getGanador()==null){
                     for (Equipo e : mundial.getEquipos()) {
-                        if(e.pais==p.getGanadorPenalesCB().getSelectedItem()){
+                        if(e.pais==p.ganadorPenalesCB){
                             p.setGanador(e);
                             grupos = false;
                             mundial.octavos = true;
@@ -1706,7 +1716,7 @@ public class Quinela extends javax.swing.JFrame {
                 }
                 if(p.getGanador()==null){
                     for (Equipo e : mundial.getEquipos()) {
-                        if(e.pais==p.getGanadorPenalesCB().getSelectedItem()){
+                        if(e.pais==p.ganadorPenalesCB){
                             p.setGanador(e);
                             grupos = false;
                             mundial.octavos = true;
@@ -1729,7 +1739,7 @@ public class Quinela extends javax.swing.JFrame {
                 }
                 if(p.getGanador()==null){
                     for (Equipo e : mundial.getEquipos()) {
-                        if(e.pais==p.getGanadorPenalesCB().getSelectedItem()){
+                        if(e.pais==p.ganadorPenalesCB){
                             p.setGanador(e);
                             grupos = false;
                             mundial.octavos = true;
@@ -1753,7 +1763,7 @@ public class Quinela extends javax.swing.JFrame {
                 }
                 if(p.getGanador()==null){
                     for (Equipo e : mundial.getEquipos()) {
-                        if(e.pais==p.getGanadorPenalesCB().getSelectedItem()){
+                        if(e.pais==p.ganadorPenalesCB){
                             p.setGanador(e);
                             grupos = false;
                             mundial.octavos = true;
@@ -2171,6 +2181,26 @@ public class Quinela extends javax.swing.JFrame {
             ganador_combo_4.setVisible(false);
         }*/
     }//GEN-LAST:event_combo2_4ItemStateChanged
+
+    private void ganador_combo_1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ganador_combo_1ItemStateChanged
+        // TODO add your handling code here:
+        try{
+            partido1.ganadorPenalesCB = ganador_combo_1.getSelectedItem().toString();
+        }
+        catch(Exception e){
+            
+        }
+    }//GEN-LAST:event_ganador_combo_1ItemStateChanged
+
+    private void ganador_combo_2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ganador_combo_2ItemStateChanged
+        // TODO add your handling code here:
+        try{
+            partido2.ganadorPenalesCB = ganador_combo_2.getSelectedItem().toString();
+        }
+        catch(Exception e){
+            
+        }
+    }//GEN-LAST:event_ganador_combo_2ItemStateChanged
 
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
