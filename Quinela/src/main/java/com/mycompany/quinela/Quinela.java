@@ -1697,7 +1697,7 @@ public class Quinela extends javax.swing.JFrame {
         int cont = 0;
         for (Partido p : todosLosPartidos) {
             if (cont <= 47) {
-
+                   System.out.println("GOL LOCAL: " + p.getGolLocal());
                 if (p.getGolLocal() == -1 || p.getLocal().pais.equals("aux") || p.getVisita().pais.equals("aux")) {
                     grupos = false;
                     break;
@@ -1707,7 +1707,7 @@ public class Quinela extends javax.swing.JFrame {
                 grupos = true;
             }
             if (cont <= 55 && cont > 47) {
-
+                   
                 if (p.getGolLocal() == -1 || p.getLocal().pais.equals("aux") || p.getVisita().pais.equals("aux")) {
                     grupos = true;
                     mundial.octavos = false;
@@ -1918,17 +1918,10 @@ public class Quinela extends javax.swing.JFrame {
                 System.out.println("Se encuentra el usuario");
                
                 Mundial guardado = manejadorArchivos.buscarMundial(username, false);
-                //todosLosPartidos.clear();
-                todosLosPartidos=guardado.todosPartidos;
-
-                int cont = 0;
-                /*
-                for (Partido p : todosLosPartidos) {
-                    p.setGolLocal(guardado.getTodos().get(cont).getGolLocal());
-                    p.setGolVisita(guardado.getTodos().get(cont).getGolVisita());
-                    cont++;
-                }*/
-                System.out.println("GUARDADA: " + this.mundial.getTodos().get(0).getGolLocal());
+                this.mundial = guardado;
+                todosLosPartidos.clear();
+                this.todosLosPartidos=guardado.getTodos();
+                System.out.println("GUARDADA: " + this.mundial.getTodos().get(3).getGolLocal());
                 cambiarQuinela();
 
                 pantallas.setSelectedIndex(2);
@@ -1977,12 +1970,6 @@ public class Quinela extends javax.swing.JFrame {
     private void quienela_rankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quienela_rankingActionPerformed
         // TODO add your handling code here:
         Mundial guardado = manejadorArchivos.buscarMundial(usuario_global, superUser);
-        int cont = 0;
-        for (Partido p : todosLosPartidos) {
-            p.setGolLocal(guardado.getTodos().get(cont).getGolLocal());
-            p.setGolVisita(guardado.getTodos().get(cont).getGolVisita());
-            cont++;
-        }
         System.out.println("GUARDADA: " + this.mundial.getTodos().get(0).getGolLocal());
         cambiarQuinela();
         pantallas.setSelectedIndex(2);
