@@ -618,9 +618,9 @@ public class Quinela extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(registrarse_label_registrarse)
                 .addGap(113, 113, 113)
-                .addGroup(registrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(username_field_registrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(password_field_registrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(registrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(password_field_registrarse, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(username_field_registrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(registrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(username_label_registrarse)
@@ -723,7 +723,7 @@ public class Quinela extends javax.swing.JFrame {
                                 .addComponent(logo1_1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(69, 69, 69)
                                 .addComponent(jLabel1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(logo2_1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
@@ -1369,6 +1369,8 @@ public class Quinela extends javax.swing.JFrame {
                 password_field_administrativo.setText("");
                 superUser = true;
                 Mundial guardado = manejadorArchivos.buscarMundial(username, true);
+                todosLosPartidos.clear();
+                todosLosPartidos=guardado.getTodos();
                 int cont = 0;
                 for (Partido p : todosLosPartidos) {
                     p.setGolLocal(guardado.getTodos().get(cont).getGolLocal());
@@ -1891,14 +1893,19 @@ public class Quinela extends javax.swing.JFrame {
         // TODO add your handling code here
         String username = username_field_login.getText();
         String password = String.valueOf(password_field_login.getPassword());
-
+        superUser=false;
         if (!username.equals("") && !password.equals("")) {
             if (encontrar_usuario(username, password, false)) {
                 usuario_global = username;
                 System.out.println("Se encuentra el usuario");
+               
                 Mundial guardado = manejadorArchivos.buscarMundial(username, false);
+                //todosLosPartidos.clear();
+                todosLosPartidos=guardado.getTodos();
+                    
+                
                 int cont = 0;
-                for (Partido p : todosLosPartidos) {
+                for (Partido p : guardado.getTodos()) {
                     p.setGolLocal(guardado.getTodos().get(cont).getGolLocal());
                     p.setGolVisita(guardado.getTodos().get(cont).getGolVisita());
                     cont++;
@@ -2263,6 +2270,7 @@ public class Quinela extends javax.swing.JFrame {
                 superUser = false;
                 ocultarPaneles();
                 pantallas.setSelectedIndex(0);
+                break;
 
             case JOptionPane.NO_OPTION:
                 break;

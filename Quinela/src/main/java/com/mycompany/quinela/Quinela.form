@@ -264,9 +264,9 @@
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Component id="registrarse_label_registrarse" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="username_field_registrarse" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="password_field_registrarse" alignment="1" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="username_field_registrarse" min="-2" pref="36" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -554,7 +554,7 @@
                                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="74" max="32767" attributes="0"/>
+                                  <EmptySpace pref="73" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="logo2_1" min="-2" pref="125" max="-2" attributes="0"/>
                                       <Group type="102" alignment="1" attributes="0">
