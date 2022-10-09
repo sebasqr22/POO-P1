@@ -448,6 +448,8 @@ public class Quinela extends javax.swing.JFrame {
         area_ranking = new javax.swing.JTextArea();
         quienela_ranking = new javax.swing.JButton();
         logout_ranking = new javax.swing.JButton();
+        comparacion = new javax.swing.JPanel();
+        p1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -723,7 +725,7 @@ public class Quinela extends javax.swing.JFrame {
                                 .addComponent(logo1_1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(69, 69, 69)
                                 .addComponent(jLabel1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(logo2_1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
@@ -1330,6 +1332,28 @@ public class Quinela extends javax.swing.JFrame {
         );
 
         pantallas.addTab("tab6", ranking);
+
+        comparacion.setBackground(new java.awt.Color(147, 25, 49));
+
+        p1.setText("jLabel2");
+
+        javax.swing.GroupLayout comparacionLayout = new javax.swing.GroupLayout(comparacion);
+        comparacion.setLayout(comparacionLayout);
+        comparacionLayout.setHorizontalGroup(
+            comparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(comparacionLayout.createSequentialGroup()
+                .addComponent(p1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1241, Short.MAX_VALUE))
+        );
+        comparacionLayout.setVerticalGroup(
+            comparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(comparacionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(p1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(747, Short.MAX_VALUE))
+        );
+
+        pantallas.addTab("tab7", comparacion);
 
         getContentPane().add(pantallas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -31, -1, 820));
 
@@ -2331,6 +2355,7 @@ public class Quinela extends javax.swing.JFrame {
     public javax.swing.JComboBox<String> combo2_2;
     public javax.swing.JComboBox<String> combo2_3;
     public javax.swing.JComboBox<String> combo2_4;
+    private javax.swing.JPanel comparacion;
     public javax.swing.JButton editar_button;
     public javax.swing.JLabel fecha_1;
     public javax.swing.JLabel fecha_2;
@@ -2369,6 +2394,7 @@ public class Quinela extends javax.swing.JFrame {
     private javax.swing.JButton logout_ranking;
     public javax.swing.JRadioButton mostrar_button_administrativo;
     public javax.swing.JRadioButton mostrar_button_login;
+    public javax.swing.JLabel p1;
     public java.awt.Panel panel1;
     public java.awt.Panel panel2;
     public java.awt.Panel panel3;
