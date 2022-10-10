@@ -62,7 +62,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
                       <Component id="username_field_login" min="-2" pref="240" max="-2" attributes="0"/>
-                      <EmptySpace pref="548" max="32767" attributes="0"/>
+                      <EmptySpace pref="597" max="32767" attributes="0"/>
                       <Component id="password_field_login" min="-2" pref="240" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="337" max="-2" attributes="0"/>
                   </Group>
@@ -84,7 +84,7 @@
                               <Component id="iniciar_label" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="751" max="32767" attributes="0"/>
+                      <EmptySpace pref="800" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
@@ -227,7 +227,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
                       <Component id="username_field_registrarse" min="-2" pref="261" max="-2" attributes="0"/>
-                      <EmptySpace pref="486" max="32767" attributes="0"/>
+                      <EmptySpace pref="535" max="32767" attributes="0"/>
                       <Component id="password_field_registrarse" min="-2" pref="261" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="379" max="-2" attributes="0"/>
                   </Group>
@@ -373,6 +373,8 @@
                               <Component id="generarResultado_button_quinela" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
                               <Component id="logout_button_quinela1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="p_admin" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="guardar_button_quinela" min="-2" pref="212" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="359" max="-2" attributes="0"/>
@@ -415,7 +417,7 @@
                                   <Component id="panel3" min="-2" max="-2" attributes="0"/>
                                   <Component id="panel4" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="293" max="32767" attributes="0"/>
+                              <EmptySpace pref="344" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -464,6 +466,7 @@
                           <Component id="logout_button_quinela1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="guardar_button_quinela" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="p_admin" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   </Group>
@@ -554,7 +557,7 @@
                                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="73" max="32767" attributes="0"/>
+                                  <EmptySpace pref="74" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="logo2_1" min="-2" pref="125" max="-2" attributes="0"/>
                                       <Group type="102" alignment="1" attributes="0">
@@ -1480,6 +1483,14 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
             </Component>
+            <Component class="javax.swing.JButton" name="p_admin">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="P. Admin"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="p_adminActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="administrativo">
@@ -1528,7 +1539,7 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
                               <Component id="username_field_administrativo" min="-2" pref="240" max="-2" attributes="0"/>
-                              <EmptySpace pref="640" max="32767" attributes="0"/>
+                              <EmptySpace pref="689" max="32767" attributes="0"/>
                               <Component id="password_field_administrativo" min="-2" pref="240" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1653,14 +1664,17 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="428" max="-2" attributes="0"/>
                               <Component id="administrativo_label_padministrativa" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="810" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="881" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                      <Component id="editar_button" min="-2" pref="189" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="editar_button" pref="189" max="32767" attributes="0"/>
+                          <Component id="reiniciar" max="32767" attributes="0"/>
+                      </Group>
                       <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="Crear_Escenario_button_administrativo" pref="165" max="32767" attributes="0"/>
@@ -1690,15 +1704,14 @@
                           <Component id="escenarios_button_administrativo" max="32767" attributes="0"/>
                           <Component id="editar_button" pref="45" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <EmptySpace pref="47" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="Guardar_NuevoEscenario_button_Administrativo" pref="48" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="Nombre_NuevoEscenario_textField_administrativo" pref="48" max="32767" attributes="0"/>
-                              <Component id="Crear_Escenario_button_administrativo" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="Nombre_NuevoEscenario_textField_administrativo" pref="48" max="32767" attributes="0"/>
+                          <Component id="Crear_Escenario_button_administrativo" max="32767" attributes="0"/>
+                          <Component id="reiniciar" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="394" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="394" max="-2" attributes="0"/>
                       <Component id="logout_button_padministrativa" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   </Group>
@@ -1774,6 +1787,17 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Guardar_NuevoEscenario_button_AdministrativoActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JButton" name="reiniciar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Reiniciar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reiniciarActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="ranking">
@@ -1803,11 +1827,18 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="quienela_ranking" pref="188" max="32767" attributes="0"/>
-                          <Component id="logout_ranking" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="quienela_ranking" pref="188" max="32767" attributes="0"/>
+                              <Component id="logout_ranking" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel2" min="-2" pref="138" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jugados_ranking" min="-2" pref="150" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="616" max="-2" attributes="0"/>
                       <EmptySpace pref="539" max="32767" attributes="0"/>
                   </Group>
@@ -1827,6 +1858,11 @@
                               <Component id="quienela_ranking" min="-2" pref="40" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                               <Component id="logout_ranking" min="-2" pref="36" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="jugados_ranking" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <EmptySpace pref="116" max="32767" attributes="0"/>
@@ -1896,6 +1932,22 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logout_rankingActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JLabel" name="jLabel2">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Partidos Jugados:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jugados_ranking">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="comparacion">
@@ -1917,7 +1969,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="p1" min="-2" pref="245" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="1263" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="1312" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
